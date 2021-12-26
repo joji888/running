@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 订单类型表(OrderType)表服务实现类
@@ -29,21 +30,31 @@ public class OrderTypeServiceImpl implements OrderTypeService {
      * @return 实例对象
      */
     @Override
-    public OrderType queryById(Integer otId) {
-        return this.orderTypeDao.queryById(otId);
+    public Result queryById(Integer otId){
+        if (otId == null || otId.equals("")){
+            return Result.error("ID不能为空");
+        }
+        return Result.success(this.orderTypeDao.queryById(otId));
+
     }
 
     /**
      * 分页查询
      *
-     * @param orderType 筛选条件
-     * @param pageRequest      分页对象
+     * @param offset 筛选条件
+     * @param limit      分页对象
      * @return 查询结果
      */
     @Override
-    public Page<OrderType> queryByPage(OrderType orderType, PageRequest pageRequest) {
-        long total = this.orderTypeDao.count(orderType);
-        return new PageImpl<>(this.orderTypeDao.queryAllByLimit(orderType, pageRequest), pageRequest, total);
+    public Result<List<OrderType>> queryByPage(Integer offset,Integer limit) {
+        if (offset == null || offset < 1){
+            offset = 1;
+        }
+        if (limit ==null){
+            limit = 10;
+        }
+        offset = (offset-1)*limit;
+        return Result.success(this.orderTypeDao.queryAllByLimit(offset,limit));
     }
 
     /**

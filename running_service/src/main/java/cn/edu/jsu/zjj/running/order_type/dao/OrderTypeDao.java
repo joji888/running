@@ -2,7 +2,10 @@ package cn.edu.jsu.zjj.running.order_type.dao;
 
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
@@ -11,6 +14,7 @@ import java.util.List;
  * @author makejava
  * @since 2021-12-26 10:58:01
  */
+@Repository
 public interface OrderTypeDao {
 
     /**
@@ -19,16 +23,16 @@ public interface OrderTypeDao {
      * @param otId 主键
      * @return 实例对象
      */
-    OrderType queryById(Integer otId);
+    Result queryById(Integer otId);
 
     /**
      * 查询指定行数据
      *
-     * @param orderType 查询条件
-     * @param pageable         分页对象
+     * @param offset 查询条件
+     * @param limit         分页对象
      * @return 对象列表
      */
-    List<OrderType> queryAllByLimit(OrderType orderType, @Param("pageable") Pageable pageable);
+    List<OrderType> queryAllByLimit(@Param("offset") Integer offset , @Param("limit") Integer limit);
 
     /**
      * 统计总行数

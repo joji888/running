@@ -1,6 +1,4 @@
-./running_service/target/
-./running_service/.idea/
-
-
-./running_service/running.iml
-./running_service/HELP.md
+**/running.iml
+**/HELP.md
+**/target/
+**/.idea/

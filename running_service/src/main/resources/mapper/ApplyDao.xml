@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jsu.zjj.running.apply.dao.ApplyDao">
+
+    <resultMap type="cn.edu.jsu.zjj.running.apply.entity.Apply" id="ApplyMap">
+        <result property="applyId" column="apply_id" jdbcType="INTEGER"/>
+        <result property="applyTime" column="apply_time" jdbcType="TIMESTAMP"/>
+        <result property="applyState" column="apply_state" jdbcType="VARCHAR"/>
+        <result property="applyIdentityCode" column="apply_identity_code" jdbcType="VARCHAR"/>
+        <result property="applyIdentityCodeFront" column="apply_identity_code_front" jdbcType="VARCHAR"/>
+        <result property="applyIdentityCodeBack" column="apply_identity_code_back" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ApplyMap">
+        select
+          apply_id, apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back
+        from apply
+        where apply_id = #{applyId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ApplyMap">
+        select
+          apply_id, apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back
+        from apply
+        <where>
+            <if test="applyId != null">
+                and apply_id = #{applyId}
+            </if>
+            <if test="applyTime != null">
+                and apply_time = #{applyTime}
+            </if>
+            <if test="applyState != null and applyState != ''">
+                and apply_state = #{applyState}
+            </if>
+            <if test="applyIdentityCode != null and applyIdentityCode != ''">
+                and apply_identity_code = #{applyIdentityCode}
+            </if>
+            <if test="applyIdentityCodeFront != null and applyIdentityCodeFront != ''">
+                and apply_identity_code_front = #{applyIdentityCodeFront}
+            </if>
+            <if test="applyIdentityCodeBack != null and applyIdentityCodeBack != ''">
+                and apply_identity_code_back = #{applyIdentityCodeBack}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from apply
+        <where>
+            <if test="applyId != null">
+                and apply_id = #{applyId}
+            </if>
+            <if test="applyTime != null">
+                and apply_time = #{applyTime}
+            </if>
+            <if test="applyState != null and applyState != ''">
+                and apply_state = #{applyState}
+            </if>
+            <if test="applyIdentityCode != null and applyIdentityCode != ''">
+                and apply_identity_code = #{applyIdentityCode}
+            </if>
+            <if test="applyIdentityCodeFront != null and applyIdentityCodeFront != ''">
+                and apply_identity_code_front = #{applyIdentityCodeFront}
+            </if>
+            <if test="applyIdentityCodeBack != null and applyIdentityCodeBack != ''">
+                and apply_identity_code_back = #{applyIdentityCodeBack}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="applyId" useGeneratedKeys="true">
+        insert into apply(apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
+        values (#{applyTime}, #{applyState}, #{applyIdentityCode}, #{applyIdentityCodeFront}, #{applyIdentityCodeBack})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="applyId" useGeneratedKeys="true">
+        insert into apply(apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.applyTime}, #{entity.applyState}, #{entity.applyIdentityCode}, #{entity.applyIdentityCodeFront}, #{entity.applyIdentityCodeBack})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="applyId" useGeneratedKeys="true">
+        insert into apply(apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.applyTime}, #{entity.applyState}, #{entity.applyIdentityCode}, #{entity.applyIdentityCodeFront}, #{entity.applyIdentityCodeBack})
+        </foreach>
+        on duplicate key update
+        apply_time = values(apply_time),
+        apply_state = values(apply_state),
+        apply_identity_code = values(apply_identity_code),
+        apply_identity_code_front = values(apply_identity_code_front),
+        apply_identity_code_back = values(apply_identity_code_back)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update apply
+        <set>
+            <if test="applyTime != null">
+                apply_time = #{applyTime},
+            </if>
+            <if test="applyState != null and applyState != ''">
+                apply_state = #{applyState},
+            </if>
+            <if test="applyIdentityCode != null and applyIdentityCode != ''">
+                apply_identity_code = #{applyIdentityCode},
+            </if>
+            <if test="applyIdentityCodeFront != null and applyIdentityCodeFront != ''">
+                apply_identity_code_front = #{applyIdentityCodeFront},
+            </if>
+            <if test="applyIdentityCodeBack != null and applyIdentityCodeBack != ''">
+                apply_identity_code_back = #{applyIdentityCodeBack},
+            </if>
+        </set>
+        where apply_id = #{applyId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from apply where apply_id = #{applyId}
+    </delete>
+
+</mapper>
+

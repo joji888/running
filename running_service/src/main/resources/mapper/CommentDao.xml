@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jsu.zjj.running.comment.dao.CommentDao">
+
+    <resultMap type="cn.edu.jsu.zjj.running.comment.entity.Comment" id="CommentMap">
+        <result property="cId" column="c_id" jdbcType="INTEGER"/>
+        <result property="oId" column="o_id" jdbcType="INTEGER"/>
+        <result property="uId" column="u_id" jdbcType="INTEGER"/>
+        <result property="cTime" column="c_time" jdbcType="TIMESTAMP"/>
+        <result property="cType" column="c_type" jdbcType="VARCHAR"/>
+        <result property="cContent" column="c_content" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CommentMap">
+        select
+          c_id, o_id, u_id, c_time, c_type, c_content
+        from comment
+        where c_id = #{cId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CommentMap">
+        select
+          c_id, o_id, u_id, c_time, c_type, c_content
+        from comment
+        <where>
+            <if test="cId != null">
+                and c_id = #{cId}
+            </if>
+            <if test="oId != null">
+                and o_id = #{oId}
+            </if>
+            <if test="uId != null">
+                and u_id = #{uId}
+            </if>
+            <if test="cTime != null">
+                and c_time = #{cTime}
+            </if>
+            <if test="cType != null and cType != ''">
+                and c_type = #{cType}
+            </if>
+            <if test="cContent != null and cContent != ''">
+                and c_content = #{cContent}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from comment
+        <where>
+            <if test="cId != null">
+                and c_id = #{cId}
+            </if>
+            <if test="oId != null">
+                and o_id = #{oId}
+            </if>
+            <if test="uId != null">
+                and u_id = #{uId}
+            </if>
+            <if test="cTime != null">
+                and c_time = #{cTime}
+            </if>
+            <if test="cType != null and cType != ''">
+                and c_type = #{cType}
+            </if>
+            <if test="cContent != null and cContent != ''">
+                and c_content = #{cContent}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="cId" useGeneratedKeys="true">
+        insert into comment(o_id, u_id, c_time, c_type, c_content)
+        values (#{oId}, #{uId}, #{cTime}, #{cType}, #{cContent})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="cId" useGeneratedKeys="true">
+        insert into comment(o_id, u_id, c_time, c_type, c_content)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.oId}, #{entity.uId}, #{entity.cTime}, #{entity.cType}, #{entity.cContent})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="cId" useGeneratedKeys="true">
+        insert into comment(o_id, u_id, c_time, c_type, c_content)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.oId}, #{entity.uId}, #{entity.cTime}, #{entity.cType}, #{entity.cContent})
+        </foreach>
+        on duplicate key update
+        o_id = values(o_id),
+        u_id = values(u_id),
+        c_time = values(c_time),
+        c_type = values(c_type),
+        c_content = values(c_content)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update comment
+        <set>
+            <if test="oId != null">
+                o_id = #{oId},
+            </if>
+            <if test="uId != null">
+                u_id = #{uId},
+            </if>
+            <if test="cTime != null">
+                c_time = #{cTime},
+            </if>
+            <if test="cType != null and cType != ''">
+                c_type = #{cType},
+            </if>
+            <if test="cContent != null and cContent != ''">
+                c_content = #{cContent},
+            </if>
+        </set>
+        where c_id = #{cId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from comment where c_id = #{cId}
+    </delete>
+
+</mapper>
+

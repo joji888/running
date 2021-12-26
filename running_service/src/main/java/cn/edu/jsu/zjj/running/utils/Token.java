@@ -1,6 +1,6 @@
 package cn.edu.jsu.zjj.running.utils;
 
-import cn.edu.csmzxy.student_cms.user.entity.User;
+import cn.edu.jsu.zjj.running.user.entity.User;
 
 /**
  * 登录令牌

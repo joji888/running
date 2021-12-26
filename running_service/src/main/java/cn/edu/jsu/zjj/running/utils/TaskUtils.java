@@ -1,6 +1,6 @@
 package cn.edu.jsu.zjj.running.utils;
 
-import cn.edu.csmzxy.student_cms.config.MyFilter;
+import cn.edu.jsu.zjj.running.config.MyFilter;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ public class TaskUtils {
     @Scheduled(cron="0 0 02 * * ?")
     public void TokenClear(){
         System.out.println("开始");
-        for (String k:MyFilter.tokenMap.keySet()){
+        for (String k: MyFilter.tokenMap.keySet()){
             System.out.println(k);
         }
     }

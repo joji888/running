@@ -1,4 +1,4 @@
-# hello-world
+# student_app
 
 ## Project setup
 ```

@@ -101,5 +101,13 @@ public class OrderTypeServiceImpl implements OrderTypeService {
             return Result.error("ID不能为空");
         }
 
+        Integer deleteById = this.orderTypeDao.deleteById(otId);
+
+        if (deleteById > 0){
+            return Result.error("删除成功");
+        }else{
+            return Result.error("删除失败");
+        }
+
     }
 }

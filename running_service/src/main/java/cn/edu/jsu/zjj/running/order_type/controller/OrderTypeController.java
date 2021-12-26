@@ -2,6 +2,7 @@ package cn.edu.jsu.zjj.running.order_type.controller;
 
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type.service.OrderTypeService;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -54,8 +55,8 @@ public class OrderTypeController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<OrderType> add(OrderType orderType) {
-        return ResponseEntity.ok(this.orderTypeService.insert(orderType));
+    public Result add(OrderType orderType) {
+        return this.orderTypeService.insert(orderType);
     }
 
     /**
@@ -65,8 +66,8 @@ public class OrderTypeController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<OrderType> edit(OrderType orderType) {
-        return ResponseEntity.ok(this.orderTypeService.update(orderType));
+    public Result edit(OrderType orderType) {
+        return this.orderTypeService.update(orderType);
     }
 
     /**
@@ -76,8 +77,8 @@ public class OrderTypeController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.orderTypeService.deleteById(id));
+    public Result deleteById(Integer id) {
+        return this.orderTypeService.deleteById(id);
     }
 
 }

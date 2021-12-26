@@ -3,13 +3,11 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
-import test from '../test';
 import login from '../views/login';
 import index from '../views/index/index';
 
 const routes=[
     {path:"/",component:index},
-    {path:"/test",component:test},
     {path:"/login",component:login}
 ]
 

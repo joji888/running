@@ -3,9 +3,6 @@ package cn.edu.jsu.zjj.running.order_type.controller;
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type.service.OrderTypeService;
 import cn.edu.jsu.zjj.running.utils.Result;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

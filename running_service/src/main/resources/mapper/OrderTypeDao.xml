@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jsu.zjj.running.order_type.dao.OrderTypeDao">
+
+    <resultMap type="cn.edu.jsu.zjj.running.order_type.entity.OrderType" id="OrderTypeMap">
+        <result property="otId" column="ot_id" jdbcType="INTEGER"/>
+        <result property="otName" column="ot_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderTypeMap">
+        select
+          ot_id, ot_name
+        from order_type
+        where ot_id = #{otId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderTypeMap">
+        select
+          ot_id, ot_name
+        from order_type
+        <where>
+            <if test="otId != null">
+                and ot_id = #{otId}
+            </if>
+            <if test="otName != null and otName != ''">
+                and ot_name = #{otName}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from order_type
+        <where>
+            <if test="otId != null">
+                and ot_id = #{otId}
+            </if>
+            <if test="otName != null and otName != ''">
+                and ot_name = #{otName}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="otId" useGeneratedKeys="true">
+        insert into order_type(ot_name)
+        values (#{otName})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="otId" useGeneratedKeys="true">
+        insert into order_type(ot_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.otName})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="otId" useGeneratedKeys="true">
+        insert into order_type(ot_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.otName})
+        </foreach>
+        on duplicate key update
+        ot_name = values(ot_name)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update order_type
+        <set>
+            <if test="otName != null and otName != ''">
+                ot_name = #{otName},
+            </if>
+        </set>
+        where ot_id = #{otId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from order_type where ot_id = #{otId}
+    </delete>
+
+</mapper>
+

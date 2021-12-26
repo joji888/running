@@ -3,7 +3,7 @@ spring:
     username: root
     password: 1234
     #serverTimezone=UTC 配置时区
-    url: jdbc:mysql://101.43.53.80:3306/running_db?serverTimezone=UTC&characterEncoding=utf-8
+    url: jdbc:mysql://:3306/running_db?serverTimezone=UTC&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 

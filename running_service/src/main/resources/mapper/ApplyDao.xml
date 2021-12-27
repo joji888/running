@@ -24,26 +24,7 @@
         select
           apply_id, apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back
         from apply
-        <where>
-            <if test="applyId != null">
-                and apply_id = #{applyId}
-            </if>
-            <if test="applyTime != null">
-                and apply_time = #{applyTime}
-            </if>
-            <if test="applyState != null and applyState != ''">
-                and apply_state = #{applyState}
-            </if>
-            <if test="applyIdentityCode != null and applyIdentityCode != ''">
-                and apply_identity_code = #{applyIdentityCode}
-            </if>
-            <if test="applyIdentityCodeFront != null and applyIdentityCodeFront != ''">
-                and apply_identity_code_front = #{applyIdentityCodeFront}
-            </if>
-            <if test="applyIdentityCodeBack != null and applyIdentityCodeBack != ''">
-                and apply_identity_code_back = #{applyIdentityCodeBack}
-            </if>
-        </where>
+
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 

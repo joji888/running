@@ -27,39 +27,8 @@
     <select id="queryAllByLimit" resultMap="OrderMap">
         select
           o_id, u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time
-        from order
-        <where>
-            <if test="oId != null">
-                and o_id = #{oId}
-            </if>
-            <if test="uId != null">
-                and u_id = #{uId}
-            </if>
-            <if test="tsId != null">
-                and ts_id = #{tsId}
-            </if>
-            <if test="otId != null">
-                and ot_id = #{otId}
-            </if>
-            <if test="oTile != null and oTile != ''">
-                and o_tile = #{oTile}
-            </if>
-            <if test="oState != null">
-                and o_state = #{oState}
-            </if>
-            <if test="oImage != null and oImage != ''">
-                and o_image = #{oImage}
-            </if>
-            <if test="oDescribe != null and oDescribe != ''">
-                and o_describe = #{oDescribe}
-            </if>
-            <if test="oEndTime != null">
-                and o_end_time = #{oEndTime}
-            </if>
-            <if test="oCreateTime != null">
-                and o_create_time = #{oCreateTime}
-            </if>
-        </where>
+        from running_db.order
+
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 

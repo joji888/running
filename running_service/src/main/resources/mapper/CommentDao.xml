@@ -24,26 +24,7 @@
         select
           c_id, o_id, u_id, c_time, c_type, c_content
         from comment
-        <where>
-            <if test="cId != null">
-                and c_id = #{cId}
-            </if>
-            <if test="oId != null">
-                and o_id = #{oId}
-            </if>
-            <if test="uId != null">
-                and u_id = #{uId}
-            </if>
-            <if test="cTime != null">
-                and c_time = #{cTime}
-            </if>
-            <if test="cType != null and cType != ''">
-                and c_type = #{cType}
-            </if>
-            <if test="cContent != null and cContent != ''">
-                and c_content = #{cContent}
-            </if>
-        </where>
+
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 

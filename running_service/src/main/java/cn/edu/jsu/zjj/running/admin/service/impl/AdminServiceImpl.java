@@ -51,8 +51,6 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Page<Admin> queryByPage(Admin admin, PageRequest pageRequest) {
         long total = this.adminDao.count(admin);
-        Pageable pageable=pageRequest;
-
         return new PageImpl<>(this.adminDao.queryAllByLimit(admin, pageRequest), pageRequest, total);
     }
 

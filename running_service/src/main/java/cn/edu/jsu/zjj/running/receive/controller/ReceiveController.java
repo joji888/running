@@ -29,12 +29,13 @@ public class ReceiveController {
      * 分页查询
      *
      * @param receive 筛选条件
-     * @param pageRequest      分页对象
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<Receive>> queryByPage(Receive receive, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.receiveService.queryByPage(receive, pageRequest));
+    public Result<ResponseEntity<Page<Receive>>> queryByPage(Receive receive, Integer size,Integer page) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        Page<Receive> receives = this.receiveService.queryByPage(receive, pageRequest);
+        return Result.success(ResponseEntity.ok(receives));
     }
 
     /**

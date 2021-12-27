@@ -69,6 +69,7 @@ public class CommentServiceImpl implements CommentService {
         if (comment.getCType()==null || comment.getCType().equals("")){
             return Result.error("评论类型不能为空");
         }
+
         Integer insert = commentDao.insert(comment);
         if (insert>0){
             return Result.success("添加成功");

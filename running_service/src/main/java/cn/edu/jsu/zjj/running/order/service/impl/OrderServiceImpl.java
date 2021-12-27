@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * 订单表(Order)表服务实现类
@@ -72,7 +73,7 @@ public class OrderServiceImpl implements OrderService {
         if (order.getOState()==null || order.getOState().equals("")){
             return Result.error("订单状态不能为空");
         }
-        if (order.getOImage()==null == order.getOImage().equals("")){
+        if (order.getOImage()==null || order.getOImage().equals("")){
             return Result.error("订单图片不能为空");
         }
         if (order.getOCreateTime()==null || order.getOCreateTime().equals("")){
@@ -81,9 +82,13 @@ public class OrderServiceImpl implements OrderService {
         if (order.getOEndTime()==null || order.getOEndTime().equals("")){
             return Result.error("订单结束时间不能为空");
         }
+        if (order.getOCreateTime().before(new Date(System.currentTimeMillis()))){
+            return Result.error("发布时间不能早于当前时间");
+        }
         if (order.getOCreateTime().after(order.getOEndTime())){
             return Result.error("订单结束时间不能早于发布时间");
         }
+
         Integer insert = orderDao.insert(order);
         if (insert>0){
             return Result.success("添加成功");

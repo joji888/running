@@ -103,7 +103,7 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="oId" useGeneratedKeys="true">
-        insert into order(u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time)
+        insert into running_db.order(u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time)
         values (#{uId}, #{tsId}, #{otId}, #{oTile}, #{oState}, #{oImage}, #{oDescribe}, #{oEndTime}, #{oCreateTime})
     </insert>
 

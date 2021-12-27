@@ -3,13 +3,18 @@ package cn.edu.jsu.zjj.running.admin.service.impl;
 import cn.edu.jsu.zjj.running.admin.entity.Admin;
 import cn.edu.jsu.zjj.running.admin.dao.AdminDao;
 import cn.edu.jsu.zjj.running.admin.service.AdminService;
+import cn.edu.jsu.zjj.running.config.MyFilter;
+import cn.edu.jsu.zjj.running.utils.Encryption;
 import cn.edu.jsu.zjj.running.utils.Result;
+import cn.edu.jsu.zjj.running.utils.Token;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 
 /**
  * 管理员表(Admin)表服务实现类
@@ -46,6 +51,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Page<Admin> queryByPage(Admin admin, PageRequest pageRequest) {
         long total = this.adminDao.count(admin);
+        Pageable pageable=pageRequest;
+
         return new PageImpl<>(this.adminDao.queryAllByLimit(admin, pageRequest), pageRequest, total);
     }
 
@@ -108,4 +115,59 @@ public class AdminServiceImpl implements AdminService {
         }
         return Result.error("删除失败");
     }
+
+
+
+
+    public Result<HashMap<String, Object>> login(String acc, String pwd){
+        if (acc==null||"".equals(acc)){
+            return Result.error("账号不能为空");
+        }
+        if (pwd==null||"".equals(pwd)){
+            return Result.error("密码不能为空");
+        }
+
+        Admin admin = adminDao.findByAcc(acc);//通过用户账号或者手机号查询用户
+
+        if (admin==null){//判断用户是否存在
+            return Result.error("账号或者密码不正确");
+        }
+        if (!admin.getAPassword().equals(Encryption.getSah256(Encryption.getSah256(pwd)))) {//判断用户密码是否正确
+            return Result.error("账号或者密码不正确");
+        }
+
+        //登录成功
+        String token = Encryption.getToken(admin.getAAccount(), hashCode());
+        Token token_o= new Token();
+        token_o.setToken(token);
+        token_o.setAdmin(admin);
+        token_o.setEndTime(System.currentTimeMillis()+1000*60*60*3);
+        MyFilter.tokenMap.put(token,token_o);
+
+        System.out.println(token);
+        admin.setAPassword("");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("admin",admin);
+        map.put("token",token);
+        return Result.success(map);
+    }
+
+    public Result register(Admin admin){
+//        if (admin.getuName() == null || admin.getuName().equals("")){
+//            return Result.error("用户名不能为空");
+//        }
+        if (admin.getAAccount() == null || admin.getAAccount().equals("")){
+            return Result.error("用户账号不能为空");
+        }
+        if (admin.getAPassword() == null || admin.getAPassword().equals("")){
+            return Result.error("用户密码不能为空");
+        }
+        Integer register =adminDao.insert(admin);
+        if (register>0){
+            return Result.error("注册成功");
+        }else {
+            return Result.error("注册失败");
+        }
+    }
+
 }

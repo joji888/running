@@ -45,7 +45,7 @@
                     if (valid) {
                         console.log(this.users);
                         let obj=this.users;
-                        this.$http.get('/login',{
+                        this.$http.get('/admin/login',{
                             params:obj
                         }).then(function (res) {
                             console.log(res);
@@ -54,8 +54,8 @@
                                     console.log("登陆成功 token:\n"+res.data.data['token'])
                                     let time=new Date();
                                     console.log(time.getTime())
-                                    localStorage.setItem("user",JSON.stringify({
-                                        'user':res.data.data['user'],
+                                    localStorage.setItem("token",JSON.stringify({
+                                        'admin':res.data.data['admin'],
                                         'token':res.data.data['token'],
                                         'time':time.getTime()+1000*60*60*3
                                     }));

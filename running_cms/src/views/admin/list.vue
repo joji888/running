@@ -1,9 +1,9 @@
 <template>
     <div v-loading="loading">
         <div style="line-height: 40px;">
-            <h3 style="float: left;margin-right: 20px;">学生列表</h3>
+            <h3 style="float: left;margin-right: 20px;">管理员列表</h3>
             <el-input
-                    placeholder="请输入学生关键字"
+                    placeholder="请输入管理员关键字"
                     prefix-icon="el-icon-search"
                     v-model="keyword" style="width: 300px;">
             </el-input>
@@ -27,41 +27,14 @@
                 style="width: 100%">
 
             <el-table-column
-                    prop="sid"
+                    prop="aid"
                     label="ID"
                     width="180">
             </el-table-column>
 
             <el-table-column
-                    prop="sNumber"
-                    label="学号"
-                    width="180">
-            </el-table-column>
-
-            <el-table-column
-                    label="姓名"
-                    width="180">
-                <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                        <p>姓名: {{ scope.row.sname }}</p>
-                        <p>住址: {{ scope.row.address }}</p>
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.sname }}</el-tag>
-                        </div>
-                    </el-popover>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    prop="gender"
-                    label="性别"
-                    width="180">
-            </el-table-column>
-
-
-            <el-table-column
-                    prop="age"
-                    label="年龄"
+                    prop="aaccount"
+                    label="账号"
                     width="180">
             </el-table-column>
 
@@ -121,9 +94,18 @@
                 });
             },
             initDate(){
-                console.log(1)
-                this.$myRequest("'/student/searchByLimit'");
-                console.log(2)
+                let _this=this;
+                this.$http.get("/admin",{
+                    params:{
+                        keyword:_this.keyword,
+                        page:0,
+                        sort:"desc",
+                        size:10000
+                    }
+                }).then(function (res) {
+                    _this.$myRequest(res);
+                    _this.tableData=res.data.data.body.content;
+                });
             }
         },
         mounted() {

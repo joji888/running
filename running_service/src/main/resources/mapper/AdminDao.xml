@@ -15,23 +15,19 @@
         from admin
         where a_id = #{aId}
     </select>
+    <!--根据账号查询单个-->
+    <select id="findByAcc" resultMap="AdminMap">
+        select
+          a_id, a_account, a_password
+        from admin
+        where a_account = #{acc}
+    </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="AdminMap">
         select
           a_id, a_account, a_password
         from admin
-        <where>
-            <if test="aId != null">
-                and a_id = #{aId}
-            </if>
-            <if test="aAccount != null and aAccount != ''">
-                and a_account = #{aAccount}
-            </if>
-            <if test="aPassword != null and aPassword != ''">
-                and a_password = #{aPassword}
-            </if>
-        </where>
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 

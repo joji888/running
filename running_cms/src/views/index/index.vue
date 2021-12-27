@@ -28,14 +28,15 @@
     import courses2 from "../home/courses2";
     import courseAdd from "../course/add";
     import courseList from "../course/list";
+    import adminList from "../admin/list"
 
     export default {
         name: "index",
-        components: {top, left,studentAdd,studentList,home,courses,courses2,courseAdd,courseList},
+        components: {top, left,studentAdd,studentList,home,courses,courses2,courseAdd,courseList,adminList},
         data(){
             return {
                 adminIs:false,
-                mainPag:"studentList",
+                mainPag:"adminList",
                 leftClass:"width: 210px;",
                 isCollapse:false,
                 loading:true
@@ -68,32 +69,9 @@
             }
         },
         mounted() {
-            let user=localStorage.getItem("user");
-            user=JSON.parse(user);
-            if (user==null){
-                this.$router.push({path:'/login',query:{}});
-                return;
-            }
-            console.log(user)
-            let token=user['token']
-            let time=user['time'];
-            user=user['user'];
-            if (user.uRole=='root'){
-                this.adminIs=true;
-            }else {
-                this.mainPag='home';
-            }
-            console.log(token)
-            this.$http.defaults.headers.common['token'] = token
-            if (user==null||time<new Date().getTime()){
-                this.$router.push({path:'/login',query:{}});
-                return;
-            }else {
-                let _this=this
-                setTimeout(function () {
-                    _this.loading=false;
-                },500)
-            }
+            let admin = this.$mySetToken();
+            let _this=this;
+            setTimeout(function () {_this.loading=false;},500)
         }
     }
 </script>

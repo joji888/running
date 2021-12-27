@@ -79,5 +79,12 @@ public interface AdminDao {
      */
     int deleteById(Integer aId);
 
+
+    /**
+     * 通过账号查询管理员
+     * @param acc
+     * @return
+     */
+    Admin findByAcc(String acc);
 }
 

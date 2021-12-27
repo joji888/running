@@ -5,6 +5,8 @@ import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.HashMap;
+
 /**
  * 管理员表(Admin)表服务接口
  *
@@ -54,4 +56,10 @@ public interface AdminService {
      */
     Result deleteById(Integer aId);
 
+
+
+
+    Result<HashMap<String, Object>> login(String acc, String pwd);
+
+    Result register(Admin admin);
 }

@@ -7,7 +7,7 @@
         <el-col class="top-item" style="text-align: right">
             <el-dropdown>
               <span class="el-dropdown-link">
-                {{userNam}}<i class="el-icon-arrow-down el-icon--right"></i>
+                {{adminName}}<i class="el-icon-arrow-down el-icon--right"></i>
               </span>
                 <el-dropdown-menu slot="dropdown">
 <!--                    <el-dropdown-item>个人信息</el-dropdown-item>-->
@@ -23,7 +23,7 @@
         name: "top",
         data(){
             return {
-                userNam:""
+                adminName:""
             }
         },
         props: ['isCollapse'],
@@ -38,20 +38,8 @@
             }
         },
         mounted() {
-            let user=localStorage.getItem("user");
-            user=JSON.parse(user);
-            if (user==null){
-                return
-            }
-            let time=user['time'];
-            let token=user['token'];
-            user=user['user'];
-            if (user==null||time<new Date().getTime()){
-                this.$router.push({path:'/login',query:{}});
-            }
-            this.$http.defaults.headers.common['token'] = token;
-            console.log(user)
-            this.userNam=user.uName;
+            let admin=this.$mySetToken();
+            this.adminName=admin.account;
         }
 
     }

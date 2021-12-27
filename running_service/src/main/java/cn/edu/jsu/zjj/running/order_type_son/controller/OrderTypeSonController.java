@@ -29,12 +29,13 @@ public class OrderTypeSonController {
      * 分页查询
      *
      * @param orderTypeSon 筛选条件
-     * @param pageRequest      分页对象
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<OrderTypeSon>> queryByPage(OrderTypeSon orderTypeSon, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.orderTypeSonService.queryByPage(orderTypeSon, pageRequest));
+    public Result<ResponseEntity<Page<OrderTypeSon>>> queryByPage(OrderTypeSon orderTypeSon, Integer size,Integer page) {
+        PageRequest pageRequest =PageRequest.of(page,size);
+        Page<OrderTypeSon> orderTypeSons = this.orderTypeSonService.queryByPage(orderTypeSon, pageRequest);
+        return Result.success(ResponseEntity.ok(orderTypeSons));
     }
 
     /**

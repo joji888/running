@@ -26,32 +26,6 @@
         select
           u_id, u_nick, u_account, u_password, u_email, u_phone, u_head_img, u_gender
         from user
-        <where>
-            <if test="uId != null">
-                and u_id = #{uId}
-            </if>
-            <if test="uNick != null and uNick != ''">
-                and u_nick = #{uNick}
-            </if>
-            <if test="uAccount != null and uAccount != ''">
-                and u_account = #{uAccount}
-            </if>
-            <if test="uPassword != null and uPassword != ''">
-                and u_password = #{uPassword}
-            </if>
-            <if test="uEmail != null and uEmail != ''">
-                and u_email = #{uEmail}
-            </if>
-            <if test="uPhone != null and uPhone != ''">
-                and u_phone = #{uPhone}
-            </if>
-            <if test="uHeadImg != null and uHeadImg != ''">
-                and u_head_img = #{uHeadImg}
-            </if>
-            <if test="uGender != null and uGender != ''">
-                and u_gender = #{uGender}
-            </if>
-        </where>
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 

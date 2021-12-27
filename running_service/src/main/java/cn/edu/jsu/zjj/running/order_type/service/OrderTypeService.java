@@ -2,6 +2,8 @@ package cn.edu.jsu.zjj.running.order_type.service;
 
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.utils.Result;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 
 import java.util.List;
@@ -25,11 +27,10 @@ public interface OrderTypeService {
     /**
      * 分页查询
      *
-     * @param offset 筛选条件
-     * @param limit      分页对象
+
      * @return 查询结果
      */
-    Result<List<OrderType>> queryByPage(Integer offset,Integer limit);
+    Page<OrderType> queryByPage(OrderType orderType , PageRequest pageRequest);
 
     /**
      * 新增数据

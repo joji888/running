@@ -21,17 +21,6 @@
         select
           ts_id, ts_name, ts_price
         from order_type_son
-        <where>
-            <if test="tsId != null">
-                and ts_id = #{tsId}
-            </if>
-            <if test="tsName != null and tsName != ''">
-                and ts_name = #{tsName}
-            </if>
-            <if test="tsPrice != null">
-                and ts_price = #{tsPrice}
-            </if>
-        </where>
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 

@@ -34,7 +34,11 @@ public class OrderTypeServiceImpl implements OrderTypeService {
         if (otId == null || otId.equals("")){
             return Result.error("ID不能为空");
         }
-        return Result.success(this.orderTypeDao.queryById(otId));
+        OrderType orderType = this.orderTypeDao.queryById(otId);
+        if (orderType==null){
+            return Result.error("没有这个数据");
+        }
+        return Result.success(orderType);
 
     }
 
@@ -70,7 +74,7 @@ public class OrderTypeServiceImpl implements OrderTypeService {
         }
         Integer insert = this.orderTypeDao.insert(orderType);
         if (insert > 0){
-            return Result.error("新增数据成功");
+            return Result.success("新增数据成功");
         }else {
             return Result.error("新增数据失败");
         }
@@ -94,7 +98,7 @@ public class OrderTypeServiceImpl implements OrderTypeService {
         Integer update = this.orderTypeDao.update(orderType);
 
         if (update > 0){
-            return Result.error("修改数据成功");
+            return Result.success("修改数据成功");
         }else {
             return Result.error("修改数据失败");
         }
@@ -108,14 +112,14 @@ public class OrderTypeServiceImpl implements OrderTypeService {
      */
     @Override
     public Result deleteById(Integer otId) {
-        if (otId == null || otId.equals("")){
+        if (otId == null || otId < 1){
             return Result.error("ID不能为空");
         }
 
         Integer deleteById = this.orderTypeDao.deleteById(otId);
 
         if (deleteById > 0){
-            return Result.error("删除成功");
+            return Result.success("删除成功");
         }else{
             return Result.error("删除失败");
         }

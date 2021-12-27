@@ -2,6 +2,7 @@ package cn.edu.jsu.zjj.running.order_type_son.controller;
 
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
 import cn.edu.jsu.zjj.running.order_type_son.service.OrderTypeSonService;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +44,8 @@ public class OrderTypeSonController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<OrderTypeSon> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.orderTypeSonService.queryById(id));
+    public Result<OrderTypeSon> queryById(@PathVariable("id") Integer id) {
+        return this.orderTypeSonService.queryById(id);
     }
 
     /**
@@ -54,8 +55,8 @@ public class OrderTypeSonController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<OrderTypeSon> add(OrderTypeSon orderTypeSon) {
-        return ResponseEntity.ok(this.orderTypeSonService.insert(orderTypeSon));
+    public Result add(OrderTypeSon orderTypeSon) {
+        return this.orderTypeSonService.insert(orderTypeSon);
     }
 
     /**
@@ -65,8 +66,8 @@ public class OrderTypeSonController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<OrderTypeSon> edit(OrderTypeSon orderTypeSon) {
-        return ResponseEntity.ok(this.orderTypeSonService.update(orderTypeSon));
+    public Result edit(OrderTypeSon orderTypeSon) {
+        return this.orderTypeSonService.update(orderTypeSon);
     }
 
     /**
@@ -76,8 +77,8 @@ public class OrderTypeSonController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.orderTypeSonService.deleteById(id));
+    public Result deleteById(Integer id) {
+        return this.orderTypeSonService.deleteById(id);
     }
 
 }

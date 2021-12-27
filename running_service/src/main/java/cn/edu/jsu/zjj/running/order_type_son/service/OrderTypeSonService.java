@@ -1,6 +1,7 @@
 package cn.edu.jsu.zjj.running.order_type_son.service;
 
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -18,7 +19,7 @@ public interface OrderTypeSonService {
      * @param tsId 主键
      * @return 实例对象
      */
-    OrderTypeSon queryById(Integer tsId);
+    Result queryById(Integer tsId);
 
     /**
      * 分页查询
@@ -35,7 +36,7 @@ public interface OrderTypeSonService {
      * @param orderTypeSon 实例对象
      * @return 实例对象
      */
-    OrderTypeSon insert(OrderTypeSon orderTypeSon);
+    Result insert(OrderTypeSon orderTypeSon);
 
     /**
      * 修改数据
@@ -43,7 +44,7 @@ public interface OrderTypeSonService {
      * @param orderTypeSon 实例对象
      * @return 实例对象
      */
-    OrderTypeSon update(OrderTypeSon orderTypeSon);
+    Result update(OrderTypeSon orderTypeSon);
 
     /**
      * 通过主键删除数据
@@ -51,6 +52,6 @@ public interface OrderTypeSonService {
      * @param tsId 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer tsId);
+    Result deleteById(Integer tsId);
 
 }

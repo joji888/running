@@ -2,6 +2,7 @@ package cn.edu.jsu.zjj.running.user.controller;
 
 import cn.edu.jsu.zjj.running.user.entity.User;
 import cn.edu.jsu.zjj.running.user.service.UserService;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +44,8 @@ public class UserController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<User> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.userService.queryById(id));
+    public Result<User> queryById(@PathVariable("id") Integer id) {
+        return this.userService.queryById(id);
     }
 
     /**
@@ -54,8 +55,8 @@ public class UserController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<User> add(User user) {
-        return ResponseEntity.ok(this.userService.insert(user));
+    public Result add(User user) {
+        return this.userService.insert(user);
     }
 
     /**
@@ -65,8 +66,8 @@ public class UserController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<User> edit(User user) {
-        return ResponseEntity.ok(this.userService.update(user));
+    public Result edit(User user) {
+        return this.userService.update(user);
     }
 
     /**
@@ -76,8 +77,8 @@ public class UserController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.userService.deleteById(id));
+    public Result deleteById(Integer id) {
+        return this.userService.deleteById(id);
     }
 
 }

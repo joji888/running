@@ -42,7 +42,7 @@ public class OrderTypeController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public Result queryById(@PathVariable("id") Integer id) {
+    public Result<OrderType> queryById(@PathVariable("id") Integer id) {
         return this.orderTypeService.queryById(id);
     }
 

@@ -2,6 +2,7 @@ package cn.edu.jsu.zjj.running.receive.controller;
 
 import cn.edu.jsu.zjj.running.receive.entity.Receive;
 import cn.edu.jsu.zjj.running.receive.service.ReceiveService;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +44,8 @@ public class ReceiveController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Receive> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.receiveService.queryById(id));
+    public Result<Receive> queryById(@PathVariable("id") Integer id) {
+        return this.receiveService.queryById(id);
     }
 
     /**
@@ -54,8 +55,8 @@ public class ReceiveController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Receive> add(Receive receive) {
-        return ResponseEntity.ok(this.receiveService.insert(receive));
+    public Result add(Receive receive) {
+        return this.receiveService.insert(receive);
     }
 
     /**
@@ -65,8 +66,8 @@ public class ReceiveController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Receive> edit(Receive receive) {
-        return ResponseEntity.ok(this.receiveService.update(receive));
+    public Result edit(Receive receive) {
+        return this.receiveService.update(receive);
     }
 
     /**
@@ -76,8 +77,8 @@ public class ReceiveController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.receiveService.deleteById(id));
+    public Result deleteById(Integer id) {
+        return this.receiveService.deleteById(id);
     }
 
 }

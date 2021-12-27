@@ -19,16 +19,7 @@
     <select id="queryAllByLimit" resultMap="OrderTypeMap">
         select
           ot_id, ot_name
-        from order_type
-        <where>
-            <if test="otId != null">
-                and ot_id = #{otId}
-            </if>
-            <if test="otName != null and otName != ''">
-                and ot_name = #{otName}
-            </if>
-        </where>
-        limit #{offset}, #{limit}
+        from order_type limit #{offset}, #{limit}
     </select>
 
     <!--统计总行数-->

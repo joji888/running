@@ -1,6 +1,7 @@
 package cn.edu.jsu.zjj.running.user.service;
 
 import cn.edu.jsu.zjj.running.user.entity.User;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -18,7 +19,7 @@ public interface UserService {
      * @param uId 主键
      * @return 实例对象
      */
-    User queryById(Integer uId);
+    Result queryById(Integer uId);
 
     /**
      * 分页查询
@@ -35,7 +36,7 @@ public interface UserService {
      * @param user 实例对象
      * @return 实例对象
      */
-    User insert(User user);
+    Result insert(User user);
 
     /**
      * 修改数据
@@ -43,7 +44,7 @@ public interface UserService {
      * @param user 实例对象
      * @return 实例对象
      */
-    User update(User user);
+    Result update(User user);
 
     /**
      * 通过主键删除数据
@@ -51,6 +52,6 @@ public interface UserService {
      * @param uId 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer uId);
+    Result deleteById(Integer uId);
 
 }

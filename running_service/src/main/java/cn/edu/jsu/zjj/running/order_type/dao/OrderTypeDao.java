@@ -1,9 +1,8 @@
 package cn.edu.jsu.zjj.running.order_type.dao;
 
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public interface OrderTypeDao {
      * @param otId 主键
      * @return 实例对象
      */
-    Result queryById(Integer otId);
+    OrderType queryById(Integer otId);
 
     /**
      * 查询指定行数据

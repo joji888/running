@@ -73,12 +73,12 @@ public class AdminController {
     /**
      * 删除数据
      *
-     * @param id 主键
+     * @param aId 主键
      * @return 删除是否成功
      */
     @DeleteMapping("del")
-    public Result deleteById(Integer id) {
-        return this.adminService.deleteById(id);
+    public Result deleteById(Integer aId) {
+        return this.adminService.deleteById(aId);
     }
 
 }

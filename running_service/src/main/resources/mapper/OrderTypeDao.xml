@@ -19,7 +19,8 @@
     <select id="queryAllByLimit" resultMap="OrderTypeMap">
         select
           ot_id, ot_name
-        from order_type limit #{offset}, #{limit}
+        from order_type
+        limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
     <!--统计总行数-->

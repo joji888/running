@@ -22,20 +22,6 @@
         select
           r_id, r_begin_time, r_end_time, r_seate
         from receive
-        <where>
-            <if test="rId != null">
-                and r_id = #{rId}
-            </if>
-            <if test="rBeginTime != null">
-                and r_begin_time = #{rBeginTime}
-            </if>
-            <if test="rEndTime != null">
-                and r_end_time = #{rEndTime}
-            </if>
-            <if test="rSeate != null">
-                and r_seate = #{rSeate}
-            </if>
-        </where>
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 

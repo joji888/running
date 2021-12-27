@@ -1,8 +1,12 @@
 package cn.edu.jsu.zjj.running.order_type.controller;
 
+import cn.edu.jsu.zjj.running.admin.entity.Admin;
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type.service.OrderTypeService;
 import cn.edu.jsu.zjj.running.utils.Result;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -26,13 +30,14 @@ public class OrderTypeController {
     /**
      * 分页查询
      *
-     * @param offset 筛选条件
-     * @param limit      分页对象
+     
      * @return 查询结果
      */
     @GetMapping
-    public Result<List<OrderType>> queryByPage(Integer offset,Integer limit) {
-        return this.orderTypeService.queryByPage(offset,limit);
+    public Result<ResponseEntity<Page<OrderType>>> queryByPage(OrderType orderType,Integer size, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<OrderType> orderTypes = this.orderTypeService.queryByPage(orderType, pageRequest);
+        return Result.success(ResponseEntity.ok(orderTypes));
     }
 
     /**

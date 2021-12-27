@@ -33,8 +33,10 @@ public class UserController {
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<User>> queryByPage(User user, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.userService.queryByPage(user, pageRequest));
+    public Result<ResponseEntity<Page<User>>> queryByPage(User user, Integer size,Integer page) {
+        PageRequest pageRequest =PageRequest.of(page,size);
+        Page<User> users = this.userService.queryByPage(user, pageRequest);
+        return Result.success(ResponseEntity.ok(users));
     }
 
     /**

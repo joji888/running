@@ -50,15 +50,9 @@ public class OrderTypeServiceImpl implements OrderTypeService {
      * @return 查询结果
      */
     @Override
-    public Result<List<OrderType>> queryByPage(Integer offset,Integer limit) {
-        if (offset == null || offset < 1){
-            offset = 1;
-        }
-        if (limit ==null){
-            limit = 10;
-        }
-        offset = (offset-1)*limit;
-        return Result.success(this.orderTypeDao.queryAllByLimit(offset,limit));
+    public Page<OrderType> queryByPage(OrderType orderType,PageRequest pageRequest) {
+        long total = this.orderTypeDao.count(orderType);
+        return new PageImpl<>(this.orderTypeDao.queryAllByLimit(orderType, pageRequest), pageRequest, total);
     }
 
     /**

@@ -19,7 +19,7 @@
     <select id="queryById" resultMap="OrderMap">
         select
           o_id, u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time
-        from order
+        from running_db.order
         where o_id = #{oId}
     </select>
 
@@ -66,7 +66,7 @@
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
         select count(1)
-        from order
+        from running_db.order
         <where>
             <if test="oId != null">
                 and o_id = #{oId}
@@ -135,7 +135,7 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update order
+        update running_db.order
         <set>
             <if test="uId != null">
                 u_id = #{uId},
@@ -170,7 +170,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from order where o_id = #{oId}
+        delete from running_db.order where o_id = #{oId}
     </delete>
 
 </mapper>

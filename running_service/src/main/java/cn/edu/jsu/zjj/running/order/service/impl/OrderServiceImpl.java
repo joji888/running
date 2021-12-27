@@ -123,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
         if (order.getOState()==null || order.getOState().equals("")){
             return Result.error("订单状态不能为空");
         }
-        if (order.getOImage()==null == order.getOImage().equals("")){
+        if (order.getOImage()==null || order.getOImage().equals("")){
             return Result.error("订单图片不能为空");
         }
 

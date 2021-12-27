@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * 订单表(Order)表控制层
  *
- * @author makejava
+ * @author PL
  * @since 2021-12-26 10:52:50
  */
 @RestController
@@ -29,14 +29,14 @@ public class OrderController {
      * 分页查询
      *
      * @param order 筛选条件
-     * @param pageRequest      分页对象
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<Order>> queryByPage(Order order, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.orderService.queryByPage(order, pageRequest));
+    public Result<ResponseEntity<Page<Order>>> queryByPage(Order order, Integer size, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Order> orders = this.orderService.queryByPage(order, pageRequest);
+        return Result.success(ResponseEntity.ok(orders));
     }
-
     /**
      * 通过主键查询单条数据
      *

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jsu.zjj.running.order_type_son.dao.OrderTypeSonDao">
+
+    <resultMap type="cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon" id="OrderTypeSonMap">
+        <result property="tsId" column="ts_id" jdbcType="INTEGER"/>
+        <result property="tsName" column="ts_name" jdbcType="VARCHAR"/>
+        <result property="tsPrice" column="ts_price" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderTypeSonMap">
+        select
+          ts_id, ts_name, ts_price
+        from order_type_son
+        where ts_id = #{tsId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderTypeSonMap">
+        select
+          ts_id, ts_name, ts_price
+        from order_type_son
+        <where>
+            <if test="tsId != null">
+                and ts_id = #{tsId}
+            </if>
+            <if test="tsName != null and tsName != ''">
+                and ts_name = #{tsName}
+            </if>
+            <if test="tsPrice != null">
+                and ts_price = #{tsPrice}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from order_type_son
+        <where>
+            <if test="tsId != null">
+                and ts_id = #{tsId}
+            </if>
+            <if test="tsName != null and tsName != ''">
+                and ts_name = #{tsName}
+            </if>
+            <if test="tsPrice != null">
+                and ts_price = #{tsPrice}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="tsId" useGeneratedKeys="true">
+        insert into order_type_son(ts_name, ts_price)
+        values (#{tsName}, #{tsPrice})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="tsId" useGeneratedKeys="true">
+        insert into order_type_son(ts_name, ts_price)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.tsName}, #{entity.tsPrice})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="tsId" useGeneratedKeys="true">
+        insert into order_type_son(ts_name, ts_price)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.tsName}, #{entity.tsPrice})
+        </foreach>
+        on duplicate key update
+        ts_name = values(ts_name),
+        ts_price = values(ts_price)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update order_type_son
+        <set>
+            <if test="tsName != null and tsName != ''">
+                ts_name = #{tsName},
+            </if>
+            <if test="tsPrice != null">
+                ts_price = #{tsPrice},
+            </if>
+        </set>
+        where ts_id = #{tsId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from order_type_son where ts_id = #{tsId}
+    </delete>
+
+</mapper>
+

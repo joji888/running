@@ -2,8 +2,9 @@ package cn.edu.jsu.zjj.running.order_type.service;
 
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.utils.Result;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
+
+import java.util.List;
 
 /**
  * 订单类型表(OrderType)表服务接口
@@ -19,16 +20,16 @@ public interface OrderTypeService {
      * @param otId 主键
      * @return 实例对象
      */
-    OrderType queryById(Integer otId);
+    Result queryById(Integer otId);
 
     /**
      * 分页查询
      *
-     * @param orderType 筛选条件
-     * @param pageRequest      分页对象
+     * @param offset 筛选条件
+     * @param limit      分页对象
      * @return 查询结果
      */
-    Page<OrderType> queryByPage(OrderType orderType, PageRequest pageRequest);
+    Result<List<OrderType>> queryByPage(Integer offset,Integer limit);
 
     /**
      * 新增数据

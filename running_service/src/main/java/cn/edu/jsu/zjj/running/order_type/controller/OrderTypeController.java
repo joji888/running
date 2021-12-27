@@ -3,12 +3,10 @@ package cn.edu.jsu.zjj.running.order_type.controller;
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type.service.OrderTypeService;
 import cn.edu.jsu.zjj.running.utils.Result;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 订单类型表(OrderType)表控制层
@@ -28,13 +26,13 @@ public class OrderTypeController {
     /**
      * 分页查询
      *
-     * @param orderType         筛选条件
-     * @param pageRequest       分页对象
+     * @param offset 筛选条件
+     * @param limit      分页对象
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<OrderType>> queryByPage(OrderType orderType, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.orderTypeService.queryByPage(orderType, pageRequest));
+    public Result<List<OrderType>> queryByPage(Integer offset,Integer limit) {
+        return this.orderTypeService.queryByPage(offset,limit);
     }
 
     /**
@@ -44,8 +42,8 @@ public class OrderTypeController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<OrderType> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.orderTypeService.queryById(id));
+    public Result<OrderType> queryById(@PathVariable("id") Integer id) {
+        return this.orderTypeService.queryById(id);
     }
 
     /**

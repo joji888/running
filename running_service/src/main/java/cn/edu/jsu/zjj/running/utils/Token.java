@@ -1,5 +1,6 @@
 package cn.edu.jsu.zjj.running.utils;
 
+import cn.edu.jsu.zjj.running.admin.entity.Admin;
 import cn.edu.jsu.zjj.running.user.entity.User;
 
 /**
@@ -8,6 +9,7 @@ import cn.edu.jsu.zjj.running.user.entity.User;
 public class Token {
 
     private User user;          //登录用户数据
+    private Admin admin;        //登陆管理数据
     private String token;       //用户访问验证
     private Long endTime;       //token存活的最后时间
 
@@ -33,5 +35,13 @@ public class Token {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 }

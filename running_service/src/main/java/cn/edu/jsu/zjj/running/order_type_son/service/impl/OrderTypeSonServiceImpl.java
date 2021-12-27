@@ -3,6 +3,7 @@ package cn.edu.jsu.zjj.running.order_type_son.service.impl;
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
 import cn.edu.jsu.zjj.running.order_type_son.dao.OrderTypeSonDao;
 import cn.edu.jsu.zjj.running.order_type_son.service.OrderTypeSonService;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -28,8 +29,15 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      * @return 实例对象
      */
     @Override
-    public OrderTypeSon queryById(Integer tsId) {
-        return this.orderTypeSonDao.queryById(tsId);
+    public Result queryById(Integer tsId) {
+        if (tsId <= 0){
+            return Result.error("ID不能为空");
+        }
+        OrderTypeSon orderTypeSon = this.orderTypeSonDao.queryById(tsId);
+        if (orderTypeSon == null){
+            return Result.error("数据不存在");
+        }
+            return Result.success(orderTypeSon);
     }
 
     /**
@@ -52,9 +60,19 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      * @return 实例对象
      */
     @Override
-    public OrderTypeSon insert(OrderTypeSon orderTypeSon) {
-        this.orderTypeSonDao.insert(orderTypeSon);
-        return orderTypeSon;
+    public Result insert(OrderTypeSon orderTypeSon) {
+
+        if (orderTypeSon.getTsName() == null || orderTypeSon.getTsName().equals("")){
+            return Result.error("子类名不能为空");
+        }
+        if (orderTypeSon.getTsPrice() == null || orderTypeSon.getTsPrice()<0){
+            return Result.error("价格不能为空或为负数");
+        }
+        Integer insert = this.orderTypeSonDao.insert(orderTypeSon);
+        if (insert > 0){
+            return Result.success("新增数据成功");
+        }
+            return Result.error("新增数据失败");
     }
 
     /**
@@ -64,9 +82,21 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      * @return 实例对象
      */
     @Override
-    public OrderTypeSon update(OrderTypeSon orderTypeSon) {
-        this.orderTypeSonDao.update(orderTypeSon);
-        return this.queryById(orderTypeSon.getTsId());
+    public Result update(OrderTypeSon orderTypeSon) {
+        if (orderTypeSon.getTsId() == null || orderTypeSon.getTsId().equals("")){
+            return Result.error("ID不能为空");
+        }
+        if (orderTypeSon.getTsName() == null || orderTypeSon.getTsName().equals("")){
+            return Result.error("子类名不能为空");
+        }
+        if (orderTypeSon.getTsPrice() == null || orderTypeSon.getTsPrice()<0){
+            return Result.error("价格不能为空或为负数");
+        }
+        Integer update = this.orderTypeSonDao.update(orderTypeSon);
+        if (update > 0){
+            return Result.success("修改数据成功");
+        }
+            return Result.error("修改数据失败");
     }
 
     /**
@@ -76,7 +106,14 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer tsId) {
-        return this.orderTypeSonDao.deleteById(tsId) > 0;
+    public Result deleteById(Integer tsId) {
+       if (tsId < 1){
+           return Result.success("ID不存在");
+       }
+        Integer deleteById = this.orderTypeSonDao.deleteById(tsId);
+       if (deleteById > 0){
+           return Result.success("删除成功");
+       }
+           return Result.error("删除失败");
     }
 }

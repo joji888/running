@@ -5,10 +5,12 @@ import cn.edu.jsu.zjj.running.admin.service.AdminService;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 
 /**
  * 管理员表(Admin)表控制层
@@ -33,8 +35,10 @@ public class AdminController {
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<Admin>> queryByPage(Admin admin, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.adminService.queryByPage(admin, pageRequest));
+    public Result<ResponseEntity<Page<Admin>>> queryByPage(Admin admin, Integer size,Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Admin> admins = this.adminService.queryByPage(admin, pageRequest);
+        return Result.success(ResponseEntity.ok(admins));
     }
 
     /**
@@ -81,5 +85,19 @@ public class AdminController {
         return this.adminService.deleteById(aId);
     }
 
+
+
+
+
+    //管理员登陆注册
+    @GetMapping("login")
+    public Result<HashMap<String, Object>> login(String acc, String pwd){
+        return adminService.login(acc,pwd);
+    }
+
+    @GetMapping("register")
+    public Result register(Admin admin){
+        return adminService.register(admin);
+    }
 }
 

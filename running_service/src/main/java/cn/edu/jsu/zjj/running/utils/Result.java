@@ -7,15 +7,15 @@ package cn.edu.jsu.zjj.running.utils;
 public class Result<T> {
     private T data;         //结果数据
     private Integer code;   //结果状态
-    private String massage; //结果信息
+    private String message; //结果信息
 
     //用于集合数据统计总条数
     private Integer count;
 
-    private Result(T data, Integer code, String massage) {
+    private Result(T data, Integer code, String message) {
         this.data = data;
         this.code = code;
-        this.massage = massage;
+        this.message = message;
     }
 
     /**
@@ -59,8 +59,8 @@ public class Result<T> {
         return code;
     }
 
-    public String getMassage() {
-        return massage;
+    public String getMessage() {
+        return message;
     }
 
     public Integer getCount() {

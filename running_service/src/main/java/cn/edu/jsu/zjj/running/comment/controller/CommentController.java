@@ -29,12 +29,13 @@ public class CommentController {
      * 分页查询
      *
      * @param comment 筛选条件
-     * @param pageRequest      分页对象
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<Comment>> queryByPage(Comment comment, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.commentService.queryByPage(comment, pageRequest));
+    public Result<ResponseEntity<Page<Comment>>> queryByPage(Comment comment, Integer size, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        Page<Comment> comments = this.commentService.queryByPage(comment,pageRequest);
+        return Result.success(ResponseEntity.ok(comments));
     }
 
     /**

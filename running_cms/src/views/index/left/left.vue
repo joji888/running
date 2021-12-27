@@ -8,7 +8,7 @@
             style="height: 100vh">
         <el-row justify="center" style="align-items: center;height: 70px;line-height: 70px;">
             <img src="../../../assets/loginImg.png" style="height: 40px;width: 40px;border-radius: 50%;float: left;margin-top: 13px;margin-left: 10px;margin-right: 5px" alt="logo">
-            <h3 v-show="!isCollapse" style="margin-left: 10px;width: 160px">学生管理系统</h3>
+            <h3 v-show="!isCollapse" style="margin-left: 10px;width: 160px">跑腿平台</h3>
         </el-row>
 
         <el-submenu index="1" v-show="!adminIs">

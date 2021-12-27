@@ -1,6 +1,5 @@
 package cn.edu.jsu.zjj.running.apply.controller;
 
-import cn.edu.jsu.zjj.running.admin.entity.Admin;
 import cn.edu.jsu.zjj.running.apply.entity.Apply;
 import cn.edu.jsu.zjj.running.apply.service.ApplyService;
 import cn.edu.jsu.zjj.running.utils.Result;
@@ -14,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * 用户申请跑腿表(Apply)表控制层
  *
- * @author makejava
+ * @author PL
  * @since 2021-12-26 10:50:46
  */
 @RestController
@@ -28,14 +27,14 @@ public class ApplyController {
 
     /**
      * 分页查询
-     *
      * @param apply 筛选条件
-     * @param pageRequest      分页对象
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<Apply>> queryByPage(Apply apply, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.applyService.queryByPage(apply, pageRequest));
+    public Result<ResponseEntity<Page<Apply>>> queryByPage(Apply apply, Integer size, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        Page<Apply> applies = this.applyService.queryByPage(apply,pageRequest);
+        return Result.success(ResponseEntity.ok(applies));
     }
 
     /**

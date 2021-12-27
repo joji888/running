@@ -15,7 +15,7 @@ import java.util.HashMap;
 /**
  * 管理员表(Admin)表控制层
  *
- * @author makejava
+ * @author PL
  * @since 2021-12-26 10:49:28
  */
 @RestController
@@ -31,7 +31,6 @@ public class AdminController {
      * 分页查询
      *
      * @param admin 筛选条件
-     * @param pageRequest      分页对象
      * @return 查询结果
      */
     @GetMapping

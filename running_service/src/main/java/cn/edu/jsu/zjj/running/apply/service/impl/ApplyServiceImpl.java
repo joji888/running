@@ -1,8 +1,10 @@
 package cn.edu.jsu.zjj.running.apply.service.impl;
 
+import cn.edu.jsu.zjj.running.admin.entity.Admin;
 import cn.edu.jsu.zjj.running.apply.entity.Apply;
 import cn.edu.jsu.zjj.running.apply.dao.ApplyDao;
 import cn.edu.jsu.zjj.running.apply.service.ApplyService;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -13,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * 用户申请跑腿表(Apply)表服务实现类
  *
- * @author makejava
+ * @author PL
  * @since 2021-12-26 10:50:46
  */
 @Service("applyService")
@@ -28,8 +30,11 @@ public class ApplyServiceImpl implements ApplyService {
      * @return 实例对象
      */
     @Override
-    public Apply queryById(Integer applyId) {
-        return this.applyDao.queryById(applyId);
+    public Result queryById(Integer applyId) {
+        if (applyId==null || applyId<1){
+            return Result.error("用户申请Id不能为空或等于0");
+        }
+        return Result.success(this.applyDao.queryById(applyId));
     }
 
     /**
@@ -52,9 +57,29 @@ public class ApplyServiceImpl implements ApplyService {
      * @return 实例对象
      */
     @Override
-    public Apply insert(Apply apply) {
-        this.applyDao.insert(apply);
-        return apply;
+    public Result insert(Apply apply) {
+
+        if (apply.getApplyTime()==null || apply.getApplyTime().equals("")){
+            return Result.error("用户申请时间不能为空");
+        }
+        if (apply.getApplyState()==null || apply.getApplyState().equals("")){
+            return Result.error("用户申请状态不能为空");
+        }
+        if (apply.getApplyIdentityCode()==null || apply.getApplyIdentityCode().equals("")){
+            return Result.error("用户申请身份证不能为空");
+        }
+        if (apply.getApplyIdentityCodeFront()==null || apply.getApplyIdentityCodeFront().equals("")){
+            return Result.error("用户申请身份证正面不能为空");
+        }
+        if (apply.getApplyIdentityCodeBack()==null || apply.getApplyIdentityCodeBack().equals("")){
+            return Result.error("用户申请身份证背面不能为空");
+        }
+        Integer insert = applyDao.insert(apply);
+        if (insert>0){
+            return Result.success("添加成功");
+        }else{
+            return Result.error("添加失败");
+        }
     }
 
     /**
@@ -64,9 +89,31 @@ public class ApplyServiceImpl implements ApplyService {
      * @return 实例对象
      */
     @Override
-    public Apply update(Apply apply) {
-        this.applyDao.update(apply);
-        return this.queryById(apply.getApplyId());
+    public Result update(Apply apply) {
+
+        if (apply.getApplyId()==null || apply.getApplyId().equals("")){
+            return Result.error("用户申请ID不能为空");
+        }
+        if (apply.getApplyTime()==null || apply.getApplyTime().equals("")){
+            return Result.error("用户申请时间不能为空");
+        }
+        if (apply.getApplyState()==null || apply.getApplyState().equals("")){
+            return Result.error("用户申请状态不能为空");
+        }
+        if (apply.getApplyIdentityCode()==null || apply.getApplyIdentityCode().equals("")){
+            return Result.error("用户申请身份证不能为空");
+        }
+        if (apply.getApplyIdentityCodeFront()==null || apply.getApplyIdentityCodeFront().equals("")){
+            return Result.error("用户申请身份证正面不能为空");
+        }
+        if (apply.getApplyIdentityCodeBack()==null || apply.getApplyIdentityCodeBack().equals("")){
+            return Result.error("用户申请身份证背面不能为空");
+        }
+        Integer update = this.applyDao.update(apply);
+        if (update>0){
+            return Result.success("修改成功");
+        }
+        return Result.error("修改失败");
     }
 
     /**
@@ -76,7 +123,15 @@ public class ApplyServiceImpl implements ApplyService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer applyId) {
-        return this.applyDao.deleteById(applyId) > 0;
+    public Result deleteById(Integer applyId) {
+
+        if (applyId==null || applyId<1){
+            return Result.error("用户申请ID不能为空或小于0");
+        }
+        Integer del = this.applyDao.deleteById(applyId);
+        if (del>0){
+            return Result.success("删除成功");
+        }
+        return Result.error("删除失败");
     }
 }

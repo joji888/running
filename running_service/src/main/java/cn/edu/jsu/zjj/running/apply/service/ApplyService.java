@@ -1,13 +1,14 @@
 package cn.edu.jsu.zjj.running.apply.service;
 
 import cn.edu.jsu.zjj.running.apply.entity.Apply;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 /**
  * 用户申请跑腿表(Apply)表服务接口
  *
- * @author makejava
+ * @author PL
  * @since 2021-12-26 10:50:46
  */
 public interface ApplyService {
@@ -18,7 +19,7 @@ public interface ApplyService {
      * @param applyId 主键
      * @return 实例对象
      */
-    Apply queryById(Integer applyId);
+    Result queryById(Integer applyId);
 
     /**
      * 分页查询
@@ -35,7 +36,7 @@ public interface ApplyService {
      * @param apply 实例对象
      * @return 实例对象
      */
-    Apply insert(Apply apply);
+    Result insert(Apply apply);
 
     /**
      * 修改数据
@@ -43,7 +44,7 @@ public interface ApplyService {
      * @param apply 实例对象
      * @return 实例对象
      */
-    Apply update(Apply apply);
+    Result update(Apply apply);
 
     /**
      * 通过主键删除数据
@@ -51,6 +52,6 @@ public interface ApplyService {
      * @param applyId 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer applyId);
+    Result deleteById(Integer applyId);
 
 }

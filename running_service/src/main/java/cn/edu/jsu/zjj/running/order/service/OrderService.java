@@ -1,6 +1,7 @@
 package cn.edu.jsu.zjj.running.order.service;
 
 import cn.edu.jsu.zjj.running.order.entity.Order;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -18,7 +19,7 @@ public interface OrderService {
      * @param oId 主键
      * @return 实例对象
      */
-    Order queryById(Integer oId);
+    Result queryById(Integer oId);
 
     /**
      * 分页查询
@@ -35,7 +36,7 @@ public interface OrderService {
      * @param order 实例对象
      * @return 实例对象
      */
-    Order insert(Order order);
+    Result insert(Order order);
 
     /**
      * 修改数据
@@ -43,7 +44,7 @@ public interface OrderService {
      * @param order 实例对象
      * @return 实例对象
      */
-    Order update(Order order);
+    Result update(Order order);
 
     /**
      * 通过主键删除数据
@@ -51,6 +52,6 @@ public interface OrderService {
      * @param oId 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer oId);
+    Result deleteById(Integer oId);
 
 }

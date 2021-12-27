@@ -2,6 +2,7 @@ package cn.edu.jsu.zjj.running.comment.controller;
 
 import cn.edu.jsu.zjj.running.comment.entity.Comment;
 import cn.edu.jsu.zjj.running.comment.service.CommentService;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +44,8 @@ public class CommentController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Comment> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.commentService.queryById(id));
+    public Result queryById(@PathVariable("id") Integer id) {
+        return this.commentService.queryById(id);
     }
 
     /**
@@ -54,8 +55,8 @@ public class CommentController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Comment> add(Comment comment) {
-        return ResponseEntity.ok(this.commentService.insert(comment));
+    public Result add(Comment comment) {
+        return this.commentService.insert(comment);
     }
 
     /**
@@ -65,8 +66,8 @@ public class CommentController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Comment> edit(Comment comment) {
-        return ResponseEntity.ok(this.commentService.update(comment));
+    public Result edit(Comment comment) {
+        return this.commentService.update(comment);
     }
 
     /**
@@ -76,8 +77,8 @@ public class CommentController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.commentService.deleteById(id));
+    public Result deleteById(Integer id) {
+        return this.commentService.deleteById(id);
     }
 
 }

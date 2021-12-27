@@ -1,6 +1,7 @@
 package cn.edu.jsu.zjj.running.comment.service;
 
 import cn.edu.jsu.zjj.running.comment.entity.Comment;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -18,7 +19,7 @@ public interface CommentService {
      * @param cId 主键
      * @return 实例对象
      */
-    Comment queryById(Integer cId);
+    Result queryById(Integer cId);
 
     /**
      * 分页查询
@@ -35,7 +36,7 @@ public interface CommentService {
      * @param comment 实例对象
      * @return 实例对象
      */
-    Comment insert(Comment comment);
+    Result insert(Comment comment);
 
     /**
      * 修改数据
@@ -43,7 +44,7 @@ public interface CommentService {
      * @param comment 实例对象
      * @return 实例对象
      */
-    Comment update(Comment comment);
+    Result update(Comment comment);
 
     /**
      * 通过主键删除数据
@@ -51,6 +52,6 @@ public interface CommentService {
      * @param cId 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer cId);
+    Result deleteById(Integer cId);
 
 }

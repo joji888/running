@@ -1,7 +1,9 @@
 package cn.edu.jsu.zjj.running.apply.controller;
 
+import cn.edu.jsu.zjj.running.admin.entity.Admin;
 import cn.edu.jsu.zjj.running.apply.entity.Apply;
 import cn.edu.jsu.zjj.running.apply.service.ApplyService;
+import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +45,8 @@ public class ApplyController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Apply> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.applyService.queryById(id));
+    public Result queryById(@PathVariable("id") Integer id) {
+        return this.applyService.queryById(id);
     }
 
     /**
@@ -54,8 +56,8 @@ public class ApplyController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Apply> add(Apply apply) {
-        return ResponseEntity.ok(this.applyService.insert(apply));
+    public Result add(Apply apply) {
+        return this.applyService.insert(apply);
     }
 
     /**
@@ -65,8 +67,8 @@ public class ApplyController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Apply> edit(Apply apply) {
-        return ResponseEntity.ok(this.applyService.update(apply));
+    public Result edit(Apply apply) {
+        return this.applyService.update(apply);
     }
 
     /**
@@ -76,8 +78,8 @@ public class ApplyController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.applyService.deleteById(id));
+    public Result deleteById(Integer id) {
+        return this.applyService.deleteById(id);
     }
 
 }

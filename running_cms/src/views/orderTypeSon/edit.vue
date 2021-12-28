@@ -2,15 +2,20 @@
     <div v-loading="loading">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-user">
 
-            <el-form-item label="ID" prop="otId">
-                <el-input v-model="ruleForm.otId"></el-input>
+            <el-form-item label="ID" prop="tsId">
+                <el-input v-model="ruleForm.tsId"></el-input>
             </el-form-item>
-            <el-form-item label="类型名" prop="otName">
-                <el-input v-model="ruleForm.otName"></el-input>
+
+            <el-form-item label="子类名" prop="tsName">
+                <el-input v-model="ruleForm.tsName"></el-input>
+            </el-form-item>
+
+            <el-form-item label="默认价格" prop="tsPrice">
+                <el-input v-model.number="ruleForm.tsPrice"></el-input>
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')">修改</el-button>
+                <el-button type="primary" @click="submitForm('ruleForm')">添加</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -19,7 +24,7 @@
 <script>
     export default {
         name:"edit",
-        props:['otId'],
+        props:['tsId'],
         data() {
             return {
                 order: {},
@@ -39,7 +44,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         let _this=this;
-                        this.$http.put("/orderType?"+this.$qs.stringify(this.ruleForm)).then(function (res) {
+                        this.$http.put("/orderTypeSon?"+this.$qs.stringify(this.ruleForm)).then(function (res) {
                             _this.$myRequest(res);//判断请求是否合法
                             if (res.data.code===200){
                                 _this.$parent.handleClose();
@@ -56,7 +61,7 @@
         mounted() {
             let admin=this.$mySetToken();//判断用户是否登陆
             let _this=this;
-            this.$http.get("/orderType/"+this.otId).then(function (res) {
+            this.$http.get("/orderTypeSon/"+this.tsId).then(function (res) {
                 _this.$myRequest(res);//判断请求是否合法
                 _this.ruleForm=res.data.data;
             });

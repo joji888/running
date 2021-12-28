@@ -6,7 +6,7 @@
 
         <div v-if="dialogVisible">
             <el-dialog
-                    title="提示"
+                    title="修改订单"
                     :visible.sync="dialogVisible"
                     width="700px"
                     :before-close="handleClose">

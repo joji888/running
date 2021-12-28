@@ -45,8 +45,6 @@ public class OrderTypeServiceImpl implements OrderTypeService {
     /**
      * 分页查询
      *
-     * @param offset 筛选条件
-     * @param limit      分页对象
      * @return 查询结果
      */
     @Override

@@ -1,6 +1,5 @@
 <template>
     <div v-loading="loading">
-        <h3>个人信息</h3><br>
         <el-form :model="order" :rules="rules" ref="order" label-width="100px" class="demo-user">
 
             <el-form-item label="订单图片" prop="oid">

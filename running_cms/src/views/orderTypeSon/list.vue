@@ -1,16 +1,16 @@
 <template>
     <div v-loading="loading">
         <div style="line-height: 40px;">
-            <h3 style="float: left;margin-right: 20px;">订单类型表</h3>
+            <h3 style="float: left;margin-right: 20px;">订单子类表</h3>
         </div>
 
         <div v-if="dialogVisible">
             <el-dialog
-                    title="修改订单类型"
+                    title="修改订单子类"
                     :visible.sync="dialogVisible"
                     width="700px"
                     :before-close="handleClose">
-                <edit v-bind:otId="otId"></edit>
+                <edit v-bind:tsId="tsId"></edit>
                 <span slot="footer" class="dialog-footer">
             </span>
             </el-dialog>
@@ -21,15 +21,24 @@
                 style="width: 100%">
 
             <el-table-column
-                    prop="otId"
+                    prop="tsId"
                     label="ID"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    prop="otName"
+                    prop="tsName"
                     label="类型名"
-                    width="120">
+                    width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="tsPrice"
+                    label="默认价格"
+                    width="180">
+                <template slot-scope="scope">
+                    <span style="color: red;font-weight: bold">￥{{scope.row.tsPrice}}</span>
+                </template>
             </el-table-column>
 
             <el-table-column
@@ -59,7 +68,7 @@
         components:{edit},
         data() {
             return {
-                otId:'',
+                tsId:'',
                 dialogVisible:false,
                 keyword:"",
                 loading:true,
@@ -75,15 +84,15 @@
             },
             handleEdit(index, row) {//开启编辑弹窗
                 console.log(index, row);
-                this.otId=row.otId;
+                this.tsId=row.tsId;
                 this.dialogVisible=true;
             },
             handleDelete(index, row) {//删除函数
                 console.log(index, row);
                 let _this=this;
-                this.$http.delete('/orderType',{
+                this.$http.delete('/orderTypeSon',{
                     params:{
-                        id:row.otId
+                        id:row.tsId
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
@@ -92,7 +101,7 @@
             },
             initDate(){//初始化函数
                 let _this=this;
-                this.$http.get("/orderType",{
+                this.$http.get("/orderTypeSon",{
                     params:{
                         page:0,
                         size:10000

@@ -25,12 +25,18 @@
 
     import orderList from "../order/list"
 
+    import orderTypeList from "../orderType/list"
+    import orderTypeAdd from "../orderType/add"
+
+    import orderTypeSonList from "../orderTypeSon/list"
+    import orderTypeSonAdd from "../orderTypeSon/add"
+
     import userAdd from "../user/add"
     import userList from "../user/list"
 
     export default {
         name: "index",
-        components: {top, left,adminList,orderList,userAdd,userList},
+        components: {top, left,adminList,orderList,orderTypeList,orderTypeAdd,orderTypeSonList,orderTypeSonAdd,userAdd,userList},
         data(){
             return {
                 adminIs:false,

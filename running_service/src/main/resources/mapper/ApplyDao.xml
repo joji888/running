@@ -4,17 +4,20 @@
 
     <resultMap type="cn.edu.jsu.zjj.running.apply.entity.Apply" id="ApplyMap">
         <result property="applyId" column="apply_id" jdbcType="INTEGER"/>
+        <result property="uId" column="u_id" jdbcType="INTEGER"/>
         <result property="applyTime" column="apply_time" jdbcType="TIMESTAMP"/>
         <result property="applyState" column="apply_state" jdbcType="VARCHAR"/>
         <result property="applyIdentityCode" column="apply_identity_code" jdbcType="VARCHAR"/>
         <result property="applyIdentityCodeFront" column="apply_identity_code_front" jdbcType="VARCHAR"/>
         <result property="applyIdentityCodeBack" column="apply_identity_code_back" jdbcType="VARCHAR"/>
+        <collection property="user" column="u_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"></collection>
+
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="ApplyMap">
         select
-          apply_id, apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back
+          apply_id,u_id, apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back
         from apply
         where apply_id = #{applyId}
     </select>
@@ -22,7 +25,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ApplyMap">
         select
-          apply_id, apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back
+          apply_id,u_id, apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back
         from apply
 
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -35,6 +38,9 @@
         <where>
             <if test="applyId != null">
                 and apply_id = #{applyId}
+            </if>
+            <if test="uId != null">
+                and u_id = #{uId}
             </if>
             <if test="applyTime != null">
                 and apply_time = #{applyTime}
@@ -56,25 +62,26 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="applyId" useGeneratedKeys="true">
-        insert into apply(apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
-        values (#{applyTime}, #{applyState}, #{applyIdentityCode}, #{applyIdentityCodeFront}, #{applyIdentityCodeBack})
+        insert into apply(u_id,apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
+        values (#{uId},#{applyTime}, #{applyState}, #{applyIdentityCode}, #{applyIdentityCodeFront}, #{applyIdentityCodeBack})
     </insert>
 
     <insert id="insertBatch" keyProperty="applyId" useGeneratedKeys="true">
-        insert into apply(apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
+        insert into apply(u_id,apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.applyTime}, #{entity.applyState}, #{entity.applyIdentityCode}, #{entity.applyIdentityCodeFront}, #{entity.applyIdentityCodeBack})
+        (#{entity.uId},#{entity.applyTime}, #{entity.applyState}, #{entity.applyIdentityCode}, #{entity.applyIdentityCodeFront}, #{entity.applyIdentityCodeBack})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="applyId" useGeneratedKeys="true">
-        insert into apply(apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
+        insert into apply(u_id,apply_time, apply_state, apply_identity_code, apply_identity_code_front, apply_identity_code_back)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.applyTime}, #{entity.applyState}, #{entity.applyIdentityCode}, #{entity.applyIdentityCodeFront}, #{entity.applyIdentityCodeBack})
+            (#{entity.uId},#{entity.applyTime}, #{entity.applyState}, #{entity.applyIdentityCode}, #{entity.applyIdentityCodeFront}, #{entity.applyIdentityCodeBack})
         </foreach>
         on duplicate key update
+        u_id = values(u_id),
         apply_time = values(apply_time),
         apply_state = values(apply_state),
         apply_identity_code = values(apply_identity_code),
@@ -86,6 +93,9 @@
     <update id="update">
         update apply
         <set>
+            <if test="uId != null">
+                u_id = #{uId},
+            </if>
             <if test="applyTime != null">
                 apply_time = #{applyTime},
             </if>

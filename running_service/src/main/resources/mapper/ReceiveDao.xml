@@ -7,12 +7,16 @@
         <result property="rBeginTime" column="r_begin_time" jdbcType="TIMESTAMP"/>
         <result property="rEndTime" column="r_end_time" jdbcType="TIMESTAMP"/>
         <result property="rSeate" column="r_seate" jdbcType="INTEGER"/>
+        <result property="uId" column="u_id" javaType="INTEGER" />
+        <result property="ruId" column="ru_id" javaType="INTEGER" />
+        <collection property="user" column="u_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
+        <collection property="user" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="ReceiveMap">
         select
-          r_id, r_begin_time, r_end_time, r_seate
+          r_id, u_id, ru_id, r_begin_time, r_end_time, r_seate
         from receive
         where r_id = #{rId}
     </select>
@@ -20,7 +24,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ReceiveMap">
         select
-          r_id, r_begin_time, r_end_time, r_seate
+          r_id, u_id, ru_id, r_begin_time, r_end_time, r_seate
         from receive
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
@@ -47,8 +51,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="rId" useGeneratedKeys="true">
-        insert into receive(r_begin_time, r_end_time, r_seate)
-        values (#{rBeginTime}, #{rEndTime}, #{rSeate})
+        insert into receive(u_id, ru_id, r_begin_time, r_end_time, r_seate)
+        values (#{uId}, #{ruId}, #{rBeginTime}, #{rEndTime}, #{rSeate})
     </insert>
 
     <insert id="insertBatch" keyProperty="rId" useGeneratedKeys="true">
@@ -83,6 +87,12 @@
             </if>
             <if test="rSeate != null">
                 r_seate = #{rSeate},
+            </if>
+            <if test="ruId != null">
+                ru_id = #{ruId},
+            </if>
+            <if test="uId != null">
+                u_id = #{uId},
             </if>
         </set>
         where r_id = #{rId}

@@ -1,5 +1,7 @@
 package cn.edu.jsu.zjj.running.receive.entity;
 
+import cn.edu.jsu.zjj.running.user.entity.User;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -18,6 +20,7 @@ public class Receive implements Serializable {
     /**
      * 开始时间
      */
+
     private Date rBeginTime;
     /**
      * 结束时间
@@ -27,7 +30,40 @@ public class Receive implements Serializable {
      * 跑腿状态（0结束，1开始）
      */
     private Integer rSeate;
+    /**
+     * 用户id
+     */
+    private Integer uId;
+    /**
+     * 接单者id
+     */
+    private Integer ruId;
 
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
+
+    public Integer getRuId() {
+        return ruId;
+    }
+
+    public void setRuId(Integer ruId) {
+        this.ruId = ruId;
+    }
 
     public Integer getRId() {
         return rId;

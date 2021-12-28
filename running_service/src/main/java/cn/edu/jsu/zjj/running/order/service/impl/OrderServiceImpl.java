@@ -105,7 +105,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Result update(Order order) {
-        if (order.getOId()==null || order.getOId().equals("")){
+        if (order.getOId()==null || order.getOId()<1){
             return Result.error("订单ID不能为空");
         }
         if (order.getUId()==null || order.getUId().equals("")){
@@ -122,9 +122,6 @@ public class OrderServiceImpl implements OrderService {
         }
         if (order.getOState()==null || order.getOState().equals("")){
             return Result.error("订单状态不能为空");
-        }
-        if (order.getOImage()==null || order.getOImage().equals("")){
-            return Result.error("订单图片不能为空");
         }
 
         if (order.getOCreateTime()==null || order.getOCreateTime().equals("")){
@@ -159,5 +156,24 @@ public class OrderServiceImpl implements OrderService {
             return Result.success("删除成功");
         }
         return Result.error("删除失败");
+    }
+
+    @Override
+    public Result editImg(Integer oId, String image) {
+        if (image==null || image.equals("")){
+            return Result.error("订单图片不能为空");
+        }
+        if (oId==null || oId<1){
+            return Result.error("订单ID不能为空");
+        }
+
+        Order order = new Order();
+        order.setOId(oId);
+        order.setOImage(image);
+        Integer updates = orderDao.update(order);
+        if (updates>0){
+            return Result.success("订单图片修改成功");
+        }
+        return Result.error("修改失败");
     }
 }

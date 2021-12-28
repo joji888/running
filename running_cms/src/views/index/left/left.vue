@@ -14,12 +14,11 @@
         <el-submenu index="1" v-show="!adminIs">
             <template slot="title">
                 <i class="el-icon-s-home"></i>
-                <span>我的</span>
+                <span>用户管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="1-1" @click="updatePage('home')">个人信息</el-menu-item>
-                <el-menu-item index="1-2" @click="updatePage('courses')">我的课程</el-menu-item>
-                <el-menu-item index="1-3" @click="updatePage('courses2')">在线选课</el-menu-item>
+                <el-menu-item index="1-1" @click="updatePage('userAdd')">添加用户</el-menu-item>
+                <el-menu-item index="1-2" @click="updatePage('userList')">用户列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 

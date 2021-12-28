@@ -62,10 +62,10 @@ public class ReceiveServiceImpl implements ReceiveService {
      */
     @Override
     public Result insert(Receive receive) {
-        if (receive.getuId() == null || receive.getuId().equals("")){
+        if (receive.getuId() == null || receive.getuId()<1){
             return Result.error("下单者ID不能为空");
         }
-        if (receive.getRuId() == null || receive.getRuId().equals("")){
+        if (receive.getRuId() == null || receive.getRuId()<1){
             return Result.error("接单者ID不能为空");
         }
 
@@ -100,10 +100,10 @@ public class ReceiveServiceImpl implements ReceiveService {
      */
     @Override
     public Result update(Receive receive) {
-        if (receive.getuId() == null || receive.getuId().equals("")){
+        if (receive.getuId() == null || receive.getuId()<1){
             return Result.error("下单者ID不能为空");
         }
-        if (receive.getRuId() == null || receive.getRuId().equals("")){
+        if (receive.getRuId() == null || receive.getRuId()<1){
             return Result.error("接单者ID不能为空");
         }
         if (receive.getRId() == null || receive.getRId().equals("")){

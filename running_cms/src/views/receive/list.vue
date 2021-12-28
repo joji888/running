@@ -1,7 +1,7 @@
 <template>
     <div v-loading="loading">
         <div style="line-height: 40px;">
-            <h3 style="float: left;margin-right: 20px;">用户表</h3>
+            <h3 style="float: left;margin-right: 20px;">接单表</h3>
         </div>
 
         <div v-if="dialogVisible">
@@ -21,53 +21,46 @@
                 style="width: 100%">
 
             <el-table-column
-                    prop="uid"
+                    prop="rid"
                     label="ID"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    prop="unick"
-                    label="昵称"
+                    prop="rbeginTime"
+                    label="开始时间"
                     width="100">
 
             </el-table-column>
 
 
             <el-table-column
-                    prop="uaccount"
-                    label="帐号"
+                    prop="rendTime"
+                    label="结束时间"
                     width="100">
             </el-table-column>
 
 
             <el-table-column
-                    prop="uemail"
-                    label="邮箱"
+                    prop="rseate"
+                    label="跑腿状态"
                     width="100">
             </el-table-column>
 
 
             <el-table-column
-                    prop="uphone"
-                    label="电话"
+                    prop="uid"
+                    label="用户id"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    prop="ugender"
-                    label="性别"
+                    prop="ruid"
+                    label="接单者id"
                     width="100">
             </el-table-column>
 
-            <el-table-column
-                    prop="uheadImg"
-                    label="头像"
-                    width="120">
-                <template slot-scope="scope">
-                    　　　　<img :src="scope.row.uheadImg" width="40" height="40" class="head_pic"/>
-                </template>
-            </el-table-column>
+
 
 
             <el-table-column

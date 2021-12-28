@@ -21,19 +21,15 @@
 <script>
     import left from "./left/left";
     import top from "./right/top";
-    import studentAdd from "../student/add";
-    import studentList from "../student/list";
-    import home from "../home/home";
-    import courses from "../home/courses";
-    import courses2 from "../home/courses2";
-    import courseAdd from "../course/add";
-    import courseList from "../course/list";
     import adminList from "../admin/list"
     import orderList from "../order/list"
 
+    import userAdd from "../user/add"
+    import userList from "../user/list"
+
     export default {
         name: "index",
-        components: {top, left,studentAdd,studentList,home,courses,courses2,courseAdd,courseList,adminList,orderList},
+        components: {top, left,adminList,orderList,userAdd,userList},
         data(){
             return {
                 adminIs:false,

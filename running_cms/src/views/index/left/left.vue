@@ -66,38 +66,34 @@
 
         <el-submenu index="6">
             <template slot="title">
-                <i class="el-icon-chat-line-round"></i>
+                <i class="el-icon-document-checked"></i>
                 <span>评论管理</span>
             </template>
             <el-menu-item-group>
-<<<<<<< HEAD
                 <el-menu-item index="6-1" @click="updatePage('commentList')">评论列表</el-menu-item>
-=======
-                <el-menu-item index="6-1" @click="updatePage('receiveList')">评论列表</el-menu-item>
->>>>>>> 5c9403b6baadf65e86eca1ba75abf88621bbaf90
             </el-menu-item-group>
         </el-submenu>
 
-        <el-submenu index="6" v-show="adminIs">
-            <template slot="title">
-                <i class="el-icon-document"></i>
-                <span>审核管理</span>
-            </template>
-            <el-menu-item-group>
-                <el-menu-item index="6-1" @click="updatePage('orderList')">审核列表</el-menu-item>
-            </el-menu-item-group>
-        </el-submenu>
+<!--        <el-submenu index="7" v-show="adminIs">-->
+<!--            <template slot="title">-->
+<!--                <i class="el-icon-document"></i>-->
+<!--                <span>审核管理</span>-->
+<!--            </template>-->
+<!--            <el-menu-item-group>-->
+<!--                <el-menu-item index="6-1" @click="updatePage('orderList')">审核列表</el-menu-item>-->
+<!--            </el-menu-item-group>-->
+<!--        </el-submenu>-->
 
-        <el-submenu index="3" v-show="adminIs">
-            <template slot="title">
-                <i class="el-icon-message-solid"></i>
-                <span>课程管理</span>
-            </template>
-            <el-menu-item-group>
-                <el-menu-item index="3-1" @click="updatePage('courseAdd')">添加课程</el-menu-item>
-                <el-menu-item index="3-2" @click="updatePage('courseList')">课程列表</el-menu-item>
-            </el-menu-item-group>
-        </el-submenu>
+<!--        <el-submenu index="3" v-show="adminIs">-->
+<!--            <template slot="title">-->
+<!--                <i class="el-icon-message-solid"></i>-->
+<!--                <span>课程管理</span>-->
+<!--            </template>-->
+<!--            <el-menu-item-group>-->
+<!--                <el-menu-item index="3-1" @click="updatePage('courseAdd')">添加课程</el-menu-item>-->
+<!--                <el-menu-item index="3-2" @click="updatePage('courseList')">课程列表</el-menu-item>-->
+<!--            </el-menu-item-group>-->
+<!--        </el-submenu>-->
     </el-menu>
 
 </template>

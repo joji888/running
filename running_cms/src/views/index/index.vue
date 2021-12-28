@@ -31,20 +31,16 @@
     import orderTypeSonList from "../orderTypeSon/list"
     import orderTypeSonAdd from "../orderTypeSon/add"
 
-<<<<<<< HEAD
     import commentList from "../comment/list"
     import commentAdd from "../comment/add"
-=======
-    import receiveList from "../receive/list"
-    import receiveAdd from "../receive/add"
->>>>>>> 5c9403b6baadf65e86eca1ba75abf88621bbaf90
+
+    import applyList from "../apply/list"
 
     import userAdd from "../user/add"
     import userList from "../user/list"
 
     export default {
         name: "index",
-<<<<<<< HEAD
         components: {
             top,
             left,
@@ -56,15 +52,13 @@
             orderTypeSonAdd,
             commentList,
             commentAdd,
+            applyList,
             userAdd,
             userList},
-=======
-        components: {top, left,adminList,orderList,orderTypeList,orderTypeAdd,orderTypeSonList,orderTypeSonAdd,userAdd,userList,receiveAdd,receiveList},
->>>>>>> 5c9403b6baadf65e86eca1ba75abf88621bbaf90
         data(){
             return {
                 adminIs:false,
-                mainPag:"orderList",
+                mainPag:"applyList",
                 leftClass:"width: 210px;",
                 isCollapse:false,
                 loading:true

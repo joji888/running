@@ -1,6 +1,8 @@
 package cn.edu.jsu.zjj.running.apply.entity;
 
 import cn.edu.jsu.zjj.running.user.entity.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -25,6 +27,8 @@ public class Apply implements Serializable {
     /**
      * 申请时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     private Date applyTime;
     /**
      * 申请状态

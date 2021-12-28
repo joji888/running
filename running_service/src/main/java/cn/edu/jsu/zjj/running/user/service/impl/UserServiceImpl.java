@@ -64,6 +64,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Result insert(User user) {
+        if (user.getuRole() !="user" || user.getuRole()!="running"){
+            return Result.error("用户角色名格式错误");
+        }
         if (user.getUNick() == null || user.getUNick().equals("")){
             return Result.error("昵称不能为空");
         }
@@ -89,6 +92,10 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Result update(User user) {
+        if (user.getuRole() !="user" || user.getuRole()!="running"){
+            return Result.error("用户角色名格式错误");
+        }
+
         if (user.getUId() == null || user.getUId().equals("")){
             return Result.error("ID不能为空");
         }

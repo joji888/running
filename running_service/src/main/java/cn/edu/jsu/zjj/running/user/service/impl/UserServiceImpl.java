@@ -1,5 +1,6 @@
 package cn.edu.jsu.zjj.running.user.service.impl;
 
+import cn.edu.jsu.zjj.running.upload.UploadFile;
 import cn.edu.jsu.zjj.running.user.entity.User;
 import cn.edu.jsu.zjj.running.user.dao.UserDao;
 import cn.edu.jsu.zjj.running.user.service.UserService;
@@ -8,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * 用户表(User)表服务实现类
@@ -105,13 +108,17 @@ public class UserServiceImpl implements UserService {
             return Result.error("修改数据失败");
     }
 
-    public Result editimg(Integer uId ,String uHeadImg){
+    public Result editimg(MultipartFile uploadFIle,Integer uId , String uHeadImg) throws IOException {
         if (uId ==null || uId<1){
             return Result.error("用户ID不存在");
         }
         if (uHeadImg ==null || uHeadImg.equals("")){
             return Result.error("用户图片不能为空");
         }
+
+        UploadFile uploadFile = new UploadFile();
+        uHeadImg = uploadFile.uploadFile(uploadFIle, uHeadImg);
+
         User user = new User();
         user.setUId(uId);
         user.setUHeadImg(uHeadImg);

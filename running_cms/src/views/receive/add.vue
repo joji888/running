@@ -3,27 +3,26 @@
         <h3>添加用户</h3><br>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
-            <el-form-item label="昵称" prop="unick">
-                <el-input v-model="ruleForm.unick"></el-input>
+            <el-form-item label="开始时间" prop="rbeginTime">
+                <el-input v-model="ruleForm.rbeginTime"></el-input>
             </el-form-item>
-            <el-form-item label="帐号" prop="uaccount">
-                <el-input v-model="ruleForm.uaccount"></el-input>
+
+            <el-form-item label="结束时间" prop="rendTime">
+                <el-input v-model="ruleForm.rendTime"></el-input>
             </el-form-item>
-            <el-form-item label="性别" prop="ugender">
-                <el-select v-model="ruleForm.ugender" placeholder="请选择姓别" value="">
-                    <el-option label="男" value="男"></el-option>
-                    <el-option label="女" value="女"></el-option>
-                </el-select>
+
+            <el-form-item label="跑腿状态" prop="rseate">
+                <el-input type="textarea" v-model="ruleForm.rseate"></el-input>
             </el-form-item>
-            <el-form-item label="电话" prop="uphone">
-                <el-input v-model="ruleForm.uphone"></el-input>
+
+            <el-form-item label="用户id" prop="uid">
+                <el-input type="textarea" v-model="ruleForm.uid"></el-input>
             </el-form-item>
-            <el-form-item label="头像" prop="uheadImg">
-                <el-input type="textarea" v-model="ruleForm.uheadImg"></el-input>
+
+            <el-form-item label="接单者id" prop="ruid">
+                <el-input type="textarea" v-model="ruleForm.ruid"></el-input>
             </el-form-item>
-            <el-form-item label="邮箱" prop="uemail">
-                <el-input type="textarea" v-model="ruleForm.uemail"></el-input>
-            </el-form-item>
+
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">添加</el-button>
                 <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -37,34 +36,29 @@
             return {
                 loading:false,
                 ruleForm: {
-                    unick: '',
-                    uaccount: '',
-                    ugender: '',
-                    uphone: '',
-                    uheadImg: '',
-                    uemail: ''
+                    rbeginTime: '',
+                    rendTime: '',
+                    rseate: '',
+                    uid: '',
+                    ruid: ''
                 },
                 rules: {
-                    unick: [
-                        { required: true, message: '请输姓名', trigger: 'blur' },
+                    rbeginTime: [
+                        { required: true, message: '请输开始时间', trigger: 'blur' },
                         { min: 1, max: 5, message: '长度在 1 到 10 个字符', trigger: 'blur' }
                     ],
-                    uaccount: [
-                        { required: true, message: '请输入帐号', trigger: 'blue' },
+                    rendTime: [
+                        { required: true, message: '请输入结束时间', trigger: 'blue' },
                         { min: 10, max: 16, message: '长度在 10 到 20 个字符', trigger: 'blur' }
                     ],
-                    ugender: [
-                        { required: true, message: '请选择姓别', trigger: 'change' }
+                    rseate: [
+                        { required: true, message: '请选择跑腿状态', trigger: 'change' }
                     ],
-                    uphone: [
-                        { required: true, message: '请输入手机号码', trigger: 'blur' }
+                    uid: [
+                        { required: true, message: '请输入用户id', trigger: 'blur' }
                     ],
-                    uheadImg: [
-                        { required: true, message: '请上传头像', trigger: 'blur' }
-                    ],
-                    uemail: [
-                        { required: true, message: '请输入邮箱', trigger: 'blur' },
-                        { min: 10, max: 20, message: '长度在 10 到 20 个字符', trigger: 'blur' }
+                    ruid: [
+                        { required: true, message: '请输入接单者id', trigger: 'blur' }
                     ]
                 }
             };

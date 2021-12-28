@@ -14,6 +14,22 @@ import java.util.List;
 public interface OrderTypeSonDao {
 
     /**
+     * 通过类型名查询数据
+     *
+
+     * @return 实例对象
+     */
+    Integer select(Integer otId);
+
+    /**
+     * 通过类型名查询数据
+     *
+
+     * @return 实例对象
+     */
+    Integer select1(String tsName);
+
+    /**
      * 通过ID查询单条数据
      *
      * @param tsId 主键

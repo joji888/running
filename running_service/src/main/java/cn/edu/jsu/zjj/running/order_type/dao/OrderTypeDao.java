@@ -1,7 +1,6 @@
 package cn.edu.jsu.zjj.running.order_type.dao;
 
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
-import cn.edu.jsu.zjj.running.utils.Result;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -48,6 +47,7 @@ public interface OrderTypeDao {
      * @return 影响行数
      */
     int insert(OrderType orderType);
+    Integer select(String otName);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）

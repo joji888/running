@@ -66,6 +66,9 @@ public class OrderTypeServiceImpl implements OrderTypeService {
         if (orderType.getOtName() == null || orderType.getOtName().equals("")){
             return Result.error("类型名不能为空");
         }
+        if (this.orderTypeDao.select(orderType.getOtName())>0){
+            return Result.error("类型名不能重复");
+        }
         Integer insert = this.orderTypeDao.insert(orderType);
         if (insert > 0){
             return Result.success("新增数据成功");
@@ -82,6 +85,7 @@ public class OrderTypeServiceImpl implements OrderTypeService {
      */
     @Override
     public Result update(OrderType orderType) {
+
         if (orderType.getOtId() == null || orderType.getOtId().equals("")){
             return Result.error("ID不能为空");
         }

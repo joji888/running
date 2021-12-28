@@ -6,6 +6,8 @@
         <result property="tsId" column="ts_id" jdbcType="INTEGER"/>
         <result property="tsName" column="ts_name" jdbcType="VARCHAR"/>
         <result property="tsPrice" column="ts_price" jdbcType="INTEGER"/>
+        <result property="otId" column="ot_id" javaType="INTEGER"/>
+        <collection property="orderType" column="ot_id" select="cn.edu.jsu.zjj.running.order_type.dao.OrderTypeDao.queryById"/>
     </resultMap>
 
     <!--查询单个-->

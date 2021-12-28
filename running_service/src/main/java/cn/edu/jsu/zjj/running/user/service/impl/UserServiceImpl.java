@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Result insert(User user) {
-        if (user.getuRole() !="user" || user.getuRole()!="running"){
+        if (!user.getuRole().equals("user") && !user.getuRole().equals("running")){
             return Result.error("用户角色名格式错误");
         }
         if (user.getUNick() == null || user.getUNick().equals("")){
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Result update(User user) {
-        if (user.getuRole() !="user" || user.getuRole()!="running"){
+        if (!user.getuRole().equals("user") && !user.getuRole().equals("running")){
             return Result.error("用户角色名格式错误");
         }
 

@@ -1,19 +1,15 @@
 package cn.edu.jsu.zjj.running.order.entity;
 
-<<<<<<< HEAD
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
-=======
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
 
->>>>>>> 897be90755e30707aba1fc8c0eb6a5045f2dcde3
 
 import java.util.Date;
 import java.io.Serializable;

@@ -4,6 +4,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
 import axios from "axios";
+import qs from "qs";
 
 Vue.config.productionTip = false
 
@@ -11,6 +12,7 @@ axios.defaults.headers.common['token'] = '';
 axios.defaults.baseURL='/api';
 
 Vue.prototype.$http= axios
+Vue.prototype.$qs= qs
 
 //设置token全局函数
 Vue.prototype.$mySetToken=function(){

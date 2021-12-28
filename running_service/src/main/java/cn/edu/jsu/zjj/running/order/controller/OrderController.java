@@ -71,6 +71,17 @@ public class OrderController {
     }
 
     /**
+     * 编辑数据
+     *
+     * @param image 实体
+     * @return 编辑结果
+     */
+    @PutMapping("editImg")
+    public Result editImg(Integer oId,String image) {
+        return this.orderService.editImg(oId,image);
+    }
+
+    /**
      * 删除数据
      *
      * @param id 主键

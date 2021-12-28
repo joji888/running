@@ -15,6 +15,13 @@
         where ot_id = #{otId}
     </select>
 
+    <select id="select" resultType="INTEGER">
+        select
+            count(*)
+            from order_type
+            where ot_name = #{otName}
+    </select>
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="OrderTypeMap">
         select

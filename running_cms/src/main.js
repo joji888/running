@@ -32,11 +32,11 @@ Vue.prototype.$mySetToken=function(){
 //请求后台结束判断全局函数
 Vue.prototype.$myRequest= function(res){
   console.log(res);
-  if (res.data.massage==="请先登陆"){
+  if (res.data.message==="请先登陆"){
     this.$message.error("请先登陆");
     this.$router.push({path:'/login',query:{}});
   }
-  if (res.data.massage==="token 无效"){
+  if (res.data.message==="token 无效"){
     this.$message.error("token 无效");
     this.$router.push({path:'/login',query:{}});
   }

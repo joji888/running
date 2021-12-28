@@ -29,14 +29,15 @@
     import courseAdd from "../course/add";
     import courseList from "../course/list";
     import adminList from "../admin/list"
+    import orderList from "../order/list"
 
     export default {
         name: "index",
-        components: {top, left,studentAdd,studentList,home,courses,courses2,courseAdd,courseList,adminList},
+        components: {top, left,studentAdd,studentList,home,courses,courses2,courseAdd,courseList,adminList,orderList},
         data(){
             return {
                 adminIs:false,
-                mainPag:"adminList",
+                mainPag:"orderList",
                 leftClass:"width: 210px;",
                 isCollapse:false,
                 loading:true

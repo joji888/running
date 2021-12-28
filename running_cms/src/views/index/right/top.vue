@@ -39,7 +39,8 @@
         },
         mounted() {
             let admin=this.$mySetToken();
-            this.adminName=admin.account;
+            // console.log(admin)
+            this.adminName=admin.aaccount;
         }
 
     }

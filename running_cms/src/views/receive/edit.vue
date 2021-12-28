@@ -1,31 +1,28 @@
 <template>
     <div v-loading="loading">
-        <h3>个人信息</h3><br>
-        <el-form :model="user" :rules="rules" ref="user" label-width="100px" class="demo-user">
+        <h3>接单信息</h3><br>
+        <el-form :model="receive" :rules="rules" ref="receive" label-width="100px" class="demo-user">
 
-            <el-form-item label="昵称" prop="unick">
-                <el-input v-model="user.unick" disabled="disabled"></el-input>
+            <el-form-item label="开始时间" prop="rbeginTime">
+                <el-input v-model="user.rbeginTime" disabled="disabled"></el-input>
             </el-form-item>
 
-            <el-form-item label="帐号" prop="uaccount">
-                <el-input v-model="user.uaccount" disabled="disabled"></el-input>
+            <el-form-item label="结束时间" prop="rendTime">
+                <el-input v-model="user.rendTime" disabled="disabled"></el-input>
             </el-form-item>
 
-            <el-form-item label="性别" prop="ugender">
-                <el-input v-model="user.ugender" disabled="disabled"></el-input>
+            <el-form-item label="跑腿状态" prop="rseate">
+                <el-input v-model="user.rseate" disabled="disabled"></el-input>
             </el-form-item>
 
-            <el-form-item label="电话" prop="uphone">
-                <el-input v-model="user.uphone" disabled="disabled"></el-input>
+            <el-form-item label="用户id" prop="uid">
+                <el-input v-model="user.uid" disabled="disabled"></el-input>
             </el-form-item>
 
-            <el-form-item label="头像" prop="uheadImg">
-                <el-input v-model="user.uheadImg" disabled="disabled"></el-input>
+            <el-form-item label="接单者id" prop="ruid">
+                <el-input v-model="user.ruid" disabled="disabled"></el-input>
             </el-form-item>
 
-            <el-form-item label="邮箱" prop="uemail">
-                <el-input v-model="user.uemail" disabled="disabled"></el-input>
-            </el-form-item>
 
             <el-form-item>
                 <el-button type="primary" @click="submitForm('user')">修改</el-button>
@@ -41,32 +38,28 @@
         data() {
             return {
                 user: {
-                    unick: '',
-                    uaccount: '',
-                    ugender: '',
-                    uphone: '',
-                    uheadImg: '',
-                    uemail: ''
+                    rbeginTime: '',
+                    rendTime: '',
+                    rseate: '',
+                    uid: '',
+                    ruid: ''
                 },
                 loading:true,
                 rules: {
-                    unick: [
-                        { required: true, message: '昵称为空!!'}
+                    rbeginTime: [
+                        { required: true, message: '开始时间为空!!'}
                     ],
-                    uaccount: [
-                        { required: true, message: '请输入账户'}
+                    rendTime: [
+                        { required: true, message: '结束时间为空!!'}
                     ],
-                    ugender: [
-                        { required: true, message: '请选择性别'}
+                    rseate: [
+                        { required: true, message: '请选择配送状态'}
                     ],
-                    uphone: [
-                        { required: true, message: '电话号码不能为空' }
+                    uid: [
+                        { required: true, message: '用户id不能为空' }
                     ],
-                    uheadImg: [
-                        { required: true, message: '请选择头像图片'}
-                    ],
-                    uemail: [
-                        { required: true, message: '请填写邮箱号'}
+                    ruid: [
+                        { required: true, message: '接单者id不能为空'}
                     ]
                 }
             };

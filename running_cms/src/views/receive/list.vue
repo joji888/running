@@ -61,36 +61,6 @@
             </el-table-column>
 
 
-
-
-            <el-table-column
-                    prop="ocreateTime"
-                    label="创建时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.ocreateTime"
-                            type="datetime"
-                            placeholder="选择日期时间">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    prop="oendTime"
-                    label="结束时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.oendTime"
-                            type="datetime"
-                            placeholder="选择日期时间">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
             <el-table-column
                     label="操作"
                     width="180">

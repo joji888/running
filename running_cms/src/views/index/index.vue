@@ -31,12 +31,15 @@
     import orderTypeSonList from "../orderTypeSon/list"
     import orderTypeSonAdd from "../orderTypeSon/add"
 
+    import receiveList from "../receive/list"
+    import receiveAdd from "../receive/add"
+
     import userAdd from "../user/add"
     import userList from "../user/list"
 
     export default {
         name: "index",
-        components: {top, left,adminList,orderList,orderTypeList,orderTypeAdd,orderTypeSonList,orderTypeSonAdd,userAdd,userList},
+        components: {top, left,adminList,orderList,orderTypeList,orderTypeAdd,orderTypeSonList,orderTypeSonAdd,userAdd,userList,receiveAdd,receiveList},
         data(){
             return {
                 adminIs:false,

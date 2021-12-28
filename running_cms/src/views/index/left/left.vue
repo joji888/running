@@ -60,7 +60,7 @@
                 <span>接单管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="5-1" @click="updatePage('orderList')">接单列表</el-menu-item>
+                <el-menu-item index="5-1" @click="updatePage('receiveList')">接单列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 
@@ -70,7 +70,7 @@
                 <span>评论管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="6-1" @click="updatePage('orderList')">评论列表</el-menu-item>
+                <el-menu-item index="6-1" @click="updatePage('receiveList')">评论列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 

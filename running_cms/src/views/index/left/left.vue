@@ -13,7 +13,7 @@
 
         <el-submenu index="1" v-show="!adminIs">
             <template slot="title">
-                <i class="el-icon-s-home"></i>
+                <i class="el-icon-user"></i>
                 <span>用户管理</span>
             </template>
             <el-menu-item-group>
@@ -22,14 +22,65 @@
             </el-menu-item-group>
         </el-submenu>
 
-        <el-submenu index="2" v-show="adminIs">
+        <el-submenu index="3">
             <template slot="title">
-                <i class="el-icon-user-solid"></i>
-                <span>学生管理</span>
+                <i class="el-icon-paperclip"></i>
+                <span>订单类型管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="2-1" @click="updatePage('studentAdd')">添加学生</el-menu-item>
-                <el-menu-item index="2-2" @click="updatePage('studentList')">学生列表</el-menu-item>
+                <el-menu-item index="3-1" @click="updatePage('studentAdd')">添加类型</el-menu-item>
+                <el-menu-item index="3-2" @click="updatePage('orderList')">类型列表</el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+
+        <el-submenu index="4">
+            <template slot="title">
+                <i class="el-icon-paperclip"></i>
+                <span>订单子类管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="4-1" @click="updatePage('studentAdd')">添加子类</el-menu-item>
+                <el-menu-item index="4-2" @click="updatePage('orderList')">子类列表</el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+
+        <el-submenu index="2">
+            <template slot="title">
+                <i class="el-icon-document-copy"></i>
+                <span>订单管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="2-1" @click="updatePage('orderList')">订单列表</el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+
+        <el-submenu index="5">
+            <template slot="title">
+                <i class="el-icon-document-checked"></i>
+                <span>接单管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="5-1" @click="updatePage('orderList')">接单列表</el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+
+        <el-submenu index="6">
+            <template slot="title">
+                <i class="el-icon-chat-line-round"></i>
+                <span>评论管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="6-1" @click="updatePage('orderList')">评论列表</el-menu-item>
+            </el-menu-item-group>
+        </el-submenu>
+
+        <el-submenu index="6" v-show="adminIs">
+            <template slot="title">
+                <i class="el-icon-document"></i>
+                <span>审核管理</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item index="6-1" @click="updatePage('orderList')">审核列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 

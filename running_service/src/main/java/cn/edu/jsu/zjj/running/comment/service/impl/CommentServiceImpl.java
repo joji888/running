@@ -86,7 +86,7 @@ public class CommentServiceImpl implements CommentService {
      */
     @Override
     public Result update(Comment comment) {
-        if (comment.getCId()==null || comment.getCId().equals("")){
+        if (comment.getCId()==null || comment.getCId()<1){
             return Result.error("评论ID不能为空");
         }
         if (comment.getOId()==null || comment.getOId().equals("")){

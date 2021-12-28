@@ -91,7 +91,7 @@ public class AdminServiceImpl implements AdminService {
      */
     @Override
     public Result update(Admin admin) {
-        if (admin.getAId()==null || admin.getAId().equals("")){
+        if (admin.getAId()==null || admin.getAId()<1){
             return Result.error("管理员ID不能为空");
         }
         if (admin.getaRole()==null || admin.getaRole().equals("")){

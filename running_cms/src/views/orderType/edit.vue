@@ -3,7 +3,7 @@
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-user">
 
             <el-form-item label="ID" prop="otId">
-                <el-input v-model="ruleForm.otId"></el-input>
+                <el-input v-model="ruleForm.otId" disabled="disabled"></el-input>
             </el-form-item>
             <el-form-item label="类型名" prop="otName">
                 <el-input v-model="ruleForm.otName"></el-input>
@@ -43,8 +43,8 @@
                             _this.$myRequest(res);//判断请求是否合法
                             if (res.data.code===200){
                                 _this.$parent.handleClose();
+                                _this.$message.success(res.data.message);
                             }
-                            _this.$message.success(res.data.message);
                         });
                     } else {
                         console.log('error submit!!');

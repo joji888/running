@@ -34,6 +34,6 @@ public class MyConfig implements WebMvcConfigurer {
                 ex.printStackTrace();
             }
         }
-        registry.addResourceHandler("/**").addResourceLocations("file:"+file.getPath()+"/");
+        registry.addResourceHandler("/file/**").addResourceLocations("file:"+file.getPath()+"/");
     }
 }

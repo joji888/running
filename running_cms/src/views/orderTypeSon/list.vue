@@ -2,6 +2,7 @@
     <div v-loading="loading">
         <div style="line-height: 40px;">
             <h3 style="float: left;margin-right: 20px;">订单子类表</h3>
+            <el-button type="primary" @click="initDate">刷新</el-button>
         </div>
 
         <div v-if="dialogVisible">

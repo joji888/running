@@ -2,13 +2,16 @@ package cn.edu.jsu.zjj.running.order.controller;
 
 import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.order.service.OrderService;
+import cn.edu.jsu.zjj.running.upload.UploadFile;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * 订单表(Order)表控制层
@@ -76,9 +79,9 @@ public class OrderController {
      * @param image 实体
      * @return 编辑结果
      */
-    @PutMapping("editImg")
-    public Result editImg(Integer oId,String image) {
-        return this.orderService.editImg(oId,image);
+    @PostMapping("editImg")
+    public Result editImg(MultipartFile uploadFIle, Integer oId, String image) throws IOException {
+        return this.orderService.editImg(uploadFIle,oId,image);
     }
 
     /**

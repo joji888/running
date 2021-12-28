@@ -7,8 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * 用户表(User)表控制层
@@ -73,8 +75,8 @@ public class UserController {
     }
 
     @PutMapping("editimg")
-    public Result editimg(Integer uId ,String uHeadImg) {
-        return this.userService.editimg(uId,uHeadImg);
+    public Result editimg(MultipartFile uploadFIle,Integer uId , String uHeadImg) throws IOException {
+        return this.userService.editimg(uploadFIle,uId,uHeadImg);
     }
 
     /**

@@ -14,6 +14,20 @@ public class OrderTypeSon implements Serializable {
      * ID
      */
     private Integer tsId;
+
+    public Integer getOtId() {
+        return otId;
+    }
+
+    public void setOtId(Integer otId) {
+        this.otId = otId;
+    }
+
+    /**
+     * 类型名ID
+     */
+    private Integer otId;
+
     /**
      * 子类型名
      */

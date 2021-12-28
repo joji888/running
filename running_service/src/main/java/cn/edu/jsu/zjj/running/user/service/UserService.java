@@ -46,6 +46,8 @@ public interface UserService {
      */
     Result update(User user);
 
+    Result editimg(Integer uId,String uHeadImg);
+
     /**
      * 通过主键删除数据
      *

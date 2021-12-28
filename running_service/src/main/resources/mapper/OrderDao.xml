@@ -13,6 +13,8 @@
         <result property="oDescribe" column="o_describe" jdbcType="VARCHAR"/>
         <result property="oEndTime" column="o_end_time" jdbcType="TIMESTAMP"/>
         <result property="oCreateTime" column="o_create_time" jdbcType="TIMESTAMP"/>
+        <collection property="orderType" column="ot_id" select="cn.edu.jsu.zjj.running.order_type.dao.OrderTypeDao.queryById"></collection>
+        <collection property="orderTypeSon" column="ts_id" select="cn.edu.jsu.zjj.running.order_type_son.dao.OrderTypeSonDao.queryById"></collection>
     </resultMap>
 
     <!--查询单个-->

@@ -14,6 +14,8 @@ public class User implements Serializable {
      * id
      */
     private Integer uId;
+
+
     /**
      * 昵称
      */

@@ -22,6 +22,7 @@
     import left from "./left/left";
     import top from "./right/top";
     import adminList from "../admin/list"
+
     import orderList from "../order/list"
 
     import userAdd from "../user/add"

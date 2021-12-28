@@ -21,33 +21,54 @@
                 style="width: 100%">
 
             <el-table-column
-                    prop="oid"
+                    prop="uid"
                     label="ID"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    prop="oimage"
-                    label="图片"
-                    width="120">
-                <template slot-scope="scope">
-                    　　　　<img :src="scope.row.oimage" width="40" height="40" class="head_pic"/>
-                </template>
+                    prop="unick"
+                    label="昵称"
+                    width="100">
+
+            </el-table-column>
+
+
+            <el-table-column
+                    prop="uaccount"
+                    label="帐号"
+                    width="100">
+            </el-table-column>
+
+
+            <el-table-column
+                    prop="uemail"
+                    label="邮箱"
+                    width="100">
+            </el-table-column>
+
+
+            <el-table-column
+                    prop="uphone"
+                    label="电话"
+                    width="100">
             </el-table-column>
 
             <el-table-column
-                    label="标题"
+                    prop="ugender"
+                    label="性别"
+                    width="100">
+            </el-table-column>
+
+            <el-table-column
+                    prop="uheadImg"
+                    label="头像"
                     width="120">
                 <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                        <p>标题: {{ scope.row.otile }}</p>
-                        <p>描述: {{ scope.row.odescribe }}</p>
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.otile }}</el-tag>
-                        </div>
-                    </el-popover>
+                    　　　　<img :src="scope.row.uheadImg" width="40" height="40" class="head_pic"/>
                 </template>
             </el-table-column>
+
 
             <el-table-column
                     prop="ocreateTime"
@@ -137,7 +158,7 @@
             },
             initDate(){//初始化函数
                 let _this=this;
-                this.$http.get("/order",{
+                this.$http.get("/user",{
                     params:{
                         page:0,
                         size:10000

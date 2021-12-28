@@ -1,27 +1,28 @@
 <template>
     <div v-loading="loading">
-        <h3>添加学生</h3><br>
+        <h3>添加用户</h3><br>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="学号" prop="sNumber">
-                <el-input v-model="ruleForm.sNumber"></el-input>
+
+            <el-form-item label="昵称" prop="unick">
+                <el-input v-model="ruleForm.unick"></el-input>
             </el-form-item>
-            <el-form-item label="姓名" prop="sname">
-                <el-input v-model="ruleForm.sname"></el-input>
+            <el-form-item label="帐号" prop="uaccount">
+                <el-input v-model="ruleForm.uaccount"></el-input>
             </el-form-item>
-            <el-form-item label="年龄" prop="age">
-                <el-input v-model="ruleForm.age"></el-input>
-            </el-form-item>
-            <el-form-item label="姓别" prop="gender">
-                <el-select v-model="ruleForm.gender" placeholder="请选择姓别" value="">
+            <el-form-item label="性别" prop="ugender">
+                <el-select v-model="ruleForm.ugender" placeholder="请选择姓别" value="">
                     <el-option label="男" value="男"></el-option>
                     <el-option label="女" value="女"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="电话号码" prop="phone">
-                <el-input v-model="ruleForm.phone"></el-input>
+            <el-form-item label="电话" prop="uphone">
+                <el-input v-model="ruleForm.uphone"></el-input>
             </el-form-item>
-            <el-form-item label="家庭住址" prop="address">
-                <el-input type="textarea" v-model="ruleForm.address"></el-input>
+            <el-form-item label="头像" prop="uheadImg">
+                <el-input type="textarea" v-model="ruleForm.uheadImg"></el-input>
+            </el-form-item>
+            <el-form-item label="邮箱" prop="uemail">
+                <el-input type="textarea" v-model="ruleForm.uemail"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">添加</el-button>
@@ -36,34 +37,34 @@
             return {
                 loading:false,
                 ruleForm: {
-                    sid:'',
-                    sNumber: '',
-                    sname: '',
-                    age: 0,
-                    gender: '',
-                    phone: '',
-                    address: ''
+                    unick: '',
+                    uaccount: '',
+                    ugender: '',
+                    uphone: '',
+                    uheadImg: '',
+                    uemail: ''
                 },
                 rules: {
-                    sname: [
+                    unick: [
                         { required: true, message: '请输姓名', trigger: 'blur' },
-                        { min: 2, max: 5, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+                        { min: 1, max: 5, message: '长度在 1 到 10 个字符', trigger: 'blur' }
                     ],
-                    age: [
-                        { required: true, message: '请输入年龄', trigger: 'change' }
+                    uaccount: [
+                        { required: true, message: '请输入帐号', trigger: 'blue' },
+                        { min: 10, max: 16, message: '长度在 10 到 20 个字符', trigger: 'blur' }
                     ],
-                    gender: [
+                    ugender: [
                         { required: true, message: '请选择姓别', trigger: 'change' }
                     ],
-                    phone: [
+                    uphone: [
                         { required: true, message: '请输入手机号码', trigger: 'blur' }
                     ],
-                    address: [
-                        { required: true, message: '请输入家庭住址', trigger: 'blur' }
+                    uheadImg: [
+                        { required: true, message: '请上传头像', trigger: 'blur' }
                     ],
-                    sNumber: [
-                        { required: true, message: '请输入学号', trigger: 'blur' },
-                        { min: 10, max: 16, message: '长度在 10 到 16 个字符', trigger: 'blur' }
+                    uemail: [
+                        { required: true, message: '请输入邮箱', trigger: 'blur' },
+                        { min: 10, max: 20, message: '长度在 10 到 20 个字符', trigger: 'blur' }
                     ]
                 }
             };

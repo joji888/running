@@ -1,7 +1,12 @@
 package cn.edu.jsu.zjj.running.order.entity;
 
+<<<<<<< HEAD
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+=======
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
+>>>>>>> 4bc5ff4d4ea8c0f630f38189a85817b098aaebff
 
 import java.util.Date;
 import java.io.Serializable;
@@ -49,10 +54,14 @@ public class Order implements Serializable {
     /**
      * 订单结束时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     private Date oEndTime;
     /**
      * 订单发布时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     private Date oCreateTime;
 
     private OrderType orderType;

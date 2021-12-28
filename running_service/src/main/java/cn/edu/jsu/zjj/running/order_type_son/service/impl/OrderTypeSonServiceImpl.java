@@ -1,5 +1,6 @@
 package cn.edu.jsu.zjj.running.order_type_son.service.impl;
 
+import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
 import cn.edu.jsu.zjj.running.order_type_son.dao.OrderTypeSonDao;
 import cn.edu.jsu.zjj.running.order_type_son.service.OrderTypeSonService;
@@ -21,6 +22,7 @@ import javax.annotation.Resource;
 public class OrderTypeSonServiceImpl implements OrderTypeSonService {
     @Resource
     private OrderTypeSonDao orderTypeSonDao;
+
 
     /**
      * 通过ID查询单条数据
@@ -61,6 +63,8 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      */
     @Override
     public Result insert(OrderTypeSon orderTypeSon) {
+
+
         if (orderTypeSon.getOtId() == null || orderTypeSon.getOtId() <1){
             return Result.error("类型名ID不能为空");
         }
@@ -86,6 +90,7 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      */
     @Override
     public Result update(OrderTypeSon orderTypeSon) {
+
         if (orderTypeSon.getOtId() == null || orderTypeSon.getOtId() <1){
             return Result.error("类型名ID不能为空");
         }

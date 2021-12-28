@@ -1,5 +1,7 @@
 package cn.edu.jsu.zjj.running.order_type_son.entity;
 
+import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
+
 import java.io.Serializable;
 
 /**
@@ -15,14 +17,6 @@ public class OrderTypeSon implements Serializable {
      */
     private Integer tsId;
 
-    public Integer getOtId() {
-        return otId;
-    }
-
-    public void setOtId(Integer otId) {
-        this.otId = otId;
-    }
-
     /**
      * 类型名ID
      */
@@ -37,6 +31,23 @@ public class OrderTypeSon implements Serializable {
      */
     private Integer tsPrice;
 
+    private OrderType orderType;
+
+    public OrderType getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(OrderType orderType) {
+        this.orderType = orderType;
+    }
+
+    public Integer getOtId() {
+        return otId;
+    }
+
+    public void setOtId(Integer otId) {
+        this.otId = otId;
+    }
 
     public Integer getTsId() {
         return tsId;

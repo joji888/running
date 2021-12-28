@@ -2,11 +2,12 @@
     <div v-loading="loading">
         <div style="line-height: 40px;">
             <h3 style="float: left;margin-right: 20px;">订单表</h3>
+            <el-button type="primary" @click="initDate">刷新</el-button>
         </div>
 
         <div v-if="dialogVisible">
             <el-dialog
-                    title="提示"
+                    title="修改订单"
                     :visible.sync="dialogVisible"
                     width="700px"
                     :before-close="handleClose">
@@ -29,9 +30,9 @@
             <el-table-column
                     prop="oimage"
                     label="图片"
-                    width="120">
+                    width="200">
                 <template slot-scope="scope">
-                    　　　　<img :src="scope.row.oimage" width="40" height="40" class="head_pic"/>
+                    　　　　<img :src="scope.row.oimage" width="120" height="100%" class="head_pic"/>
                 </template>
             </el-table-column>
 

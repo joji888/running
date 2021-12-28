@@ -3,13 +3,16 @@ package cn.edu.jsu.zjj.running.order.service.impl;
 import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.order.dao.OrderDao;
 import cn.edu.jsu.zjj.running.order.service.OrderService;
+import cn.edu.jsu.zjj.running.upload.UploadFile;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -159,13 +162,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Result editImg(Integer oId, String image) {
+    public Result editImg(MultipartFile uploadFIle,Integer oId, String image) throws IOException {
         if (image==null || image.equals("")){
             return Result.error("订单图片不能为空");
         }
         if (oId==null || oId<1){
             return Result.error("订单ID不能为空");
         }
+
+        UploadFile uploadFile=new UploadFile();
+        image = uploadFile.uploadFile(uploadFIle, image);
 
         Order order = new Order();
         order.setOId(oId);

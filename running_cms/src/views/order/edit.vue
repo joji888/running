@@ -1,14 +1,12 @@
 <template>
     <div v-loading="loading">
-        <h3>个人信息</h3><br>
         <el-form :model="order" :rules="rules" ref="order" label-width="100px" class="demo-user">
 
             <el-form-item label="订单图片" prop="oid">
                 <el-upload
                         class="avatar-uploader"
-                        :action="'/api/upload?url='+order.oimage"
+                        :action="'/api/order/editImg?image='+order.oimage+'&oId='+order.oid"
                         name="uploadFIle"
-                        data="data"
                         :show-file-list="false"
                         :on-success="handleAvatarSuccess"
                         :before-upload="beforeAvatarUpload">
@@ -170,16 +168,20 @@
                             otId:this.order.otId,
                             oTile:this.order.otile,
                             oState:this.order.ostate,
-                            oEndTime:this.order.oEndTime,
                             oDescribe:this.order.odescribe,
-                            oCreateTime:this.order.oCreateTime
+                            oEndTime:this.$dateFormat('yyyy-MM-dd HH:mm',this.order.oEndTime),
+                            oCreateTime:this.$dateFormat('yyyy-MM-dd HH:mm',this.order.oCreateTime)
                         }
                         console.log(obj)
 
                         let _this=this;
                         this.$http.put("/order?"+this.$qs.stringify(obj)).then(function (res) {
                             _this.$myRequest(res);//判断请求是否合法
-                            _this.order=res.data.data;
+                            if (res.data.code===200){
+                                _this.$parent.handleClose();
+                                _this.order=res.data.data;
+                                _this.$message.success(res.data.message);
+                            }
                         });
                     } else {
                         console.log('error submit!!');
@@ -188,7 +190,7 @@
                 });
             },
             handleAvatarSuccess(res, file) {
-                this.imageUrl = URL.createObjectURL(file.raw);
+                this.order.oimage = URL.createObjectURL(file.raw);
             },
             beforeAvatarUpload(file) {
                 console.log(file.type)

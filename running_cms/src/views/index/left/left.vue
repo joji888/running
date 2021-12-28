@@ -28,8 +28,8 @@
                 <span>订单类型管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="3-1" @click="updatePage('studentAdd')">添加类型</el-menu-item>
-                <el-menu-item index="3-2" @click="updatePage('orderList')">类型列表</el-menu-item>
+                <el-menu-item index="3-1" @click="updatePage('orderTypeAdd')">添加类型</el-menu-item>
+                <el-menu-item index="3-2" @click="updatePage('orderTypeList')">类型列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 
@@ -39,8 +39,8 @@
                 <span>订单子类管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="4-1" @click="updatePage('studentAdd')">添加子类</el-menu-item>
-                <el-menu-item index="4-2" @click="updatePage('orderList')">子类列表</el-menu-item>
+                <el-menu-item index="4-1" @click="updatePage('orderTypeSonAdd')">添加子类</el-menu-item>
+                <el-menu-item index="4-2" @click="updatePage('orderTypeSonList')">子类列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 

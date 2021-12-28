@@ -66,7 +66,7 @@ public class UploadFile {
 
         uploadFIle.transferTo(file);//执行上传
 //        String imgUrl="http://39.107.14.94:19104/"+fileName;//组合并返回图片地址，第一段是图片服务器的访问地址(本机测试图片库)
-        String imgUrl="http://localhost:5056/"+fileName;//组合并返回图片地址，第一段是图片服务器的访问地址(本机测试图片库)
+        String imgUrl="file/"+fileName;//组合并返回图片地址，第一段是图片服务器的访问地址(本机测试图片库)
 
         LoggerFactory.getLogger(getClass()).info("上传图片的地址："+imgUrl);//日志输出
 

@@ -4,6 +4,9 @@ import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * 订单表(Order)表服务接口
@@ -54,5 +57,5 @@ public interface OrderService {
      */
     Result deleteById(Integer oId);
 
-    Result editImg(Integer oId, String image);
+    Result editImg(MultipartFile multipartFile,Integer oId, String image) throws IOException;
 }

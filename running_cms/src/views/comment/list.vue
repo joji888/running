@@ -11,7 +11,7 @@
                     :visible.sync="dialogVisible"
                     width="700px"
                     :before-close="handleClose">
-                <edit v-bind:tsId="tsId"></edit>
+                <edit v-bind:cid="cid"></edit>
                 <span slot="footer" class="dialog-footer">
             </span>
             </el-dialog>
@@ -22,23 +22,48 @@
                 style="width: 100%">
 
             <el-table-column
-                    prop="tsId"
+                    prop="cid"
                     label="ID"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    prop="tsName"
-                    label="类型名"
+                    label="评论用户"
                     width="180">
+                <template slot-scope="scope">
+                    <el-popover trigger="hover" placement="top">
+                        <!--                        <p>头像：<img :src="scope.row.user.uheadImg" width="40" height="100%" class="head_pic"/></p>-->
+                        <p>昵称: {{ scope.row.user.unick }}</p>
+                        <p>账号: {{ scope.row.user.uaccount }}</p>
+                        <div slot="reference" class="name-wrapper">
+                            <el-tag size="medium">{{ scope.row.user.unick }}</el-tag>
+                        </div>
+                    </el-popover>
+                </template>
             </el-table-column>
 
             <el-table-column
-                    prop="tsPrice"
-                    label="默认价格"
-                    width="180">
+                    prop="ctype"
+                    label="评论类型"
+                    width="150">
+            </el-table-column>
+
+            <el-table-column
+                    prop="ccontent"
+                    label="评论内容"
+                    width="200">
+            </el-table-column>
+
+            <el-table-column
+                    label="创建时间"
+                    width="260">
                 <template slot-scope="scope">
-                    <span style="color: red;font-weight: bold">￥{{scope.row.tsPrice}}</span>
+                    <el-date-picker
+                            readonly="true"
+                            v-model="scope.row.cTime"
+                            type="datetime"
+                            placeholder="选择日期时间">
+                    </el-date-picker>
                 </template>
             </el-table-column>
 
@@ -69,7 +94,7 @@
         components:{edit},
         data() {
             return {
-                tsId:'',
+                cid:'',
                 dialogVisible:false,
                 keyword:"",
                 loading:true,
@@ -85,15 +110,15 @@
             },
             handleEdit(index, row) {//开启编辑弹窗
                 console.log(index, row);
-                this.tsId=row.tsId;
+                this.cid=row.cid;
                 this.dialogVisible=true;
             },
             handleDelete(index, row) {//删除函数
                 console.log(index, row);
                 let _this=this;
-                this.$http.delete('/orderTypeSon',{
+                this.$http.delete('/comment',{
                     params:{
-                        id:row.tsId
+                        id:row.cid
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
@@ -105,7 +130,7 @@
             },
             initDate(){//初始化函数
                 let _this=this;
-                this.$http.get("/orderTypeSon",{
+                this.$http.get("/comment",{
                     params:{
                         page:0,
                         size:10000

@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 public class OrderTypeSonServiceImpl implements OrderTypeSonService {
     @Resource
     private OrderTypeSonDao orderTypeSonDao;
+    
 
 
     /**
@@ -63,7 +64,7 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      */
     @Override
     public Result insert(OrderTypeSon orderTypeSon) {
-
+        OrderType orderType = new OrderType();
 
         if (orderTypeSon.getOtId() == null || orderTypeSon.getOtId() <1){
             return Result.error("类型名ID不能为空");
@@ -72,6 +73,12 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
         if (orderTypeSon.getTsName() == null || orderTypeSon.getTsName().equals("")){
             return Result.error("子类名不能为空");
         }
+        if (orderType.getOtId() == this.orderTypeSonDao.select(orderType.getOtId())){
+            if (this.orderTypeSonDao.select1(orderTypeSon.getTsName())>0){
+                return Result.error("同类型名的子类名不能重复");
+            }
+        }
+
         if (orderTypeSon.getTsPrice() == null || orderTypeSon.getTsPrice()<0){
             return Result.error("价格不能为空或为负数");
         }

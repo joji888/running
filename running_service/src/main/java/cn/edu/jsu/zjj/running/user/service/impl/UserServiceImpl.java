@@ -105,6 +105,23 @@ public class UserServiceImpl implements UserService {
             return Result.error("修改数据失败");
     }
 
+    public Result editimg(Integer uId ,String uHeadImg){
+        if (uId ==null || uId<1){
+            return Result.error("用户ID不存在");
+        }
+        if (uHeadImg ==null || uHeadImg.equals("")){
+            return Result.error("用户图片不能为空");
+        }
+        User user = new User();
+        user.setUId(uId);
+        user.setUHeadImg(uHeadImg);
+        Integer update = userDao.update(user);
+        if (update > 0){
+            return Result.success("用户头像修改成功");
+        }
+        return Result.error("用户头像修改失败");
+    }
+
     /**
      * 通过主键删除数据
      *

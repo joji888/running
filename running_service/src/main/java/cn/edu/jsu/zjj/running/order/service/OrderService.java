@@ -54,4 +54,5 @@ public interface OrderService {
      */
     Result deleteById(Integer oId);
 
+    Result editImg(Integer oId, String image);
 }

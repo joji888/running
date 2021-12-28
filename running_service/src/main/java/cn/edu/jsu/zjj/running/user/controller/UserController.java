@@ -72,6 +72,11 @@ public class UserController {
         return this.userService.update(user);
     }
 
+    @PutMapping("editimg")
+    public Result editimg(Integer uId ,String uHeadImg) {
+        return this.userService.editimg(uId,uHeadImg);
+    }
+
     /**
      * 删除数据
      *

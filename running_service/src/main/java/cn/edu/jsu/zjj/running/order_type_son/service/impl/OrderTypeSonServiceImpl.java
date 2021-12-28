@@ -61,6 +61,9 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      */
     @Override
     public Result insert(OrderTypeSon orderTypeSon) {
+        if (orderTypeSon.getOtId() == null || orderTypeSon.getOtId() <1){
+            return Result.error("类型名ID不能为空");
+        }
 
         if (orderTypeSon.getTsName() == null || orderTypeSon.getTsName().equals("")){
             return Result.error("子类名不能为空");
@@ -83,6 +86,9 @@ public class OrderTypeSonServiceImpl implements OrderTypeSonService {
      */
     @Override
     public Result update(OrderTypeSon orderTypeSon) {
+        if (orderTypeSon.getOtId() == null || orderTypeSon.getOtId() <1){
+            return Result.error("类型名ID不能为空");
+        }
         if (orderTypeSon.getTsId() == null || orderTypeSon.getTsId().equals("")){
             return Result.error("ID不能为空");
         }

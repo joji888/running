@@ -35,6 +35,10 @@ public class Apply implements Serializable {
      */
     private String applyState;
     /**
+     * 驳回信息
+     */
+    private String applyRejectInfo;
+    /**
      * 身份证
      */
     private String applyIdentityCode;
@@ -80,6 +84,14 @@ public class Apply implements Serializable {
 
     public void setApplyState(String applyState) {
         this.applyState = applyState;
+    }
+
+    public String getApplyRejectInfo() {
+        return applyRejectInfo;
+    }
+
+    public void setApplyRejectInfo(String applyRejectInfo) {
+        this.applyRejectInfo = applyRejectInfo;
     }
 
     public String getApplyIdentityCode() {

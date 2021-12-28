@@ -65,6 +65,9 @@ public class ApplyServiceImpl implements ApplyService {
         if (apply.getApplyState()==null || apply.getApplyState().equals("")){
             return Result.error("用户申请状态不能为空");
         }
+        if (apply.getApplyRejectInfo()==null || apply.getApplyRejectInfo().equals("")){
+            return Result.error("驳回信息不能为空");
+        }
         if (apply.getApplyIdentityCode()==null || apply.getApplyIdentityCode().equals("")){
             return Result.error("用户申请身份证不能为空");
         }
@@ -91,11 +94,14 @@ public class ApplyServiceImpl implements ApplyService {
     @Override
     public Result update(Apply apply) {
 
-        if (apply.getApplyId()==null || apply.getApplyId().equals("")){
+        if (apply.getApplyId()==null || apply.getApplyId()<1){
             return Result.error("用户申请ID不能为空");
         }
         if (apply.getApplyTime()==null || apply.getApplyTime().equals("")){
             return Result.error("用户申请时间不能为空");
+        }
+        if (apply.getApplyRejectInfo()==null || apply.getApplyRejectInfo().equals("")){
+            return Result.error("驳回信息不能为空");
         }
         if (apply.getApplyState()==null || apply.getApplyState().equals("")){
             return Result.error("用户申请状态不能为空");

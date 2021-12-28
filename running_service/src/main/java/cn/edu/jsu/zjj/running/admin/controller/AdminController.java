@@ -46,7 +46,7 @@ public class AdminController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("queryById")
+    @GetMapping("{id}")
     public Result queryById(@PathVariable("id") Integer id) {
         return this.adminService.queryById(id);
     }
@@ -57,7 +57,7 @@ public class AdminController {
      * @param admin 实体
      * @return 新增结果
      */
-    @PostMapping("add")
+    @PostMapping
     public Result add(Admin admin) {
         return this.adminService.insert(admin);
     }
@@ -68,7 +68,7 @@ public class AdminController {
      * @param admin 实体
      * @return 编辑结果
      */
-    @PutMapping("edit")
+    @PutMapping
     public Result edit(Admin admin) {
         return this.adminService.update(admin);
     }
@@ -79,7 +79,7 @@ public class AdminController {
      * @param aId 主键
      * @return 删除是否成功
      */
-    @DeleteMapping("del")
+    @DeleteMapping
     public Result deleteById(Integer aId) {
         return this.adminService.deleteById(aId);
     }

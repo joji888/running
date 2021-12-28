@@ -62,6 +62,12 @@ public class AdminServiceImpl implements AdminService {
      */
     @Override
     public Result insert(Admin admin) {
+        if (admin.getaRole()==null || admin.getaRole().equals("")){
+            return Result.error("角色不能为空");
+        }
+        if (!admin.getaRole().equals("root") && !admin.getaRole().equals("admin")){
+            return Result.error("角色只有root和admin");
+        }
         if (admin.getAAccount()==null || admin.getAAccount().equals("")){
             return Result.error("账号不能为空");
         }
@@ -85,8 +91,14 @@ public class AdminServiceImpl implements AdminService {
      */
     @Override
     public Result update(Admin admin) {
-        if (admin.getAId()==null || admin.getAId().equals("")){
+        if (admin.getAId()==null || admin.getAId()<1){
             return Result.error("管理员ID不能为空");
+        }
+        if (admin.getaRole()==null || admin.getaRole().equals("")){
+            return Result.error("角色不能为空");
+        }
+        if (!admin.getaRole().equals("root") && !admin.getaRole().equals("admin")){
+            return Result.error("角色只有root和admin");
         }
         Integer update = this.adminDao.update(admin);
         if (update>0){

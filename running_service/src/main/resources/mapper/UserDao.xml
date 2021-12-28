@@ -11,12 +11,13 @@
         <result property="uPhone" column="u_phone" jdbcType="VARCHAR"/>
         <result property="uHeadImg" column="u_head_img" jdbcType="VARCHAR"/>
         <result property="uGender" column="u_gender" jdbcType="VARCHAR"/>
+        <result property="uRole" column="u_role" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select
-          u_id, u_nick, u_account, u_password, u_email, u_phone, u_head_img, u_gender
+          u_id, u_nick, u_role, u_account, u_password, u_email, u_phone, u_head_img, u_gender
         from user
         where u_id = #{uId}
     </select>
@@ -24,7 +25,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select
-          u_id, u_nick, u_account, u_password, u_email, u_phone, u_head_img, u_gender
+          u_id, u_nick, u_role, u_account, u_password, u_email, u_phone, u_head_img, u_gender
         from user
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
@@ -63,8 +64,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="uId" useGeneratedKeys="true">
-        insert into user(u_nick, u_account, u_password, u_email, u_phone, u_head_img, u_gender)
-        values (#{uNick}, #{uAccount}, #{uPassword}, #{uEmail}, #{uPhone}, #{uHeadImg}, #{uGender})
+        insert into user(u_nick, u_role, u_account, u_password, u_email, u_phone, u_head_img, u_gender)
+        values (#{uNick}, #{uRole}, #{uAccount}, #{uPassword}, #{uEmail}, #{uPhone}, #{uHeadImg}, #{uGender})
     </insert>
 
     <insert id="insertBatch" keyProperty="uId" useGeneratedKeys="true">
@@ -97,6 +98,9 @@
         <set>
             <if test="uNick != null and uNick != ''">
                 u_nick = #{uNick},
+            </if>
+            <if test="uRole != null and uRole != ''">
+                u_role = #{uRole},
             </if>
             <if test="uAccount != null and uAccount != ''">
                 u_account = #{uAccount},

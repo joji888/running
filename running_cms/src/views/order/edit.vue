@@ -25,6 +25,25 @@
             </el-row>
 
             <el-row style="display: flex">
+                <el-form-item label="创建时间" prop="oCreateTime">
+                    <el-date-picker
+                            v-model="order.oCreateTime"
+                            type="datetime"
+                            disabled="disabled"
+                            placeholder="选择日期时间">
+                    </el-date-picker>
+                </el-form-item>
+
+                <el-form-item label="结束时间" prop="oEndTime">
+                    <el-date-picker
+                            v-model="order.oEndTime"
+                            type="datetime"
+                            placeholder="选择日期时间">
+                    </el-date-picker>
+                </el-form-item>
+            </el-row>
+
+            <el-row style="display: flex">
                 <el-form-item label="订单标题" prop="otile">
                     <el-input v-model="order.otile"></el-input>
                 </el-form-item>
@@ -39,24 +58,6 @@
                             </el-option>
                         </el-select>
                     </template>
-                </el-form-item>
-            </el-row>
-
-            <el-row style="display: flex">
-                <el-form-item label="创建时间" prop="oCreateTime">
-                    <el-date-picker
-                            v-model="order.oCreateTime"
-                            type="datetime"
-                            placeholder="选择日期时间">
-                    </el-date-picker>
-                </el-form-item>
-
-                <el-form-item label="结束时间" prop="oEndTime">
-                    <el-date-picker
-                            v-model="order.oEndTime"
-                            type="datetime"
-                            placeholder="选择日期时间">
-                    </el-date-picker>
                 </el-form-item>
             </el-row>
 
@@ -161,6 +162,7 @@
                 this.loading=true;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
+                        console.log(this.order.oEndTime)
                         let obj={
                             oId:this.order.oid,
                             uId:this.order.uid,
@@ -169,8 +171,8 @@
                             oTile:this.order.otile,
                             oState:this.order.ostate,
                             oDescribe:this.order.odescribe,
-                            oEndTime:this.$dateFormat('yyyy-MM-dd HH:mm',this.order.oEndTime),
-                            oCreateTime:this.$dateFormat('yyyy-MM-dd HH:mm',this.order.oCreateTime)
+                            oCreateTime:this.order.oCreateTime,
+                            oEndTime:this.$dateFormat('yyyy-MM-dd HH:mm',new Date(this.order.oEndTime))
                         }
                         console.log(obj)
 

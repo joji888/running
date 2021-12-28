@@ -1,15 +1,21 @@
 package cn.edu.jsu.zjj.running.order.entity;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5567ae55b0a3c7eaa46a9f81be475f488d8a4f18
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
 import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
 
+=======
+>>>>>>> 5567ae55b0a3c7eaa46a9f81be475f488d8a4f18
 
 import java.util.Date;
 import java.io.Serializable;

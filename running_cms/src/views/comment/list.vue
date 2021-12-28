@@ -1,16 +1,17 @@
 <template>
     <div v-loading="loading">
         <div style="line-height: 40px;">
-            <h3 style="float: left;margin-right: 20px;">用户表</h3>
+            <h3 style="float: left;margin-right: 20px;">订单子类表</h3>
+            <el-button type="primary" @click="initDate">刷新</el-button>
         </div>
 
         <div v-if="dialogVisible">
             <el-dialog
-                    title="提示"
+                    title="修改订单子类"
                     :visible.sync="dialogVisible"
-                    width="30%"
+                    width="700px"
                     :before-close="handleClose">
-                <edit v-bind:oid="oid"></edit>
+                <edit v-bind:cid="cid"></edit>
                 <span slot="footer" class="dialog-footer">
             </span>
             </el-dialog>
@@ -21,77 +22,45 @@
                 style="width: 100%">
 
             <el-table-column
-                    prop="uid"
+                    prop="cid"
                     label="ID"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    prop="unick"
-                    label="昵称"
-                    width="100">
-
-            </el-table-column>
-
-
-            <el-table-column
-                    prop="uaccount"
-                    label="帐号"
-                    width="100">
-            </el-table-column>
-
-
-            <el-table-column
-                    prop="uemail"
-                    label="邮箱"
-                    width="100">
-            </el-table-column>
-
-
-            <el-table-column
-                    prop="uphone"
-                    label="电话"
-                    width="100">
-            </el-table-column>
-
-            <el-table-column
-                    prop="ugender"
-                    label="性别"
-                    width="100">
-            </el-table-column>
-
-            <el-table-column
-                    prop="uheadImg"
-                    label="头像"
-                    width="120">
+                    label="评论用户"
+                    width="180">
                 <template slot-scope="scope">
-                    　　　　<img :src="scope.row.uheadImg" width="40" height="40" class="head_pic"/>
+                    <el-popover trigger="hover" placement="top">
+                        <!--                        <p>头像：<img :src="scope.row.user.uheadImg" width="40" height="100%" class="head_pic"/></p>-->
+                        <p>昵称: {{ scope.row.user.unick }}</p>
+                        <p>账号: {{ scope.row.user.uaccount }}</p>
+                        <div slot="reference" class="name-wrapper">
+                            <el-tag size="medium">{{ scope.row.user.unick }}</el-tag>
+                        </div>
+                    </el-popover>
                 </template>
             </el-table-column>
 
+            <el-table-column
+                    prop="ctype"
+                    label="评论类型"
+                    width="150">
+            </el-table-column>
 
             <el-table-column
-                    prop="ocreateTime"
+                    prop="ccontent"
+                    label="评论内容"
+                    width="200">
+            </el-table-column>
+
+            <el-table-column
                     label="创建时间"
                     width="260">
                 <template slot-scope="scope">
                     <el-date-picker
                             readonly="true"
-                            v-model="scope.row.ocreateTime"
-                            type="datetime"
-                            placeholder="选择日期时间">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    prop="oendTime"
-                    label="结束时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.oendTime"
+                            v-model="scope.row.cTime"
                             type="datetime"
                             placeholder="选择日期时间">
                     </el-date-picker>
@@ -125,7 +94,7 @@
         components:{edit},
         data() {
             return {
-                oid:'',
+                cid:'',
                 dialogVisible:false,
                 keyword:"",
                 loading:true,
@@ -141,24 +110,27 @@
             },
             handleEdit(index, row) {//开启编辑弹窗
                 console.log(index, row);
-                this.oid=row.oid;
+                this.cid=row.cid;
                 this.dialogVisible=true;
             },
             handleDelete(index, row) {//删除函数
                 console.log(index, row);
                 let _this=this;
-                this.$http.delete('/order',{
+                this.$http.delete('/comment',{
                     params:{
-                        id:row.oid
+                        id:row.cid
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
-                    _this.initDate();//重新渲染页面
+                    if (res.data.code===200){
+                        _this.initDate();//重新渲染页面
+                        _this.$message.success(res.data.message);
+                    }
                 });
             },
             initDate(){//初始化函数
                 let _this=this;
-                this.$http.get("/user",{
+                this.$http.get("/comment",{
                     params:{
                         page:0,
                         size:10000

@@ -2,16 +2,19 @@
     <div v-loading="loading">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-user">
 
-            <el-form-item label="ID" prop="tsId">
-                <el-input v-model="ruleForm.tsId" disabled="disabled"></el-input>
+            <el-form-item label="ID" prop="cid">
+                <el-input v-model="ruleForm.cid" disabled="disabled"></el-input>
             </el-form-item>
 
-            <el-form-item label="子类名" prop="tsName">
-                <el-input v-model="ruleForm.tsName"></el-input>
+            <el-form-item label="评论类型" prop="ctype">
+                <el-select v-model="ruleForm.ctype" placeholder="请选择评论类型" value="">
+                    <el-option label="差评" value="差评"></el-option>
+                    <el-option label="好评" value="好评"></el-option>
+                </el-select>
             </el-form-item>
 
-            <el-form-item label="默认价格" prop="tsPrice">
-                <el-input v-model.number="ruleForm.tsPrice"></el-input>
+            <el-form-item label="评论内容" prop="ccontent">
+                <el-input type="textarea" v-model.number="ruleForm.ccontent"></el-input>
             </el-form-item>
 
             <el-form-item>
@@ -24,7 +27,7 @@
 <script>
     export default {
         name:"edit",
-        props:['tsId'],
+        props:['cid'],
         data() {
             return {
                 order: {},
@@ -43,8 +46,14 @@
                 this.loading=true;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
+                        let obj={
+                            cId:this.ruleForm.cid,
+                            cType:this.ruleForm.ctype,
+                            cContent:this.ruleForm.ccontent,
+                        }
+
                         let _this=this;
-                        this.$http.put("/orderTypeSon?"+this.$qs.stringify(this.ruleForm)).then(function (res) {
+                        this.$http.put("/comment?"+this.$qs.stringify(obj)).then(function (res) {
                             _this.$myRequest(res);//判断请求是否合法
                             if (res.data.code===200){
                                 _this.$parent.handleClose();
@@ -61,7 +70,7 @@
         mounted() {
             let admin=this.$mySetToken();//判断用户是否登陆
             let _this=this;
-            this.$http.get("/orderTypeSon/"+this.tsId).then(function (res) {
+            this.$http.get("/comment/"+this.cid).then(function (res) {
                 _this.$myRequest(res);//判断请求是否合法
                 _this.ruleForm=res.data.data;
             });

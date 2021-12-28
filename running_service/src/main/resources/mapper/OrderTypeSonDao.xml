@@ -10,6 +10,21 @@
         <collection property="orderType" column="ot_id" select="cn.edu.jsu.zjj.running.order_type.dao.OrderTypeDao.queryById"/>
     </resultMap>
 
+    <!--校验数据-->
+    <select id="select" resultType="INTEGER">
+        select
+        ot_id
+        from order_type_son
+         where ot_id = #{otId}
+    </select>
+    <!--校验数据2-->
+    <select id="select1" resultType="INTEGER">
+        select
+        count(*)
+        from order_type_son
+        where ts_name = #{tsName}
+    </select>
+
     <!--查询单个-->
     <select id="queryById" resultMap="OrderTypeSonMap">
         select

@@ -1,9 +1,30 @@
 <template>
     <div v-loading="loading">
         <h3>个人信息</h3><br>
-        <el-form :model="order" :rules="rules" ref="order" label-width="100px" class="demo-user">
-            <el-form-item label="学号" prop="oid">
-                <el-input v-model="order.oid" disabled="disabled"></el-input>
+        <el-form :model="user" :rules="rules" ref="user" label-width="100px" class="demo-user">
+
+            <el-form-item label="昵称" prop="unick">
+                <el-input v-model="user.unick" disabled="disabled"></el-input>
+            </el-form-item>
+
+            <el-form-item label="帐号" prop="uaccount">
+                <el-input v-model="user.uaccount" disabled="disabled"></el-input>
+            </el-form-item>
+
+            <el-form-item label="性别" prop="ugender">
+                <el-input v-model="user.ugender" disabled="disabled"></el-input>
+            </el-form-item>
+
+            <el-form-item label="电话" prop="uphone">
+                <el-input v-model="user.uphone" disabled="disabled"></el-input>
+            </el-form-item>
+
+            <el-form-item label="头像" prop="uheadImg">
+                <el-input v-model="user.uheadImg" disabled="disabled"></el-input>
+            </el-form-item>
+
+            <el-form-item label="邮箱" prop="uemail">
+                <el-input v-model="user.uemail" disabled="disabled"></el-input>
             </el-form-item>
 
             <el-form-item>
@@ -16,53 +37,36 @@
 <script>
     export default {
         name:"edit",
-        props:['oid'],
+        props:['uid'],
         data() {
             return {
-                order: {
-                    ocreateTime: "",
-                    odescribe: "",
-                    oendTime: "",
-                    oid: 0,
-                    oimage: "",
-                    ostate: 0,
-                    otId: 0,
-                    otile: "",
-                    tsId: 0,
-                    uid: 0,
+                user: {
+                    unick: '',
+                    uaccount: '',
+                    ugender: '',
+                    uphone: '',
+                    uheadImg: '',
+                    uemail: ''
                 },
                 loading:true,
                 rules: {
-                    ocreateTime: [
-                        { required: true, message: '创建时间为空!!'}
+                    unick: [
+                        { required: true, message: '昵称为空!!'}
                     ],
-                    odescribe: [
-                        { required: true, message: '请输入订单描述'}
+                    uaccount: [
+                        { required: true, message: '请输入账户'}
                     ],
-                    oendTime: [
-                        { required: true, message: '请选择订单结束时间'}
+                    ugender: [
+                        { required: true, message: '请选择性别'}
                     ],
-                    oid: [
-                        { required: true, message: '订单ID不能为空' }
+                    uphone: [
+                        { required: true, message: '电话号码不能为空' }
                     ],
-                    oimage: [
-                        { required: true, message: '选择订单图片'}
+                    uheadImg: [
+                        { required: true, message: '请选择头像图片'}
                     ],
-                    ostate: [
-                        { required: true, message: '设置订单状态'}
-                    ],
-                    otId: [
-                        { required: true, message: '请选择类型'}
-                    ],
-                    otile: [
-                        { required: true, message: '请输入订单标题'},
-                        { min: 2, max: 100, message: '长度在 2 到 100 个字符'}
-                    ],
-                    tsId: [
-                        { required: true, message: '请选择子类型'}
-                    ],
-                    uid: [
-                        { required: true, message: '用户ID不能为空'}
+                    uemail: [
+                        { required: true, message: '请填写邮箱号'}
                     ]
                 }
             };
@@ -83,10 +87,11 @@
         mounted() {
             let admin=this.$mySetToken();//判断用户是否登陆
             let _this=this;
-            this.$http.get("/order/"+this.oid).then(function (res) {
+            this.$http.get("/user/"+this.uid).then(function (res) {
                 _this.$myRequest(res);//判断请求是否合法
-                _this.order=res.data.data;
+                _this.user=res.data.data;
             });
+            this.loading=false;
         }
     }
 </script>

@@ -8,6 +8,7 @@
                     v-model="keyword" style="width: 300px;">
             </el-input>
             <el-button style="margin-left: 20px" type="primary" @click="initDate">查询</el-button>
+            <el-button type="primary" @click="initDate">刷新</el-button>
         </div>
 
         <div v-if="dialogVisible">
@@ -16,7 +17,7 @@
                     :visible.sync="dialogVisible"
                     width="30%"
                     :before-close="handleClose">
-                <edit v-bind:sId="sId"></edit>
+                <edit v-bind:aid="aid"></edit>
                 <span slot="footer" class="dialog-footer">
             </span>
             </el-dialog>
@@ -30,6 +31,12 @@
                     prop="aid"
                     label="ID"
                     width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="aRole"
+                    label="角色"
+                    width="120">
             </el-table-column>
 
             <el-table-column
@@ -63,7 +70,7 @@
         components:{edit},
         data() {
             return {
-                sId:'',
+                aid:'',
                 dialogVisible:false,
                 keyword:"",
                 loading:true,
@@ -79,7 +86,11 @@
             },
             handleEdit(index, row) {
                 console.log(index, row);
-                this.sId=row.sid;
+                if (row.aaccount==="root"){
+                    this.$message.success("root账号不能被修改");
+                    return;
+                }
+                this.aid=row.aid;
                 this.dialogVisible=true;
             },
             handleDelete(index, row) {

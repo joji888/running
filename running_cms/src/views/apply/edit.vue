@@ -18,6 +18,10 @@
                 </el-date-picker>
             </el-form-item>
 
+            <el-form-item label="身份证号" prop="applyTime">
+                <el-input v-model="apply.applyIdentityCode" disabled="disabled"></el-input>
+            </el-form-item>
+
             <el-form-item label="驳回描述" prop="applyTime">
                 <el-input  type="textarea" v-model="apply.applyRejectInfo" placeholder="描述一下驳回理由（同意申请请忽略）"></el-input>
             </el-form-item>

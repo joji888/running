@@ -2,15 +2,16 @@
     <div v-loading="loading">
         <div style="line-height: 40px;">
             <h3 style="float: left;margin-right: 20px;">用户表</h3>
+            <el-button type="primary" @click="initDate">刷新</el-button>
         </div>
 
         <div v-if="dialogVisible">
             <el-dialog
                     title="提示"
                     :visible.sync="dialogVisible"
-                    width="30%"
+                    width="700px"
                     :before-close="handleClose">
-                <edit v-bind:oid="oid"></edit>
+                <edit v-bind:uid="uid"></edit>
                 <span slot="footer" class="dialog-footer">
             </span>
             </el-dialog>
@@ -27,10 +28,28 @@
             </el-table-column>
 
             <el-table-column
+                    prop="uheadImg"
+                    label="头像"
+                    width="120">
+                <template slot-scope="scope">
+                    　　　　<img :src="scope.row.uheadImg" width="40" height="40" class="head_pic"/>
+                </template>
+            </el-table-column>
+
+            <el-table-column
                     prop="unick"
                     label="昵称"
                     width="100">
+            </el-table-column>
 
+            <el-table-column
+                    prop="uRole"
+                    label="角色"
+                    width="100">
+                <template slot-scope="scope">
+                    <span v-show="scope.row.uRole==='user'">普通用户</span>
+                    <span v-show="scope.row.uRole==='running'">接单用户</span>
+                </template>
             </el-table-column>
 
 
@@ -61,44 +80,6 @@
             </el-table-column>
 
             <el-table-column
-                    prop="uheadImg"
-                    label="头像"
-                    width="120">
-                <template slot-scope="scope">
-                    　　　　<img :src="scope.row.uheadImg" width="40" height="40" class="head_pic"/>
-                </template>
-            </el-table-column>
-
-
-            <el-table-column
-                    prop="ocreateTime"
-                    label="创建时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.ocreateTime"
-                            type="datetime"
-                            placeholder="选择日期时间">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    prop="oendTime"
-                    label="结束时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.oendTime"
-                            type="datetime"
-                            placeholder="选择日期时间">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
-            <el-table-column
                     label="操作"
                     width="180">
                 <template slot-scope="scope">
@@ -125,7 +106,7 @@
         components:{edit},
         data() {
             return {
-                oid:'',
+                uid:'',
                 dialogVisible:false,
                 keyword:"",
                 loading:true,
@@ -135,25 +116,27 @@
         methods: {
             handleClose(done) {//关闭编辑弹窗
                 let _this=this;
-                console.log(_this)
                 done()
                 _this.initDate()
             },
             handleEdit(index, row) {//开启编辑弹窗
                 console.log(index, row);
-                this.oid=row.oid;
+                this.uid=row.uid;
                 this.dialogVisible=true;
             },
             handleDelete(index, row) {//删除函数
                 console.log(index, row);
                 let _this=this;
-                this.$http.delete('/order',{
+                this.$http.delete('/user',{
                     params:{
-                        id:row.oid
+                        id:row.uid
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
-                    _this.initDate();//重新渲染页面
+                    if (res.data.code===200){
+                        _this.initDate();//重新渲染页面
+                        _this.$message.success(res.data.message);
+                    }
                 });
             },
             initDate(){//初始化函数

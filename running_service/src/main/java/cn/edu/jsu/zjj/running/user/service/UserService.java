@@ -49,7 +49,7 @@ public interface UserService {
      */
     Result update(User user);
 
-    Result editimg(MultipartFile uploadFIle,Integer uId, String uHeadImg) throws IOException;
+    Result editImg(MultipartFile uploadFIle,Integer uId, String uHeadImg) throws IOException;
 
     /**
      * 通过主键删除数据

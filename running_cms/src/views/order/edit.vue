@@ -10,7 +10,8 @@
                         :show-file-list="false"
                         :on-success="handleAvatarSuccess"
                         :before-upload="beforeAvatarUpload">
-                          点击图片修改
+                    <img :src="order.oimage" width="300" height="300" class="head_pic"/><br>
+                    点击图片修改
                 </el-upload>
             </el-form-item>
 

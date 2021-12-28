@@ -38,6 +38,7 @@
             }
         },
         mounted() {
+            console.log("top");
             let admin=this.$mySetToken();
             // console.log(admin)
             this.adminName=admin.aaccount;

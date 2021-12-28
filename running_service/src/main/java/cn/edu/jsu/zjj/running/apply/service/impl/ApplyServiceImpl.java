@@ -100,9 +100,9 @@ public class ApplyServiceImpl implements ApplyService {
         if (apply.getApplyTime()==null || apply.getApplyTime().equals("")){
             return Result.error("用户申请时间不能为空");
         }
-        if (apply.getApplyRejectInfo()==null || apply.getApplyRejectInfo().equals("")){
-            return Result.error("驳回信息不能为空");
-        }
+//        if (apply.getApplyRejectInfo()==null || apply.getApplyRejectInfo().equals("")){
+//            return Result.error("驳回信息不能为空");
+//        }
         if (apply.getApplyState()==null || apply.getApplyState().equals("")){
             return Result.error("用户申请状态不能为空");
         }

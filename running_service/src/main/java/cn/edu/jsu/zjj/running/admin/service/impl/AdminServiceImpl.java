@@ -74,6 +74,7 @@ public class AdminServiceImpl implements AdminService {
         if (admin.getAPassword()==null || admin.getAPassword().equals("")){
             return Result.error("密码不能为空");
         }
+        admin.setAPassword(Encryption.getSah256(Encryption.getSah256(admin.getAPassword())));
         Integer insert = adminDao.insert(admin);
         if (insert>0){
             return Result.success("添加成功");

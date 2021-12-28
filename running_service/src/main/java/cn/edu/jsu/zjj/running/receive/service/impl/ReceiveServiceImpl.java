@@ -62,6 +62,12 @@ public class ReceiveServiceImpl implements ReceiveService {
      */
     @Override
     public Result insert(Receive receive) {
+        if (receive.getuId() == null || receive.getuId().equals("")){
+            return Result.error("下单者ID不能为空");
+        }
+        if (receive.getRuId() == null || receive.getRuId().equals("")){
+            return Result.error("接单者ID不能为空");
+        }
 
         if (receive.getRBeginTime() ==null || receive.getRBeginTime().equals("")){
             return Result.error("开始时间不能为空");
@@ -94,6 +100,12 @@ public class ReceiveServiceImpl implements ReceiveService {
      */
     @Override
     public Result update(Receive receive) {
+        if (receive.getuId() == null || receive.getuId().equals("")){
+            return Result.error("下单者ID不能为空");
+        }
+        if (receive.getRuId() == null || receive.getRuId().equals("")){
+            return Result.error("接单者ID不能为空");
+        }
         if (receive.getRId() == null || receive.getRId().equals("")){
             return Result.error("ID不能空");
         }

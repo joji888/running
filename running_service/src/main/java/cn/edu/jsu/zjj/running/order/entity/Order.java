@@ -1,5 +1,8 @@
 package cn.edu.jsu.zjj.running.order.entity;
 
+import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
+import cn.edu.jsu.zjj.running.order_type_son.entity.OrderTypeSon;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -52,6 +55,25 @@ public class Order implements Serializable {
      */
     private Date oCreateTime;
 
+    private OrderType orderType;
+
+    private OrderTypeSon orderTypeSon;
+
+    public OrderType getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(OrderType orderType) {
+        this.orderType = orderType;
+    }
+
+    public OrderTypeSon getOrderTypeSon() {
+        return orderTypeSon;
+    }
+
+    public void setOrderTypeSon(OrderTypeSon orderTypeSon) {
+        this.orderTypeSon = orderTypeSon;
+    }
 
     public Integer getOId() {
         return oId;

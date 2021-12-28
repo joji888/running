@@ -1,5 +1,7 @@
 package cn.edu.jsu.zjj.running.comment.entity;
 
+import cn.edu.jsu.zjj.running.user.entity.User;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -36,6 +38,15 @@ public class Comment implements Serializable {
      */
     private String cContent;
 
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getCId() {
         return cId;

@@ -1,5 +1,7 @@
 package cn.edu.jsu.zjj.running.apply.entity;
 
+import cn.edu.jsu.zjj.running.user.entity.User;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -15,6 +17,11 @@ public class Apply implements Serializable {
      * ID
      */
     private Integer applyId;
+
+    /**
+     * uId
+     */
+    private Integer uId;
     /**
      * 申请时间
      */
@@ -36,6 +43,16 @@ public class Apply implements Serializable {
      */
     private String applyIdentityCodeBack;
 
+    private User user;
+
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
 
     public Integer getApplyId() {
         return applyId;
@@ -85,5 +102,12 @@ public class Apply implements Serializable {
         this.applyIdentityCodeBack = applyIdentityCodeBack;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
 

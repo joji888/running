@@ -9,6 +9,8 @@
         <result property="cTime" column="c_time" jdbcType="TIMESTAMP"/>
         <result property="cType" column="c_type" jdbcType="VARCHAR"/>
         <result property="cContent" column="c_content" jdbcType="VARCHAR"/>
+        <collection property="user" column="u_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"></collection>
+
     </resultMap>
 
     <!--查询单个-->

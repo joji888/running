@@ -15,6 +15,10 @@ public class Admin implements Serializable {
      */
     private Integer aId;
     /**
+     * 角色
+     */
+    private String aRole;
+    /**
      * 账号
      */
     private String aAccount;
@@ -30,6 +34,14 @@ public class Admin implements Serializable {
 
     public void setAId(Integer aId) {
         this.aId = aId;
+    }
+
+    public String getaRole() {
+        return aRole;
+    }
+
+    public void setaRole(String aRole) {
+        this.aRole = aRole;
     }
 
     public String getAAccount() {

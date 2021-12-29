@@ -122,6 +122,7 @@ public class ApplyServiceImpl implements ApplyService {
         if (apply.getApplyIdentityCodeBack()==null || apply.getApplyIdentityCodeBack().equals("")){
             return Result.error("用户申请身份证背面不能为空");
         }
+
         Integer update = this.applyDao.update(apply);
         if (update>0){
             return Result.success("修改成功");

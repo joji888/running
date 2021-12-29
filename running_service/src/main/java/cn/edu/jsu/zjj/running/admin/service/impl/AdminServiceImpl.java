@@ -71,6 +71,9 @@ public class AdminServiceImpl implements AdminService {
         if (admin.getAAccount()==null || admin.getAAccount().equals("")){
             return Result.error("账号不能为空");
         }
+        if (admin.getAAccount()!=null && !"".equals(admin.getAAccount())){
+            return Result.error("该账号已经有,请换其它账号");
+        }
         if (admin.getAPassword()==null || admin.getAPassword().equals("")){
             return Result.error("密码不能为空");
         }

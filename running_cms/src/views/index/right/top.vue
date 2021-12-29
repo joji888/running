@@ -53,7 +53,7 @@
             },
             logOut(){
                 console.log('退出登陆');
-                localStorage.removeItem("user");
+                localStorage.removeItem("token");
                 this.$router.push({path:'/login',query:{}});
             },
             handleClose(done) {//关闭编辑弹窗
@@ -66,9 +66,11 @@
         mounted() {
             console.log("top");
             let admin=this.$mySetToken();
-            console.log(admin)
-            this.aId=admin.aid;
-            this.adminName=admin.aaccount;
+            if (admin){
+                console.log(admin)
+                this.aId=admin.aid;
+                this.adminName=admin.aaccount;
+            }
         }
 
     }

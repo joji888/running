@@ -9,7 +9,7 @@ import qs from "qs";
 Vue.config.productionTip = false
 
 axios.defaults.headers.common['token'] = '';
-axios.defaults.baseURL='/api';
+// axios.defaults.baseURL='/api';
 
 Vue.prototype.$http= axios
 Vue.prototype.$qs= qs
@@ -19,7 +19,7 @@ Vue.prototype.$mySetToken=function(){
   let tokenO=localStorage.getItem("token");
   tokenO=JSON.parse(tokenO);
   if (tokenO==null){
-    return
+    return;
   }
   let time=tokenO['time'];
   let token=tokenO['token'];

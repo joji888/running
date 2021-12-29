@@ -1,5 +1,6 @@
 package cn.edu.jsu.zjj.running.receive.entity;
 
+import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -46,7 +47,29 @@ public class Receive implements Serializable {
 
     private User user;
 
+
+    private Integer oId;
+
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Integer getoId() {
+        return oId;
+    }
+
+    public void setoId(Integer oId) {
+        this.oId = oId;
+    }
+
     private User rUser;
+
 
     public User getUser() {
         return user;

@@ -62,6 +62,9 @@ public class ReceiveServiceImpl implements ReceiveService {
      */
     @Override
     public Result insert(Receive receive) {
+        if (receive.getoId() == null || receive.getoId()<1){
+            return Result.error("订单ID不能为空");
+        }
         if (receive.getuId() == null || receive.getuId()<1){
             return Result.error("下单者ID不能为空");
         }
@@ -75,8 +78,8 @@ public class ReceiveServiceImpl implements ReceiveService {
         if (receive.getREndTime() == null || receive.getREndTime().equals("")){
             return Result.error("结束时间不能空");
         }
-        if (receive.getRSeate() == null || receive.getRSeate().equals("")){
-            return Result.error("状态不能为空");
+        if (receive.getRSeate() !=0 && receive.getRSeate()!=1 && receive.getRSeate()!=2 && receive.getRSeate()!=3){
+            return Result.error("状态错误");
         }
         if (receive.getRBeginTime().before(new Date(System.currentTimeMillis()))) {
             return Result.error("开始时间不能早于当前时间");
@@ -100,14 +103,18 @@ public class ReceiveServiceImpl implements ReceiveService {
      */
     @Override
     public Result update(Receive receive) {
+
+        if (receive.getRId() == null || receive.getRId().equals("")){
+            return Result.error("ID不能空");
+        }
+        if (receive.getoId() == null || receive.getoId()<1){
+            return Result.error("订单ID不能为空");
+        }
         if (receive.getuId() == null || receive.getuId()<1){
             return Result.error("下单者ID不能为空");
         }
         if (receive.getRuId() == null || receive.getRuId()<1){
             return Result.error("接单者ID不能为空");
-        }
-        if (receive.getRId() == null || receive.getRId().equals("")){
-            return Result.error("ID不能空");
         }
         if (receive.getRBeginTime() ==null || receive.getRBeginTime().equals("")){
             return Result.error("开始时间不能为空");
@@ -115,8 +122,8 @@ public class ReceiveServiceImpl implements ReceiveService {
         if (receive.getREndTime() == null || receive.getREndTime().equals("")){
             return Result.error("结束时间不能空");
         }
-        if (receive.getRSeate() == null || receive.getRSeate().equals("")){
-            return Result.error("状态不能为空");
+        if (receive.getRSeate() !=0 && receive.getRSeate()!=1 && receive.getRSeate()!=2 && receive.getRSeate()!=3){
+            return Result.error("状态错误");
         }
 //        if (receive.getRBeginTime().before(new Date(System.currentTimeMillis())))
 //        {

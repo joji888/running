@@ -76,6 +76,9 @@ public class UserServiceImpl implements UserService {
         if (user.getUPassword() == null || user.getUPassword().equals("")){
             return Result.error("密码不能为空");
         }
+        if (this.userDao.find(user)>0){
+            return Result.error("账号已被注册，不能重复");
+        }
 
         Integer insert = this.userDao.insert(user);
         if (insert >0){
@@ -153,4 +156,53 @@ public class UserServiceImpl implements UserService {
         }
             return Result.error("删除失败");
     }
+
+    @Override
+    public Result updatePwd(Integer uId,String oldPwd,String newPwd){
+        if (uId ==null || uId < 1){
+            return Result.error("用户名格式错误");
+        }
+        if (oldPwd == null || oldPwd.equals("")){
+            return Result.error("旧密码格式有误");
+        }
+        if (newPwd == null || newPwd.equals("") || newPwd.length()<6){
+            return Result.error("新密码格式有误");
+        }
+        if (oldPwd.equals(newPwd)){
+            return Result.error("旧密码和新密码不能相同");
+        }
+
+        User user = this.userDao.queryById(uId);
+        if (!user.getUPassword().equals(oldPwd)){
+            return Result.error("旧密码错误");
+        }
+        user.setUPassword(newPwd);
+
+        Integer update = this.userDao.update(user);
+        if (update > 0){
+            return Result.error("修改密码成功");
+        }
+            return Result.error("修改密码失败");
+
+    }
+
+    @Override
+    public Result register(User user){
+        if (user.getUAccount() == null || user.getUAccount().equals("")){
+            return Result.error("账号不能为空");
+        }
+        if (user.getUPassword() == null || user.getUPassword().equals("")){
+            return Result.error("密码不能为空");
+        }
+
+        Integer insert = this.userDao.insert(user);
+        if (insert >0){
+            return Result.error("注册成功");
+        }
+            return Result.error("注册失败");
+
+    }
+
+
+
 }

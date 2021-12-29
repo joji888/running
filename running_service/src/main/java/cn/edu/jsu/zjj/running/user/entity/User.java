@@ -122,5 +122,19 @@ public class User implements Serializable {
         this.uGender = uGender;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "uId=" + uId +
+                ", uNick='" + uNick + '\'' +
+                ", uRole='" + uRole + '\'' +
+                ", uAccount='" + uAccount + '\'' +
+                ", uPassword='" + uPassword + '\'' +
+                ", uEmail='" + uEmail + '\'' +
+                ", uPhone='" + uPhone + '\'' +
+                ", uHeadImg='" + uHeadImg + '\'' +
+                ", uGender='" + uGender + '\'' +
+                '}';
+    }
 }
 

@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
             return Result.error("修改数据失败");
     }
 
-    public Result editimg(MultipartFile uploadFIle,Integer uId , String uHeadImg) throws IOException {
+    public Result editImg(MultipartFile uploadFIle,Integer uId , String uHeadImg) throws IOException {
         if (uId ==null || uId<1){
             return Result.error("用户ID不存在");
         }

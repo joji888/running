@@ -10,7 +10,7 @@
         <result property="uId" column="u_id" javaType="INTEGER" />
         <result property="ruId" column="ru_id" javaType="INTEGER" />
         <collection property="user" column="u_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
-        <collection property="user" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
+        <collection property="rUser" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
     </resultMap>
 
     <!--查询单个-->
@@ -69,7 +69,7 @@
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.rBeginTime}, #{entity.rEndTime}, #{entity.rSeate})
         </foreach>
-        on duplicate key update
+        on duplicate key updatequeryAllByLimit
         r_begin_time = values(r_begin_time),
         r_end_time = values(r_end_time),
         r_seate = values(r_seate)

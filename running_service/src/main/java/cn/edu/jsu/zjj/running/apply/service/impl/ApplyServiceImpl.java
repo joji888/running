@@ -4,6 +4,8 @@ import cn.edu.jsu.zjj.running.admin.entity.Admin;
 import cn.edu.jsu.zjj.running.apply.entity.Apply;
 import cn.edu.jsu.zjj.running.apply.dao.ApplyDao;
 import cn.edu.jsu.zjj.running.apply.service.ApplyService;
+import cn.edu.jsu.zjj.running.user.dao.UserDao;
+import cn.edu.jsu.zjj.running.user.entity.User;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -20,8 +22,13 @@ import javax.annotation.Resource;
  */
 @Service("applyService")
 public class ApplyServiceImpl implements ApplyService {
-    @Resource
+
     private ApplyDao applyDao;
+    private UserDao userDao;
+    public ApplyServiceImpl(ApplyDao applyDao, UserDao userDao) {
+        this.applyDao = applyDao;
+        this.userDao = userDao;
+    }
 
     /**
      * 通过ID查询单条数据
@@ -100,9 +107,9 @@ public class ApplyServiceImpl implements ApplyService {
         if (apply.getApplyTime()==null || apply.getApplyTime().equals("")){
             return Result.error("用户申请时间不能为空");
         }
-        if (apply.getApplyRejectInfo()==null || apply.getApplyRejectInfo().equals("")){
-            return Result.error("驳回信息不能为空");
-        }
+//        if (apply.getApplyRejectInfo()==null || apply.getApplyRejectInfo().equals("")){
+//            return Result.error("驳回信息不能为空");
+//        }
         if (apply.getApplyState()==null || apply.getApplyState().equals("")){
             return Result.error("用户申请状态不能为空");
         }
@@ -136,6 +143,11 @@ public class ApplyServiceImpl implements ApplyService {
         }
         Integer del = this.applyDao.deleteById(applyId);
         if (del>0){
+            User user = userDao.findUserByApplyId(applyId);
+            if (user.getuRole().equals("running")) {
+                user.setuRole("users");
+            }
+            userDao.update(user);
             return Result.success("删除成功");
         }
         return Result.error("删除失败");

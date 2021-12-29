@@ -118,10 +118,10 @@ public class ReceiveServiceImpl implements ReceiveService {
         if (receive.getRSeate() == null || receive.getRSeate().equals("")){
             return Result.error("状态不能为空");
         }
-        if (receive.getRBeginTime().before(new Date(System.currentTimeMillis())))
-        {
-            return Result.error("开始时间不能早于当前时间");
-        }
+//        if (receive.getRBeginTime().before(new Date(System.currentTimeMillis())))
+//        {
+//            return Result.error("开始时间不能早于当前时间");
+//        }
         if (receive.getRBeginTime().after(receive.getREndTime())){
             return Result.error("结束时间不能早于开始时间");
         }

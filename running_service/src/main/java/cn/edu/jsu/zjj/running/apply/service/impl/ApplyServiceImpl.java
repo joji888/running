@@ -137,16 +137,15 @@ public class ApplyServiceImpl implements ApplyService {
      */
     @Override
     public Result deleteById(Integer applyId) {
-
         if (applyId==null || applyId<1){
             return Result.error("用户申请ID不能为空或小于0");
         }
+        User user = userDao.findUserByApplyId(applyId);
+        if (user.getuRole().equals("running")) {
+            user.setuRole("users");
+        }
         Integer del = this.applyDao.deleteById(applyId);
         if (del>0){
-            User user = userDao.findUserByApplyId(applyId);
-            if (user.getuRole().equals("running")) {
-                user.setuRole("users");
-            }
             userDao.update(user);
             return Result.success("删除成功");
         }

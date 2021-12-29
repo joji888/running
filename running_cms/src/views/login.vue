@@ -52,6 +52,7 @@
                             if (res.data.code===200){
                                 if (res.data.data!=null){
                                     console.log("登陆成功 token:\n"+res.data.data['token'])
+                                    _this.$message.success("登陆成功");
                                     let time=new Date();
                                     console.log(time.getTime())
                                     localStorage.setItem("token",JSON.stringify({
@@ -62,6 +63,8 @@
                                     _this.$http.defaults.headers.common['token'] = res.data.data['token'];
                                     _this.$router.push({path:'/',query:{}});
                                 }
+                            }else {
+                                _this.$message.error(res.data.message);
                             }
                         })
                     } else {

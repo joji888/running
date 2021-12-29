@@ -5,7 +5,6 @@ import cn.edu.jsu.zjj.running.admin.service.AdminService;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,6 +70,15 @@ public class AdminController {
     @PutMapping
     public Result edit(Admin admin) {
         return this.adminService.update(admin);
+    }
+    /**
+     * 修改密码
+     *
+     * @return 编辑结果
+     */
+    @PutMapping("updatePwd")
+    public Result updatePwd(Integer aId,String oldPwd,String newPwd) {
+        return this.adminService.updatePwd(aId,oldPwd,newPwd);
     }
 
     /**

@@ -62,4 +62,6 @@ public interface AdminService {
     Result<HashMap<String, Object>> login(String acc, String pwd);
 
     Result register(Admin admin);
+
+    Result updatePwd(Integer aId, String oldPwd, String newPwd);
 }

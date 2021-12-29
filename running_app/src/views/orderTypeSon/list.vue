@@ -1,17 +1,17 @@
 <template>
     <div v-loading="loading">
         <div style="line-height: 40px;">
-            <h3 style="float: left;margin-right: 20px;">接单表</h3>
+            <h3 style="float: left;margin-right: 20px;">订单子类表</h3>
             <el-button type="primary" @click="initDate">刷新</el-button>
         </div>
 
         <div v-if="dialogVisible">
             <el-dialog
-                    title="提示"
+                    title="修改订单子类"
                     :visible.sync="dialogVisible"
-                    width="30%"
+                    width="700px"
                     :before-close="handleClose">
-                <edit v-bind:rid="rid"></edit>
+                <edit v-bind:tsId="tsId"></edit>
                 <span slot="footer" class="dialog-footer">
             </span>
             </el-dialog>
@@ -22,71 +22,23 @@
                 style="width: 100%">
 
             <el-table-column
-                    prop="rid"
+                    prop="tsId"
                     label="ID"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    label="用户"
-                    width="120">
-                <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                        <p>昵称: {{scope.row.user.unick}}</p>
-                        <p>账号: {{scope.row.user.uaccount}}</p>
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{scope.row.user.unick}}</el-tag>
-                        </div>
-                    </el-popover>
-                </template>
+                    prop="tsName"
+                    label="类型名"
+                    width="180">
             </el-table-column>
 
             <el-table-column
-                    label="跑腿者"
-                    width="120">
+                    prop="tsPrice"
+                    label="默认价格"
+                    width="180">
                 <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                        <p>昵称: {{scope.row.rUser.unick}}</p>
-                        <p>账号: {{scope.row.rUser.uaccount}}</p>
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{scope.row.rUser.unick}}</el-tag>
-                        </div>
-                    </el-popover>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    label="开始时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.rbeginTime"
-                            type="datetime">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    label="完成时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.rendTime"
-                            type="datetime">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    label="跑腿状态"
-                    width="100">
-                <template slot-scope="scope">
-                    <span v-show="scope.row.rseate===0" style="color: black">结束</span>
-                    <span v-show="scope.row.rseate===1" style="color: orange">放弃</span>
-                    <span v-show="scope.row.rseate===2" style="color: green">完成</span>
-                    <span v-show="scope.row.rseate===3" style="color: red">超时</span>
+                    <span style="color: red;font-weight: bold">￥{{scope.row.tsPrice}}</span>
                 </template>
             </el-table-column>
 
@@ -117,7 +69,7 @@
         components:{edit},
         data() {
             return {
-                rid:'',
+                tsId:'',
                 dialogVisible:false,
                 keyword:"",
                 loading:true,
@@ -133,15 +85,15 @@
             },
             handleEdit(index, row) {//开启编辑弹窗
                 console.log(index, row);
-                this.rid=row.rid;
+                this.tsId=row.tsId;
                 this.dialogVisible=true;
             },
             handleDelete(index, row) {//删除函数
                 console.log(index, row);
                 let _this=this;
-                this.$http.delete('/receive',{
+                this.$http.delete('/orderTypeSon',{
                     params:{
-                        id:row.rid
+                        id:row.tsId
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
@@ -153,7 +105,7 @@
             },
             initDate(){//初始化函数
                 let _this=this;
-                this.$http.get("/receive",{
+                this.$http.get("/orderTypeSon",{
                     params:{
                         page:0,
                         size:10000

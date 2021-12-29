@@ -1,7 +1,7 @@
 <template>
     <div v-loading="loading">
         <div style="line-height: 40px;">
-            <h3 style="float: left;margin-right: 20px;">接单表</h3>
+            <h3 style="float: left;margin-right: 20px;">用户表</h3>
             <el-button type="primary" @click="initDate">刷新</el-button>
         </div>
 
@@ -9,9 +9,9 @@
             <el-dialog
                     title="提示"
                     :visible.sync="dialogVisible"
-                    width="30%"
+                    width="700px"
                     :before-close="handleClose">
-                <edit v-bind:rid="rid"></edit>
+                <edit v-bind:uid="uid"></edit>
                 <span slot="footer" class="dialog-footer">
             </span>
             </el-dialog>
@@ -22,72 +22,61 @@
                 style="width: 100%">
 
             <el-table-column
-                    prop="rid"
+                    prop="uid"
                     label="ID"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    label="用户"
+                    prop="uheadImg"
+                    label="头像"
                     width="120">
                 <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                        <p>昵称: {{scope.row.user.unick}}</p>
-                        <p>账号: {{scope.row.user.uaccount}}</p>
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{scope.row.user.unick}}</el-tag>
-                        </div>
-                    </el-popover>
+                    　　　　<img :src="scope.row.uheadImg" width="40" height="40" class="head_pic"/>
                 </template>
             </el-table-column>
 
             <el-table-column
-                    label="跑腿者"
-                    width="120">
-                <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                        <p>昵称: {{scope.row.rUser.unick}}</p>
-                        <p>账号: {{scope.row.rUser.uaccount}}</p>
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{scope.row.rUser.unick}}</el-tag>
-                        </div>
-                    </el-popover>
-                </template>
+                    prop="unick"
+                    label="昵称"
+                    width="100">
             </el-table-column>
 
             <el-table-column
-                    label="开始时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.rbeginTime"
-                            type="datetime">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    label="完成时间"
-                    width="260">
-                <template slot-scope="scope">
-                    <el-date-picker
-                            readonly="true"
-                            v-model="scope.row.rendTime"
-                            type="datetime">
-                    </el-date-picker>
-                </template>
-            </el-table-column>
-
-            <el-table-column
-                    label="跑腿状态"
+                    prop="uRole"
+                    label="角色"
                     width="100">
                 <template slot-scope="scope">
-                    <span v-show="scope.row.rseate===0" style="color: black">结束</span>
-                    <span v-show="scope.row.rseate===1" style="color: orange">放弃</span>
-                    <span v-show="scope.row.rseate===2" style="color: green">完成</span>
-                    <span v-show="scope.row.rseate===3" style="color: red">超时</span>
+                    <span v-show="scope.row.uRole==='user'">普通用户</span>
+                    <span v-show="scope.row.uRole==='running'">接单用户</span>
                 </template>
+            </el-table-column>
+
+
+            <el-table-column
+                    prop="uaccount"
+                    label="帐号"
+                    width="100">
+            </el-table-column>
+
+
+            <el-table-column
+                    prop="uemail"
+                    label="邮箱"
+                    width="100">
+            </el-table-column>
+
+
+            <el-table-column
+                    prop="uphone"
+                    label="电话"
+                    width="100">
+            </el-table-column>
+
+            <el-table-column
+                    prop="ugender"
+                    label="性别"
+                    width="100">
             </el-table-column>
 
             <el-table-column
@@ -117,7 +106,7 @@
         components:{edit},
         data() {
             return {
-                rid:'',
+                uid:'',
                 dialogVisible:false,
                 keyword:"",
                 loading:true,
@@ -127,21 +116,20 @@
         methods: {
             handleClose(done) {//关闭编辑弹窗
                 let _this=this;
-                console.log(_this)
                 done()
                 _this.initDate()
             },
             handleEdit(index, row) {//开启编辑弹窗
                 console.log(index, row);
-                this.rid=row.rid;
+                this.uid=row.uid;
                 this.dialogVisible=true;
             },
             handleDelete(index, row) {//删除函数
                 console.log(index, row);
                 let _this=this;
-                this.$http.delete('/receive',{
+                this.$http.delete('/user',{
                     params:{
-                        id:row.rid
+                        id:row.uid
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
@@ -153,7 +141,7 @@
             },
             initDate(){//初始化函数
                 let _this=this;
-                this.$http.get("/receive",{
+                this.$http.get("/user",{
                     params:{
                         page:0,
                         size:10000

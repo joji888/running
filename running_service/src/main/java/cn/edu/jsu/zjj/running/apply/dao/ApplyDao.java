@@ -1,8 +1,11 @@
 package cn.edu.jsu.zjj.running.apply.dao;
 
 import cn.edu.jsu.zjj.running.apply.entity.Apply;
+import cn.edu.jsu.zjj.running.user.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
@@ -11,6 +14,7 @@ import java.util.List;
  * @author makejava
  * @since 2021-12-26 10:50:46
  */
+@Repository
 public interface ApplyDao {
 
     /**
@@ -78,6 +82,5 @@ public interface ApplyDao {
      * @return 影响行数
      */
     int deleteById(Integer applyId);
-
 }
 

@@ -21,9 +21,8 @@
 <script>
     import left from "./left/left";
     import top from "./right/top";
-    import adminList from "../admin/list"
 
-    import orderList from "../order/list"
+    import userList from "../user/list"
 
     import orderTypeList from "../orderType/list"
     import orderTypeAdd from "../orderType/add"
@@ -31,19 +30,39 @@
     import orderTypeSonList from "../orderTypeSon/list"
     import orderTypeSonAdd from "../orderTypeSon/add"
 
-    import receiveList from "../receive/list"
-    import receiveAdd from "../receive/add"
+    import orderList from "../order/list"
 
-    import userAdd from "../user/add"
-    import userList from "../user/list"
+    import receiveList from "../receive/list"
+
+    import commentList from "../comment/list"
+
+    import applyList from "../apply/list"
+
+
+    import adminList from "../admin/list"
+    import adminAdd from "../admin/add"
 
     export default {
         name: "index",
-        components: {top, left,adminList,orderList,orderTypeList,orderTypeAdd,orderTypeSonList,orderTypeSonAdd,userAdd,userList,receiveAdd,receiveList},
+        components: {
+            top,
+            left,
+            userList,
+            orderTypeList,
+            orderTypeAdd,
+            orderTypeSonList,
+            orderTypeSonAdd,
+            orderList,
+            receiveList,
+            commentList,
+            applyList,
+            adminList,
+            adminAdd,
+        },
         data(){
             return {
                 adminIs:false,
-                mainPag:"orderList",
+                mainPag:"adminList",
                 leftClass:"width: 210px;",
                 isCollapse:false,
                 loading:true
@@ -76,6 +95,7 @@
             }
         },
         mounted() {
+            console.log("index");
             let admin = this.$mySetToken();
             let _this=this;
             setTimeout(function () {_this.loading=false;},500)

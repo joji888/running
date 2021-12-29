@@ -1,6 +1,9 @@
 package cn.edu.jsu.zjj.running.receive.entity;
 
+import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.user.entity.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -20,11 +23,14 @@ public class Receive implements Serializable {
     /**
      * 开始时间
      */
-
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     private Date rBeginTime;
     /**
      * 结束时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone="GMT+8")
     private Date rEndTime;
     /**
      * 跑腿状态（0结束，1开始）
@@ -40,6 +46,30 @@ public class Receive implements Serializable {
     private Integer ruId;
 
     private User user;
+
+
+    private Integer oId;
+
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Integer getoId() {
+        return oId;
+    }
+
+    public void setoId(Integer oId) {
+        this.oId = oId;
+    }
+
+    private User rUser;
+
 
     public User getUser() {
         return user;
@@ -97,5 +127,12 @@ public class Receive implements Serializable {
         this.rSeate = rSeate;
     }
 
+    public User getrUser() {
+        return rUser;
+    }
+
+    public void setrUser(User rUser) {
+        this.rUser = rUser;
+    }
 }
 

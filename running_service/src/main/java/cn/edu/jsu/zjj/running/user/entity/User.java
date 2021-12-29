@@ -21,6 +21,11 @@ public class User implements Serializable {
      */
     private String uNick;
     /**
+     * 昵称
+     */
+    private String uRole;
+
+    /**
      * 账号
      */
     private String uAccount;
@@ -45,6 +50,13 @@ public class User implements Serializable {
      */
     private String uGender;
 
+    public String getuRole() {
+        return uRole;
+    }
+
+    public void setuRole(String uRole) {
+        this.uRole = uRole;
+    }
 
     public Integer getUId() {
         return uId;
@@ -110,5 +122,19 @@ public class User implements Serializable {
         this.uGender = uGender;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "uId=" + uId +
+                ", uNick='" + uNick + '\'' +
+                ", uRole='" + uRole + '\'' +
+                ", uAccount='" + uAccount + '\'' +
+                ", uPassword='" + uPassword + '\'' +
+                ", uEmail='" + uEmail + '\'' +
+                ", uPhone='" + uPhone + '\'' +
+                ", uHeadImg='" + uHeadImg + '\'' +
+                ", uGender='" + uGender + '\'' +
+                '}';
+    }
 }
 

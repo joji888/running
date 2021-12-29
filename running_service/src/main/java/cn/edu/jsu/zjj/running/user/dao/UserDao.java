@@ -3,6 +3,8 @@ package cn.edu.jsu.zjj.running.user.dao;
 import cn.edu.jsu.zjj.running.user.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
@@ -11,6 +13,7 @@ import java.util.List;
  * @author makejava
  * @since 2021-12-26 11:01:13
  */
+@Repository
 public interface UserDao {
 
     /**
@@ -78,6 +81,10 @@ public interface UserDao {
      * @return 影响行数
      */
     int deleteById(Integer uId);
+
+    Integer find(User user);
+
+    User findUserByApplyId(Integer applyId);
 
 }
 

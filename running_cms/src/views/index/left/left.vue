@@ -17,7 +17,6 @@
                 <span>用户管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="1-1" @click="updatePage('userAdd')">添加用户</el-menu-item>
                 <el-menu-item index="1-2" @click="updatePage('userList')">用户列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
@@ -70,28 +69,28 @@
                 <span>评论管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="6-1" @click="updatePage('receiveList')">评论列表</el-menu-item>
+                <el-menu-item index="6-1" @click="updatePage('commentList')">评论列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 
-        <el-submenu index="6" v-show="adminIs">
+        <el-submenu index="7" v-show="admin.aRole==='root'">
             <template slot="title">
-                <i class="el-icon-document"></i>
+                <i class="el-icon-aim"></i>
                 <span>审核管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="6-1" @click="updatePage('orderList')">审核列表</el-menu-item>
+                <el-menu-item index="7-1" @click="updatePage('applyList')">审核列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
 
-        <el-submenu index="3" v-show="adminIs">
+        <el-submenu index="8" v-show="admin.aRole==='root'">
             <template slot="title">
-                <i class="el-icon-message-solid"></i>
-                <span>课程管理</span>
+                <i class="el-icon-s-custom"></i>
+                <span>管理员管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="3-1" @click="updatePage('courseAdd')">添加课程</el-menu-item>
-                <el-menu-item index="3-2" @click="updatePage('courseList')">课程列表</el-menu-item>
+                <el-menu-item index="8-1" @click="updatePage('adminAdd')">添加管理员</el-menu-item>
+                <el-menu-item index="8-2" @click="updatePage('adminList')">管理员列表</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
     </el-menu>
@@ -102,6 +101,11 @@
     export default {
         name: "left",
         props: ['isCollapse','adminIs'],
+        data() {
+            return {
+                admin:{}
+            }
+        },
         methods:{
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
@@ -109,6 +113,17 @@
             updatePage(page){
                 this.$emit("updatePage",page);
             }
+        },
+        mounted() {
+            console.log("left");
+            let admin=this.$mySetToken();
+            if (admin==null){
+                this.$message.error("请先登陆");
+                this.$router.push({path:'/login',query:{}});
+                return
+            }
+            console.log(admin)
+            this.admin=admin;
         }
     }
 </script>

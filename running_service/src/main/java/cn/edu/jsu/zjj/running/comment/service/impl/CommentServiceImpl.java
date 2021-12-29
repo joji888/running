@@ -86,18 +86,18 @@ public class CommentServiceImpl implements CommentService {
      */
     @Override
     public Result update(Comment comment) {
-        if (comment.getCId()==null || comment.getCId().equals("")){
+        if (comment.getCId()==null || comment.getCId()<1){
             return Result.error("评论ID不能为空");
         }
-        if (comment.getOId()==null || comment.getOId().equals("")){
-            return Result.error("订单ID不能为空");
-        }
-        if (comment.getUId()==null || comment.getUId().equals("")){
-            return Result.error("用户ID不能为空");
-        }
-        if (comment.getCTime()==null || comment.getCTime().equals("")){
-            return Result.error("评论时间不能为空");
-        }
+//        if (comment.getOId()==null || comment.getOId().equals("")){
+//            return Result.error("订单ID不能为空");
+//        }
+//        if (comment.getUId()==null || comment.getUId().equals("")){
+//            return Result.error("用户ID不能为空");
+//        }
+//        if (comment.getCTime()==null || comment.getCTime().equals("")){
+//            return Result.error("评论时间不能为空");
+//        }
         if (comment.getCType()==null || comment.getCType().equals("")){
             return Result.error("评论类型不能为空");
         }

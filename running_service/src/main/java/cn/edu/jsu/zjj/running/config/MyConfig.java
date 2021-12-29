@@ -35,5 +35,6 @@ public class MyConfig implements WebMvcConfigurer {
             }
         }
         registry.addResourceHandler("/file/**").addResourceLocations("file:"+file.getPath()+"/");
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }
 }

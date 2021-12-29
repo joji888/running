@@ -31,7 +31,6 @@ public class UserController {
      * 分页查询
      *
      * @param user 筛选条件
-     * @param pageRequest      分页对象
      * @return 查询结果
      */
     @GetMapping
@@ -74,9 +73,9 @@ public class UserController {
         return this.userService.update(user);
     }
 
-    @PutMapping("editimg")
-    public Result editimg(MultipartFile uploadFIle,Integer uId , String uHeadImg) throws IOException {
-        return this.userService.editimg(uploadFIle,uId,uHeadImg);
+    @PostMapping("editImg")
+    public Result editImg(MultipartFile uploadFIle,Integer uId , String uHeadImg) throws IOException {
+        return this.userService.editImg(uploadFIle,uId,uHeadImg);
     }
 
     /**
@@ -88,6 +87,17 @@ public class UserController {
     @DeleteMapping
     public Result deleteById(Integer id) {
         return this.userService.deleteById(id);
+    }
+
+
+    @PostMapping("register")
+    public Result register(User user){
+        return this.userService.register(user);
+    }
+
+    @PutMapping("updatePwd")
+    public Result updatePwd(Integer uId,String oldPwd,String newPwd){
+        return this.userService.updatePwd(uId,oldPwd,newPwd);
     }
 
 }

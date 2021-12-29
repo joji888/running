@@ -51,6 +51,29 @@
             </el-table-column>
 
             <el-table-column
+                    label="订单状态"
+                    width="100">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.ostate===0" style="color: red">过期</span>
+                    <span v-if="scope.row.ostate===1" style="color:green;">正常</span>
+                    <span v-if="scope.row.ostate===2" style="color:blue;">已接单</span>
+                    <span v-if="scope.row.ostate===3" style="color: orange">结束</span>
+                </template>
+            </el-table-column>
+
+            <el-table-column
+                    prop="orderType.otName"
+                    label="订单类型"
+                    width="100">
+            </el-table-column>
+
+            <el-table-column
+                    prop="orderTypeSon.tsName"
+                    label="订单子类"
+                    width="100">
+            </el-table-column>
+
+            <el-table-column
                     prop="ocreateTime"
                     label="创建时间"
                     width="260">
@@ -133,7 +156,10 @@
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
-                    _this.initDate();//重新渲染页面
+                    if (res.data.code===200){
+                        _this.initDate();//重新渲染页面
+                        _this.$message.success(res.data.message);
+                    }
                 });
             },
             initDate(){//初始化函数

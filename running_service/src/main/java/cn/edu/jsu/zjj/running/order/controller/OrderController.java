@@ -2,7 +2,6 @@ package cn.edu.jsu.zjj.running.order.controller;
 
 import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.order.service.OrderService;
-import cn.edu.jsu.zjj.running.upload.UploadFile;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

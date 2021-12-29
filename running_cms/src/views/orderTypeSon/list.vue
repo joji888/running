@@ -97,7 +97,10 @@
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
-                    _this.initDate();//重新渲染页面
+                    if (res.data.code===200){
+                        _this.initDate();//重新渲染页面
+                        _this.$message.success(res.data.message);
+                    }
                 });
             },
             initDate(){//初始化函数

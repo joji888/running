@@ -45,7 +45,7 @@ public interface AdminDao {
      * @return 影响行数
      */
     int insert(Admin admin);
-
+    Integer sameAccount(String aAccount);
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *

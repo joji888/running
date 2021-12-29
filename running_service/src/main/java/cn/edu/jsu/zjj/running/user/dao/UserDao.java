@@ -81,5 +81,7 @@ public interface UserDao {
 
     User findAcc(String acc);
 
+    Integer find(User user);
+
 }
 

@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
         if (user.getUPassword() == null || user.getUPassword().equals("")){
             return Result.error("密码不能为空");
         }
-        if (user.getUAccount()!=null &&!"".equals(user.getUAccount())){
+        if (this.userDao.find(user)>0){
             return Result.error("账号已被注册，不能重复");
         }
 

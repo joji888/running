@@ -59,4 +59,6 @@ public interface UserService {
      */
     Result deleteById(Integer uId);
 
+
+    Result register(User user);
 }

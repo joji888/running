@@ -76,6 +76,9 @@ public class UserServiceImpl implements UserService {
         if (user.getUPassword() == null || user.getUPassword().equals("")){
             return Result.error("密码不能为空");
         }
+        if (user.getUAccount()!=null &&!"".equals(user.getUAccount())){
+            return Result.error("账号已被注册，不能重复");
+        }
 
         Integer insert = this.userDao.insert(user);
         if (insert >0){
@@ -152,5 +155,22 @@ public class UserServiceImpl implements UserService {
             return Result.success("删除成功");
         }
             return Result.error("删除失败");
+    }
+
+    @Override
+    public Result register(User user){
+        if (user.getUAccount() == null || user.getUAccount().equals("")){
+            return Result.error("账号不能为空");
+        }
+        if (user.getUPassword() == null || user.getUPassword().equals("")){
+            return Result.error("密码不能为空");
+        }
+
+        Integer insert = this.userDao.insert(user);
+        if (insert >0){
+            return Result.error("注册成功");
+        }
+            return Result.error("注册失败");
+
     }
 }

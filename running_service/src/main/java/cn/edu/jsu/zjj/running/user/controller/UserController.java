@@ -90,5 +90,11 @@ public class UserController {
         return this.userService.deleteById(id);
     }
 
+
+    @PostMapping("register")
+    public Result register(User user){
+        return this.userService.register(user);
+    }
+
 }
 

@@ -79,5 +79,7 @@ public interface UserDao {
      */
     int deleteById(Integer uId);
 
+    User findAcc(String acc);
+
 }
 

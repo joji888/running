@@ -96,5 +96,10 @@ public class UserController {
         return this.userService.register(user);
     }
 
+    @PutMapping("updatePwd")
+    public Result updatePwd(Integer uId,String oldPwd,String newPwd){
+        return this.userService.updatePwd(uId,oldPwd,newPwd);
+    }
+
 }
 

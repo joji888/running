@@ -122,6 +122,17 @@ public class ApplyServiceImpl implements ApplyService {
         if (apply.getApplyIdentityCodeBack()==null || apply.getApplyIdentityCodeBack().equals("")){
             return Result.error("用户申请身份证背面不能为空");
         }
+
+        if (apply.getApplyState().equals("2")){
+            User user = userDao.queryById(apply.getuId());
+            user.setuRole("running");
+            Integer update = this.userDao.update(user);
+            if (update>0){
+                return Result.success("审核通过");
+            }
+            return Result.error("审核失败");
+        }
+
         Integer update = this.applyDao.update(apply);
         if (update>0){
             return Result.success("修改成功");
@@ -151,4 +162,6 @@ public class ApplyServiceImpl implements ApplyService {
         }
         return Result.error("删除失败");
     }
+
+
 }

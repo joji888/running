@@ -4,7 +4,7 @@
             <el-form-item label="订单图片" prop="oid">
                 <el-upload
                         class="avatar-uploader"
-                        :action="'/api/user/editImg?uHeadImg='+user.uheadImg+'&uId='+user.uid"
+                        :action="'/user/editImg?uHeadImg='+user.uheadImg+'&uId='+user.uid"
                         name="uploadFIle"
                         :show-file-list="false"
                         :on-success="handleAvatarSuccess"

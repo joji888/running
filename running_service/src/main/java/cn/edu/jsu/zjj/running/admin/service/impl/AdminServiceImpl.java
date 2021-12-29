@@ -184,4 +184,31 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
+    @Override
+    public Result updatePwd(Integer aId, String oldPwd, String newPwd) {
+        if (aId==null||aId<1){
+            return Result.error("管理员ID不能为空！");
+        }
+        if (oldPwd==null||oldPwd.equals("")){
+            return Result.error("旧密码有误！");
+        }
+        if (newPwd==null||newPwd.equals("")||newPwd.length()<6){
+            return Result.error("新密码有误！");
+        }
+        if (oldPwd.equals(newPwd)){
+            return Result.error("两次密码不一致！");
+        }
+
+        Admin admin = adminDao.queryById(aId);
+        if (!admin.getAPassword().equals(Encryption.getSah256(Encryption.getSah256(oldPwd)))) {
+            return Result.error("不正确！");
+        }
+        admin.setAPassword(Encryption.getSah256(Encryption.getSah256(newPwd)));
+
+        int update = adminDao.update(admin);
+        if (update<1){
+            return Result.error("修改密码到数据库时有误！");
+        }
+        return Result.success("修改密码成功！");
+    }
 }

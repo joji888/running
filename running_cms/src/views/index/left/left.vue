@@ -117,6 +117,11 @@
         mounted() {
             console.log("left");
             let admin=this.$mySetToken();
+            if (admin==null){
+                this.$message.error("请先登陆");
+                this.$router.push({path:'/login',query:{}});
+                return
+            }
             console.log(admin)
             this.admin=admin;
         }

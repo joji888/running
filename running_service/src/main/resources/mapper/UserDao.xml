@@ -30,18 +30,20 @@
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
-<<<<<<< HEAD
+
     <!--注册校验-->
     <select id="find" resultType="INTEGER">
         select
             count(*)
         from user
         where u_account = #{uAccount}
-=======
-    <!--查询指定行数据-->
-    <select id="findUserByApplyId" resultMap="UserMap">
+    </select>
 
->>>>>>> 3ff8b2b0d613f67c1b3915d142de3bc89ba65bcc
+    <!--查询-->
+    <select id="findUserByApplyId" resultMap="UserMap">
+        select
+          running_db.user.u_id, u_nick, u_role, u_account, u_password, u_email, u_phone, u_head_img, u_gender
+        from running_db.user left join apply on user.u_id = apply.u_id where apply.apply_id=#{applyId}
     </select>
 
     <!--统计总行数-->

@@ -82,7 +82,14 @@ public interface UserDao {
      */
     int deleteById(Integer uId);
 
+<<<<<<< HEAD
+    User findAcc(String acc);
+
+    Integer find(User user);
+
+=======
 
     User findUserByApplyId(Integer applyId);
+>>>>>>> 3ff8b2b0d613f67c1b3915d142de3bc89ba65bcc
 }
 

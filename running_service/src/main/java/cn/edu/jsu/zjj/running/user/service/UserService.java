@@ -59,4 +59,9 @@ public interface UserService {
      */
     Result deleteById(Integer uId);
 
+
+    Result register(User user);
+
+
+    Result updatePwd(Integer uId, String oldPwd, String newPwd);
 }

@@ -50,6 +50,17 @@ public class ReceiveController {
     }
 
     /**
+     * 通过ID和状态查询单条数据
+     *
+     * @param ruId
+     * @return 单条数据
+     */
+    @GetMapping("queryBySeate")
+    public Result<Receive> queryBySeate(Integer ruId ,Integer rSeate ) {
+        return this.receiveService.queryBySeate(ruId,rSeate);
+    }
+
+    /**
      * 新增数据
      *
      * @param receive 实体
@@ -59,6 +70,18 @@ public class ReceiveController {
     public Result add(Receive receive) {
         return this.receiveService.insert(receive);
     }
+
+    /**
+     * 接单数据添加
+     *
+     * @param receive 实体
+     * @return 新增结果
+     */
+    @PostMapping("addById")
+    public Result addById(Receive receive) {
+        return this.receiveService.addById(receive);
+    }
+
 
     /**
      * 编辑数据

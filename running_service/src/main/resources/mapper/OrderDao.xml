@@ -8,6 +8,7 @@
         <result property="tsId" column="ts_id" jdbcType="INTEGER"/>
         <result property="otId" column="ot_id" jdbcType="INTEGER"/>
         <result property="oTile" column="o_tile" jdbcType="VARCHAR"/>
+        <result property="oPrice" column="o_price" jdbcType="INTEGER"/>
         <result property="oState" column="o_state" jdbcType="INTEGER"/>
         <result property="oImage" column="o_image" jdbcType="VARCHAR"/>
         <result property="oDescribe" column="o_describe" jdbcType="VARCHAR"/>
@@ -15,12 +16,21 @@
         <result property="oCreateTime" column="o_create_time" jdbcType="TIMESTAMP"/>
         <collection property="orderType" column="ot_id" select="cn.edu.jsu.zjj.running.order_type.dao.OrderTypeDao.queryById"></collection>
         <collection property="orderTypeSon" column="ts_id" select="cn.edu.jsu.zjj.running.order_type_son.dao.OrderTypeSonDao.queryById"></collection>
+        <collection property="user" column="u_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"></collection>
     </resultMap>
+
+    <!--查询单个-->
+    <select id="queryByState" resultMap="OrderMap">
+        select
+          o_id, u_id, ts_id, ot_id, o_tile,o_price, o_state, o_image, o_describe, o_end_time, o_create_time
+        from running_db.order
+        where o_state = #{oState}
+    </select>
 
     <!--查询单个-->
     <select id="queryById" resultMap="OrderMap">
         select
-          o_id, u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time
+          o_id, u_id, ts_id, ot_id, o_tile,o_price, o_state, o_image, o_describe, o_end_time, o_create_time
         from running_db.order
         where o_id = #{oId}
     </select>
@@ -28,7 +38,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="OrderMap">
         select
-          o_id, u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time
+          o_id, u_id, ts_id, ot_id, o_tile,o_price, o_state, o_image, o_describe, o_end_time, o_create_time
         from running_db.order
 
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -54,6 +64,9 @@
             <if test="oTile != null and oTile != ''">
                 and o_tile = #{oTile}
             </if>
+            <if test="oPrice != null and oPrice != ''">
+                and o_price = #{oPrice}
+            </if>
             <if test="oState != null">
                 and o_state = #{oState}
             </if>
@@ -74,29 +87,30 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="oId" useGeneratedKeys="true">
-        insert into running_db.order(u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time)
-        values (#{uId}, #{tsId}, #{otId}, #{oTile}, #{oState}, #{oImage}, #{oDescribe}, #{oEndTime}, #{oCreateTime})
+        insert into running_db.order(u_id, ts_id, ot_id, o_tile,o_price, o_state, o_image, o_describe, o_end_time, o_create_time)
+        values (#{uId}, #{tsId}, #{otId}, #{oTile},#{oPrice}, #{oState}, #{oImage}, #{oDescribe}, #{oEndTime}, #{oCreateTime})
     </insert>
 
     <insert id="insertBatch" keyProperty="oId" useGeneratedKeys="true">
-        insert into order(u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time)
+        insert into order(u_id, ts_id, ot_id, o_tile,o_price, o_state, o_image, o_describe, o_end_time, o_create_time)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.uId}, #{entity.tsId}, #{entity.otId}, #{entity.oTile}, #{entity.oState}, #{entity.oImage}, #{entity.oDescribe}, #{entity.oEndTime}, #{entity.oCreateTime})
+        (#{entity.uId}, #{entity.tsId}, #{entity.otId}, #{entity.oTile},#{entity.oPrice}, #{entity.oState}, #{entity.oImage}, #{entity.oDescribe}, #{entity.oEndTime}, #{entity.oCreateTime})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="oId" useGeneratedKeys="true">
-        insert into order(u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time)
+        insert into order(u_id, ts_id, ot_id, o_tile,o_price, o_state, o_image, o_describe, o_end_time, o_create_time)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.uId}, #{entity.tsId}, #{entity.otId}, #{entity.oTile}, #{entity.oState}, #{entity.oImage}, #{entity.oDescribe}, #{entity.oEndTime}, #{entity.oCreateTime})
+            (#{entity.uId}, #{entity.tsId}, #{entity.otId}, #{entity.oTile},#{entity.oPrice}, #{entity.oState}, #{entity.oImage}, #{entity.oDescribe}, #{entity.oEndTime}, #{entity.oCreateTime})
         </foreach>
         on duplicate key update
         u_id = values(u_id),
         ts_id = values(ts_id),
         ot_id = values(ot_id),
         o_tile = values(o_tile),
+        o_price = values(o_price),
         o_state = values(o_state),
         o_image = values(o_image),
         o_describe = values(o_describe),
@@ -119,6 +133,9 @@
             </if>
             <if test="oTile != null and oTile != ''">
                 o_tile = #{oTile},
+            </if>
+            <if test="oPrice != null and oPrice != ''">
+                o_price = #{oPrice},
             </if>
             <if test="oState != null">
                 o_state = #{oState},

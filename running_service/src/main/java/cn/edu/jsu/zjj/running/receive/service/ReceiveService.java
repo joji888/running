@@ -54,4 +54,7 @@ public interface ReceiveService {
      */
     Result deleteById(Integer rId);
 
+    Result addById(Receive receive);
+
+    Result<Receive> queryBySeate(Integer ruId, Integer rSeate);
 }

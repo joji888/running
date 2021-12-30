@@ -50,6 +50,10 @@ public class OrderController {
         return this.orderService.queryById(id);
     }
 
+    @GetMapping("queryByState")
+    public Result queryByState(Integer oState){
+        return this.orderService.queryByState(oState);
+    }
     /**
      * 新增数据
      *

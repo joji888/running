@@ -79,5 +79,6 @@ public interface OrderDao {
      */
     int deleteById(Integer oId);
 
+    Order queryByState(Integer oState);
 }
 

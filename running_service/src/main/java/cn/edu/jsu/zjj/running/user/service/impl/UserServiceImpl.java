@@ -213,6 +213,7 @@ public class UserServiceImpl implements UserService {
             return Result.error("密码不能为空");
         }
 
+<<<<<<< HEAD
         User user= userDao.findByAcc(acc);
 
         if (user==null){
@@ -224,4 +225,6 @@ public class UserServiceImpl implements UserService {
         user.setUPassword("");
         return Result.success(user,"登录成功！");
     }
+=======
+>>>>>>> f1d658af66dca8da0a2672b139cfaa4c2823dc6c
 }

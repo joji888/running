@@ -1,5 +1,7 @@
 package cn.edu.jsu.zjj.running.receive.service.impl;
 
+import cn.edu.jsu.zjj.running.order.dao.OrderDao;
+import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.receive.entity.Receive;
 import cn.edu.jsu.zjj.running.receive.dao.ReceiveDao;
 import cn.edu.jsu.zjj.running.receive.service.ReceiveService;
@@ -22,6 +24,8 @@ import java.util.Date;
 public class ReceiveServiceImpl implements ReceiveService {
     @Resource
     private ReceiveDao receiveDao;
+    @Resource
+    private OrderDao orderDao;
 
     /**
      * 通过ID查询单条数据
@@ -157,4 +161,47 @@ public class ReceiveServiceImpl implements ReceiveService {
         }
             return Result.error("删除失败");
     }
+
+
+    @Override
+    public Result addById(Receive receive) {
+        if (receive.getoId() ==null || receive.getoId() <1){
+            return Result.error("订单ID不存在");
+        }
+        if (receive.getuId() ==null || receive.getuId() <1){
+            return Result.error("用户ID不存在");
+        }
+        if (receive.getRuId() ==null || receive.getRuId() <1){
+            return Result.error("跑腿者ID不存在");
+        }
+        receive.setRSeate(4);
+        receive.setRBeginTime(new Date(System.currentTimeMillis()));
+        receive.setREndTime(new Date(System.currentTimeMillis()+1000*60*10));
+        Order order = this.orderDao.queryById(receive.getoId());
+        order.setOState(2);
+        Integer update = this.orderDao.update(order);
+        Integer insert = this.receiveDao.insert(receive);
+        if (insert > 0){
+            if (update > 0){
+            return Result.success("接单成功");
+        }}
+            return Result.error("接单失败");
+    }
+
+    @Override
+    public Result<Receive> queryBySeate(Integer ruId, Integer rSeate) {
+        if (ruId ==null || ruId <1){
+            return Result.error("跑腿者ID不存在");
+        }
+        if (rSeate !=2){
+            return Result.error("状态错误");
+        }
+        Receive queryBySeate =this.receiveDao.queryBySeate(ruId,rSeate);
+        if (queryBySeate == null){
+            return Result.error("查询失败");
+        }
+            return Result.success(queryBySeate);
+    }
+
+
 }

@@ -1,4 +1,5 @@
 package cn.edu.jsu.zjj.running.order.entity;
+import cn.edu.jsu.zjj.running.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
@@ -40,6 +41,10 @@ public class Order implements Serializable {
      */
     private String oTile;
     /**
+     * 价格
+     */
+    private Integer oPrice;
+    /**
      * 订单状态(0过期，1正常，2已接单，3结束)
      */
     private Integer oState;
@@ -67,6 +72,16 @@ public class Order implements Serializable {
     private OrderType orderType;
 
     private OrderTypeSon orderTypeSon;
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public OrderType getOrderType() {
         return orderType;
@@ -122,6 +137,14 @@ public class Order implements Serializable {
 
     public void setOTile(String oTile) {
         this.oTile = oTile;
+    }
+
+    public Integer getoPrice() {
+        return oPrice;
+    }
+
+    public void setoPrice(Integer oPrice) {
+        this.oPrice = oPrice;
     }
 
     public Integer getOState() {

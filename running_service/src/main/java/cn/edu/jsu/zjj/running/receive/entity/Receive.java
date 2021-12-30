@@ -47,7 +47,7 @@ public class Receive implements Serializable {
 
     private User user;
 
-<<<<<<< HEAD
+
     private Integer oId;
 
     private Order order;
@@ -67,9 +67,9 @@ public class Receive implements Serializable {
     public void setoId(Integer oId) {
         this.oId = oId;
     }
-=======
+
     private User rUser;
->>>>>>> 3ff8b2b0d613f67c1b3915d142de3bc89ba65bcc
+
 
     public User getUser() {
         return user;

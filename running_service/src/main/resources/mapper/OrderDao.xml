@@ -15,7 +15,16 @@
         <result property="oCreateTime" column="o_create_time" jdbcType="TIMESTAMP"/>
         <collection property="orderType" column="ot_id" select="cn.edu.jsu.zjj.running.order_type.dao.OrderTypeDao.queryById"></collection>
         <collection property="orderTypeSon" column="ts_id" select="cn.edu.jsu.zjj.running.order_type_son.dao.OrderTypeSonDao.queryById"></collection>
+        <collection property="user" column="u_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"></collection>
     </resultMap>
+
+    <!--查询单个-->
+    <select id="queryByState" resultMap="OrderMap">
+        select
+          o_id, u_id, ts_id, ot_id, o_tile, o_state, o_image, o_describe, o_end_time, o_create_time
+        from running_db.order
+        where o_state = #{oState}
+    </select>
 
     <!--查询单个-->
     <select id="queryById" resultMap="OrderMap">

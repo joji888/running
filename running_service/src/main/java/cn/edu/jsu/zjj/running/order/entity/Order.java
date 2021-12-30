@@ -1,4 +1,5 @@
 package cn.edu.jsu.zjj.running.order.entity;
+import cn.edu.jsu.zjj.running.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import cn.edu.jsu.zjj.running.order_type.entity.OrderType;
@@ -67,6 +68,16 @@ public class Order implements Serializable {
     private OrderType orderType;
 
     private OrderTypeSon orderTypeSon;
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public OrderType getOrderType() {
         return orderType;

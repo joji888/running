@@ -157,8 +157,6 @@ public class UserServiceImpl implements UserService {
             return Result.error("删除失败");
     }
 
-<<<<<<< HEAD
-=======
     @Override
     public Result updatePwd(Integer uId,String oldPwd,String newPwd){
         if (uId ==null || uId < 1){
@@ -205,7 +203,5 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
->>>>>>> 9176d542710b5cd397d95bc6e2bf42be0c1637bc
 
 }

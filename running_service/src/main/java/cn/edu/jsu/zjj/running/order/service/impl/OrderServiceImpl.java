@@ -182,4 +182,14 @@ public class OrderServiceImpl implements OrderService {
         }
         return Result.error("修改失败");
     }
+
+    @Override
+    public Result queryByState(Integer oState) {
+        if (oState!=1){
+            return Result.error("状态错误");
+        }
+        return Result.success(this.orderDao.queryByState(oState));
+    }
+
+
 }

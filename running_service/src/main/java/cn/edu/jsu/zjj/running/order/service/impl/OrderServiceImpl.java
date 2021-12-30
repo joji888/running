@@ -73,6 +73,9 @@ public class OrderServiceImpl implements OrderService {
         if (order.getOTile()==null || order.getOTile().equals("")){
             return Result.error("订单标题不能为空");
         }
+        if (order.getoPrice()==null || order.getoPrice()<1){
+            return Result.error("订单价格不能为空");
+        }
         if (order.getOState()==null || order.getOState().equals("")){
             return Result.error("订单状态不能为空");
         }
@@ -122,6 +125,9 @@ public class OrderServiceImpl implements OrderService {
         }
         if (order.getOTile()==null || order.getOTile().equals("")){
             return Result.error("订单标题不能为空");
+        }
+        if (order.getoPrice()==null || order.getoPrice()<1){
+            return Result.error("订单价格不能为空");
         }
         if (order.getOState()==null || order.getOState().equals("")){
             return Result.error("订单状态不能为空");

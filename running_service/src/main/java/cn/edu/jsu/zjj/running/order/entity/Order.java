@@ -41,6 +41,10 @@ public class Order implements Serializable {
      */
     private String oTile;
     /**
+     * 价格
+     */
+    private Integer oPrice;
+    /**
      * 订单状态(0过期，1正常，2已接单，3结束)
      */
     private Integer oState;
@@ -133,6 +137,14 @@ public class Order implements Serializable {
 
     public void setOTile(String oTile) {
         this.oTile = oTile;
+    }
+
+    public Integer getoPrice() {
+        return oPrice;
+    }
+
+    public void setoPrice(Integer oPrice) {
+        this.oPrice = oPrice;
     }
 
     public Integer getOState() {

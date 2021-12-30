@@ -79,5 +79,6 @@ public interface ReceiveDao {
      */
     int deleteById(Integer rId);
 
+    Receive queryBySeate(Integer ruId, Integer rSeate);
 }
 

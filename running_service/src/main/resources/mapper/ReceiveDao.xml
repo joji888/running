@@ -14,7 +14,16 @@
         <collection property="user" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
         <collection property="order" column="o_id" select="cn.edu.jsu.zjj.running.order.dao.OrderDao.queryById" />
         <collection property="rUser" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
+
     </resultMap>
+
+    <!--查询完成的订单-->
+    <select id="queryBySeate" resultMap="ReceiveMap">
+        select
+          r_id, o_id, u_id, ru_id, r_begin_time, r_end_time, r_seate
+        from receive
+        where ru_id = #{ruId} and r_seate = #{rSeate}
+    </select>
 
     <!--查询单个-->
     <select id="queryById" resultMap="ReceiveMap">

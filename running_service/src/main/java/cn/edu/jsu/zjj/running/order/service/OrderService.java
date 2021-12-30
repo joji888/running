@@ -58,4 +58,6 @@ public interface OrderService {
     Result deleteById(Integer oId);
 
     Result editImg(MultipartFile multipartFile,Integer oId, String image) throws IOException;
+
+    Result queryByState(Integer oState);
 }

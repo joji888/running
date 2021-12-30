@@ -11,10 +11,15 @@
         <result property="ruId" column="ru_id" jdbcType="INTEGER" />
         <result property="oId" column="o_id" jdbcType="INTEGER" />
         <collection property="user" column="u_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
+
+        <collection property="user" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
+        <collection property="order" column="o_id" select="cn.edu.jsu.zjj.running.order.dao.OrderDao.queryById" />
+
+        <collection property="rUser" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
+
         <collection property="user" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
         <collection property="order" column="o_id" select="cn.edu.jsu.zjj.running.order.dao.OrderDao.queryById" />
         <collection property="rUser" column="ru_id" select="cn.edu.jsu.zjj.running.user.dao.UserDao.queryById"/>
-
     </resultMap>
 
     <!--查询完成的订单-->

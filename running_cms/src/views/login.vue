@@ -10,7 +10,7 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary" class="loginBut" @click="login('users')" >登陆</el-button>
+                <el-button type="primary" class="loginBut" @click="login('users')" >登录</el-button>
 
             </el-form-item>
             <span style="color: white;font-size: 14px">跑腿平台--吉首大学张家界学院</span>

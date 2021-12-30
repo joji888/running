@@ -132,7 +132,6 @@ public class ApplyServiceImpl implements ApplyService {
             }
             return Result.error("审核失败");
         }
-
         Integer update = this.applyDao.update(apply);
         if (update>0){
             return Result.success("修改成功");

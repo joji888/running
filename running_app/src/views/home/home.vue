@@ -1,16 +1,11 @@
 <template>
-
-    <div>
-        <top></top>
-    </div>
-
+    <div>home</div>
 </template>
 
 <script>
-    import top from "./top";
     export default {
         components:{top},
-        name: "order"
+        name: "home"
     }
 </script>
 

@@ -44,7 +44,12 @@
         from user
         where u_account = #{uAccount}
     </select>
+<<<<<<< HEAD
     <!--查询指定行数据-->
+
+=======
+>>>>>>> 413bd40839488aeeb58d1b4da27b59f561587a49
+
 
 
     <!--统计总行数-->

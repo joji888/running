@@ -3,7 +3,7 @@
         <img class="loginImg" src="../assets/loginImg.png">
         <el-form :model="users" :rules="rules" ref="users" class="loginForm">
             <el-form-item prop="acc">
-                <el-input v-model="users.acc" type="text"     autocomplete="off" placeholder="账号" style="background-color: transparent"><i slot="prefix" class="el-input__icon el-icon-user"></i></el-input>
+                <el-input v-model="users.acc" type="text" autocomplete="off" placeholder="账号" style="background-color: transparent"><i slot="prefix" class="el-input__icon el-icon-user"></i></el-input>
             </el-form-item>
             <el-form-item prop="pwd">
                 <el-input v-model="users.pwd" type="password" autocomplete="off" placeholder="密码" @keyup.enter="login('users')"><i slot="prefix" class="el-input__icon el-icon-lock"></i></el-input>

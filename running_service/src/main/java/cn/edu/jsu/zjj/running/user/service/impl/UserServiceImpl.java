@@ -4,6 +4,7 @@ import cn.edu.jsu.zjj.running.upload.UploadFile;
 import cn.edu.jsu.zjj.running.user.entity.User;
 import cn.edu.jsu.zjj.running.user.dao.UserDao;
 import cn.edu.jsu.zjj.running.user.service.UserService;
+import cn.edu.jsu.zjj.running.utils.Encryption;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -203,6 +204,24 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public Result login(String acc, String pwd) {
+        if (acc==null||acc.equals("")){
+            return Result.error("账号不能为空");
+        }
+        if (pwd==null||pwd.equals("")){
+            return Result.error("密码不能为空");
+        }
 
+        User user= userDao.findByAcc(acc);
 
+        if (user==null){
+            return Result.error("账号或者密码有误！");
+        }
+        if (!user.getUPassword().equals(Encryption.getSah256(Encryption.getSah256(pwd)))){
+            return Result.error("账号或者密码有误！");
+        }
+        user.setUPassword("");
+        return Result.success(user,"登录成功！");
+    }
 }

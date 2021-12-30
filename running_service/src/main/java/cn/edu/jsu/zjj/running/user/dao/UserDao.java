@@ -86,5 +86,6 @@ public interface UserDao {
 
     User findUserByApplyId(Integer applyId);
 
+    User findByAcc(String acc);
 }
 

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <component :is="page"></component>
-        <bottom @setPage="setPage"></bottom>
+        <component :is="page" @onIndex="onIndex" ref="myComponent"></component>
+        <bottom @setPage="setPage" @addOrder="addOrder" ref="setPage"></bottom>
     </div>
 </template>
 
@@ -31,6 +31,12 @@
         methods:{
             setPage(res){
                 this.page=res;
+            },
+            onIndex(){
+                this.$refs.setPage.onOder();
+            },
+            addOrder(){
+                this.$refs.myComponent.addOrderF();
             }
         }
     }

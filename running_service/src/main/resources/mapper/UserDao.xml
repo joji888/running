@@ -37,6 +37,13 @@
           running_db.user.u_id, u_nick, u_role, u_account, u_password, u_email, u_phone, u_head_img, u_gender
         from running_db.user left join apply on user.u_id = apply.u_id where apply.apply_id=#{applyId}
     </select>
+    <!--通过acc查用户-->
+    <select id="findByAcc" resultMap="UserMap">
+        select
+          u_id, u_nick, u_role, u_account, u_password, u_email, u_phone, u_head_img, u_gender
+        from user
+        where u_account = #{acc}
+    </select>
     <!--注册校验-->
     <select id="find" resultType="INTEGER">
         select

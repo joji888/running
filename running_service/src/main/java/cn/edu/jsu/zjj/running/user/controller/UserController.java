@@ -89,6 +89,10 @@ public class UserController {
         return this.userService.deleteById(id);
     }
 
+    @PostMapping("login")
+    public Result login(String acc,String pwd){
+        return userService.login(acc,pwd);
+    }
 
     @PostMapping("register")
     public Result register(User user){

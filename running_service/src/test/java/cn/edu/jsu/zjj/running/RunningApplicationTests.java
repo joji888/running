@@ -1,7 +1,6 @@
 package cn.edu.jsu.zjj.running;
 
-import cn.edu.jsu.zjj.running.user.dao.UserDao;
-import cn.edu.jsu.zjj.running.user.entity.User;
+import cn.edu.jsu.zjj.running.utils.MailSend;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,12 +10,11 @@ import javax.annotation.Resource;
 class RunningApplicationTests {
 
     @Resource
-    private UserDao userDao;
+    private MailSend mailSend;
 
     @Test
     void contextLoads() {
-        User user=userDao.findUserByApplyId(1);
-        System.out.println(user);
+        mailSend.send("2799489580@qq.com","测试");
     }
 
 }

@@ -72,7 +72,6 @@ Vue.prototype.$dateFormat= function(fmt, date){
   return fmt;
 }
 
-
 Vue.use(Vant);
 
 new Vue({

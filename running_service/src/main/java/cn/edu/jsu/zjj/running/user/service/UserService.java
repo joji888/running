@@ -62,6 +62,7 @@ public interface UserService {
 
     Result register(User user);
 
-
     Result updatePwd(Integer uId, String oldPwd, String newPwd);
+
+    Result login(String acc, String pwd);
 }

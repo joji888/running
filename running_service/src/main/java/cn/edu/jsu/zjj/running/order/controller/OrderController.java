@@ -2,6 +2,9 @@ package cn.edu.jsu.zjj.running.order.controller;
 
 import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.order.service.OrderService;
+import cn.edu.jsu.zjj.running.utils.Encryption;
+import cn.edu.jsu.zjj.running.utils.MailSend;
+import cn.edu.jsu.zjj.running.utils.RandomUtil;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,8 +27,14 @@ public class OrderController {
     /**
      * 服务对象
      */
-    @Resource
     private OrderService orderService;
+
+    private MailSend mailSend;
+
+    public OrderController(OrderService orderService, MailSend mailSend) {
+        this.orderService = orderService;
+        this.mailSend = mailSend;
+    }
 
     /**
      * 分页查询
@@ -39,6 +48,7 @@ public class OrderController {
         Page<Order> orders = this.orderService.queryByPage(order, pageRequest);
         return Result.success(ResponseEntity.ok(orders));
     }
+
     /**
      * 通过主键查询单条数据
      *
@@ -61,8 +71,8 @@ public class OrderController {
      * @return 新增结果
      */
     @PostMapping
-    public Result add(Order order) {
-        return this.orderService.insert(order);
+    public Result add(MultipartFile file,Order order) throws IOException {
+        return this.orderService.insert(file,order);
     }
 
     /**

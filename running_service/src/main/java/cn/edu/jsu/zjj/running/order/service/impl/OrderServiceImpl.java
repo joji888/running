@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
      * @return 实例对象
      */
     @Override
-    public Result insert(Order order) {
+    public Result insert(MultipartFile file,Order order) throws IOException {
         if (order.getUId()==null || order.getUId().equals("")){
             return Result.error("用户ID不能为空");
         }
@@ -79,6 +79,11 @@ public class OrderServiceImpl implements OrderService {
         if (order.getOState()==null || order.getOState().equals("")){
             return Result.error("订单状态不能为空");
         }
+
+        UploadFile uploadFile = new UploadFile();
+        String s = uploadFile.uploadFile(file, null);
+        order.setOImage(s);
+
         if (order.getOImage()==null || order.getOImage().equals("")){
             return Result.error("订单图片不能为空");
         }
@@ -88,12 +93,14 @@ public class OrderServiceImpl implements OrderService {
         if (order.getOEndTime()==null || order.getOEndTime().equals("")){
             return Result.error("订单结束时间不能为空");
         }
-        if (order.getOCreateTime().before(new Date(System.currentTimeMillis()))){
-            return Result.error("发布时间不能早于当前时间");
-        }
-        if (order.getOCreateTime().after(order.getOEndTime())){
-            return Result.error("订单结束时间不能早于发布时间");
-        }
+//        if (order.getOCreateTime().before(new Date(System.currentTimeMillis()))){
+//            return Result.error("发布时间不能早于当前时间");
+//        }
+//        if (order.getOCreateTime().after(order.getOEndTime())){
+//            return Result.error("订单结束时间不能早于发布时间");
+//        }
+
+
 
         Integer insert = orderDao.insert(order);
         if (insert>0){

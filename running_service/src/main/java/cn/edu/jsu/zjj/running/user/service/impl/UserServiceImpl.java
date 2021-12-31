@@ -5,6 +5,7 @@ import cn.edu.jsu.zjj.running.user.entity.User;
 import cn.edu.jsu.zjj.running.user.dao.UserDao;
 import cn.edu.jsu.zjj.running.user.service.UserService;
 import cn.edu.jsu.zjj.running.utils.Encryption;
+import cn.edu.jsu.zjj.running.utils.RandomUtil;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -189,12 +190,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result register(User user){
-        if (user.getUAccount() == null || user.getUAccount().equals("")){
-            return Result.error("账号不能为空");
+        if (user.getUPhone() == null || user.getUPhone().equals("")){
+            return Result.error("手机号不能为空");
         }
         if (user.getUPassword() == null || user.getUPassword().equals("")){
             return Result.error("密码不能为空");
         }
+
+        user.setUNick("用户"+RandomUtil.random());
+        user.setUAccount(user.getUPhone());//设置用户手机号为登录账号
+        user.setUPassword(Encryption.getSah256(Encryption.getSah256(user.getUPassword())));
 
         Integer insert = this.userDao.insert(user);
         if (insert >0){
@@ -213,7 +218,6 @@ public class UserServiceImpl implements UserService {
             return Result.error("密码不能为空");
         }
 
-<<<<<<< HEAD
         User user= userDao.findByAcc(acc);
 
         if (user==null){
@@ -225,6 +229,4 @@ public class UserServiceImpl implements UserService {
         user.setUPassword("");
         return Result.success(user,"登录成功！");
     }
-=======
->>>>>>> f1d658af66dca8da0a2672b139cfaa4c2823dc6c
 }

@@ -1,7 +1,11 @@
 package cn.edu.jsu.zjj.running.user.controller;
 
+import cn.edu.jsu.zjj.running.order.entity.Order;
 import cn.edu.jsu.zjj.running.user.entity.User;
 import cn.edu.jsu.zjj.running.user.service.UserService;
+import cn.edu.jsu.zjj.running.utils.Encryption;
+import cn.edu.jsu.zjj.running.utils.MailSend;
+import cn.edu.jsu.zjj.running.utils.RandomUtil;
 import cn.edu.jsu.zjj.running.utils.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,8 +28,14 @@ public class UserController {
     /**
      * 服务对象
      */
-    @Resource
     private UserService userService;
+
+    private MailSend mailSend;
+
+    public UserController(UserService userService, MailSend mailSend) {
+        this.userService = userService;
+        this.mailSend = mailSend;
+    }
 
     /**
      * 分页查询
@@ -97,6 +107,40 @@ public class UserController {
     @PostMapping("register")
     public Result register(User user){
         return this.userService.register(user);
+    }
+
+    @PostMapping("verifyUser")
+    public Result verifyUser(User user, String uPassword2,String verifyCodeData,String Token){
+        if (user.getUEmail()==null||user.getUEmail().equals("")){
+            return Result.error("邮箱不能为空");
+        }
+        if (!user.getUPassword().equals(uPassword2)){
+            return Result.error("两次密码不一致");
+        }
+
+        PageRequest pageRequest = PageRequest.of(0, 1);
+        Page<User> users = this.userService.queryByPage(user, pageRequest);
+        if (users.getSize()>1) {
+            return Result.error("该邮箱或者手机号已被注册");
+        }
+
+        //判断有没有验证码
+        if (verifyCodeData!=null&&!verifyCodeData.equals("")&&Token!=null&&!Token.equals("")){
+            if (Encryption.getSah256(Encryption.getSah256(verifyCodeData)).equals(Token)){
+                userService.register(user);
+            }else {
+                return Result.error("验证码错误！");
+            }
+        }else {//没有验证码
+            if (Token!=null&&!Token.equals("")){
+                return Result.success("","请输入验证码");
+            }
+            String random = RandomUtil.random();
+            mailSend.send(user.getUEmail(),random);
+            return Result.success( Encryption.getSah256(Encryption.getSah256(random)),"没有验证码");
+        }
+
+        return Result.success("成功");
     }
 
     @PutMapping("updatePwd")

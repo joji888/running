@@ -9,7 +9,7 @@ import qs from "qs";
 Vue.config.productionTip = false
 
 axios.defaults.headers.common['token'] = '';
-// axios.defaults.baseURL='/api';
+axios.defaults.baseURL='/running';
 
 Vue.prototype.$http= axios
 Vue.prototype.$qs= qs

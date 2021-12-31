@@ -7,7 +7,6 @@
         <result property="tsName" column="ts_name" jdbcType="VARCHAR"/>
         <result property="tsPrice" column="ts_price" jdbcType="INTEGER"/>
         <result property="otId" column="ot_id" javaType="INTEGER"/>
-        <collection property="orderType" column="ot_id" select="cn.edu.jsu.zjj.running.order_type.dao.OrderTypeDao.queryById"/>
     </resultMap>
 
     <!--校验数据-->
@@ -31,6 +30,14 @@
           ts_id, ot_id, ts_name, ts_price
         from order_type_son
         where ts_id = #{tsId}
+    </select>
+
+    <!--根据外键查询多个-->
+    <select id="queryByOtId" resultMap="OrderTypeSonMap">
+        select
+          ts_id, ot_id, ts_name, ts_price
+        from order_type_son
+        where ot_id = #{otId}
     </select>
 
     <!--查询指定行数据-->

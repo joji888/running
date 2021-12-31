@@ -1,13 +1,24 @@
 <template>
     <van-nav-bar left-arrow fixed="true">
         <template #left>
-            <van-image
-                    v-show="headImg"
-                    width="40"
-                    height="40"
-                    radius="40"
-                    :src="user.uheadImg"
-            />
+            <van-popover
+                    style="margin-top: 5px;"
+                    v-model="showPopover"
+                    trigger="click"
+                    :actions="actions"
+                    @select="onSelect"
+            >
+                <template #reference>
+                    <van-image
+                            v-show="headImg"
+                            width="40"
+                            height="40"
+                            radius="40"
+                            :src="user.uheadImg"
+                    />
+                </template>
+            </van-popover>
+
         </template>
 
         <template #title style="text-align: center">
@@ -35,9 +46,19 @@
                 tjStyle:'color: #1989fa;font-weight: bold',
                 jjStyle:'color: black;font-size:14px',
                 headImg:false,
+                showPopover: false,
+                // 通过 actions 属性来定义菜单选项
+                actions: [{ text: '退出登录' }]
             }
         },
         methods:{
+            onSelect(action) {
+                console.log(action)
+                if (action.text==="退出登录"){
+                    localStorage.removeItem("user")
+                    location.reload();
+                }
+            },
             onZx(){//点击最新
                 this.zxStyle='color: #1989fa;font-weight: bold';
                 this.tjStyle='color: black;font-size:14px';
@@ -59,8 +80,10 @@
             },
         },
         mounted() {
+            console.log("top")
             // localStorage.removeItem("user")
             this.user=JSON.parse(localStorage.getItem("user"));
+            console.log(this.user)
             if (this.user!=null&&this.user.uheadImg!=null&&this.user.uheadImg!==""){
                 this.headImg=true;
             }

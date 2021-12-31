@@ -5,6 +5,7 @@
     <resultMap type="cn.edu.jsu.zjj.running.order_type.entity.OrderType" id="OrderTypeMap">
         <result property="otId" column="ot_id" jdbcType="INTEGER"/>
         <result property="otName" column="ot_name" jdbcType="VARCHAR"/>
+        <collection property="orderTypeSons" column="ot_id" select="cn.edu.jsu.zjj.running.order_type_son.dao.OrderTypeSonDao.queryByOtId"/>
     </resultMap>
 
     <!--查询单个-->

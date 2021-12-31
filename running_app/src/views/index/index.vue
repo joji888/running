@@ -6,14 +6,11 @@
 </template>
 
 <script>
-
     import order from "../order/list";
 
     import home from "../home/home";
 
     import bottom from "./bottom";
-
-
 
     export default {
         components:{
@@ -38,6 +35,9 @@
             addOrder(){
                 this.$refs.myComponent.addOrderF();
             }
+        },
+        mounted() {
+            console.log("index")
         }
     }
 </script>

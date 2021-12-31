@@ -95,5 +95,7 @@ public interface OrderTypeSonDao {
      */
     int deleteById(Integer tsId);
 
+    List<OrderTypeSon> queryByOtId(Integer otId);
+
 }
 

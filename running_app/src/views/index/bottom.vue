@@ -57,14 +57,28 @@
                     }).catch(function(res){
                         _this.$refs.order.$el.click();
                     });
+                }else {
+                    this.$emit("setPage",page);
                 }
-                this.$emit("setPage",page);
             },
             onOder(){
                 this.$refs.order.$el.click();
             },
             addOrder(){
-                this.$emit("addOrder");
+                let _this=this;
+                if (this.user==null){
+                    this.$dialog.alert({
+                        message: '你还未登录是否跳转到登陆页面?',
+                        showCancelButton:true
+                    }).then(function (res) {
+                        _this.onOder();
+                        _this.$router.push({path:'/login',query:{}});
+                    }).catch(function(res){
+                        _this.$refs.order.$el.click();
+                    });
+                }else {
+                    this.$emit("addOrder");
+                }
             }
         },
         mounted() {

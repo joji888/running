@@ -39,7 +39,7 @@ public interface OrderService {
      * @param order 实例对象
      * @return 实例对象
      */
-    Result insert(Order order);
+    Result insert(MultipartFile file,Order order) throws IOException;
 
     /**
      * 修改数据

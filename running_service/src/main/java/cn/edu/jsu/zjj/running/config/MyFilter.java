@@ -2,13 +2,14 @@ package cn.edu.jsu.zjj.running.config;
 
 import cn.edu.jsu.zjj.running.utils.Token;
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-//@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/*")
 public class MyFilter implements Filter {
 
     public static Map<String,Token> tokenMap= new ConcurrentHashMap<>();
@@ -24,7 +25,7 @@ public class MyFilter implements Filter {
         System.out.println("访问："+requestURI);
 
         try {
-            if ("/login".equals(requestURI)){//登陆接口不用token
+            if ("admin/login".equals(requestURI)||"admin//register".equals(requestURI)){//登陆注册接口不用token
                 response.setContentType("application/json;charset=UTF-8");
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;

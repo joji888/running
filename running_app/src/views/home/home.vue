@@ -38,7 +38,7 @@
                     width="80"
                     height="80"
                     radius="80"
-                    :src="user.uheadImg"
+                    :src="'../'+user.uheadImg"
             />
             <div style="border: 1px solid white;margin-top: 40px;margin-left: 30px;float: left;padding-top: 5px">
                 <div style="font-size: 12px">{{user.unick}}</div>
@@ -48,8 +48,8 @@
             <van-button round type="info" style="float: right;margin-top: 55px;font-size: 10px;height: 28px;margin-right: 30px">编辑资料</van-button>
         </div>
         <div style="padding-right: 30px;padding-left: 30px;font-size: 10px;color: #cccccc;margin-bottom: 20px;margin-top: 10px;">
-            <span>发布跑腿：{{100000}}</span>
-            <span style="float: right">接受跑腿：{{100000}}</span>
+            <span>发布跑腿：{{0}}</span>
+            <span style="float: right">接受跑腿：{{0}}</span>
         </div>
 
 

@@ -19,9 +19,9 @@
                             width="18"
                             height="18"
                             radius="18"
-                            src="https://img01.yzcdn.cn/vant/cat.jpeg"
+                            :src="'../'+order.user.uheadImg"
                     />
-                    <span class="oUserText">{{order.uid}}+++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+                    <span class="oUserText">{{order.user.unick}}</span>
                 </div>
                 <div style="width: 85%;">
                     <div style="float: left;font-size: 10px;margin-top: 8px;color: #cccccc;margin-bottom: 15px;height: 2vh">发布时间:{{order.oCreateTime}}</div>
@@ -38,7 +38,7 @@
                             width="85%"
                             fit="fill"
                             style="margin-top: 15px"
-                            :src="order.oimage"
+                            :src="'../'+order.oimage"
                     />
                     <div style="width: 85%;margin-top: 15px;color: red;font-size: 14px;line-height: 28px">
                         <div style="float: left;line-height: 48px">价格:￥{{order.orderTypeSon.tsPrice}}</div>
@@ -148,7 +148,7 @@
                                     width="18"
                                     height="18"
                                     radius="18"
-                                    :src="item.user.uheadImg"
+                                    :src="'../'+item.user.uheadImg"
                             />
                             <span class="oUserText">{{item.user.unick}}</span>
                         </div>
@@ -158,7 +158,7 @@
                     <van-image
                             width="30%"
                             fit="fill"
-                            :src="item.oimage"
+                            :src="'../'+item.oimage"
                     />
                 </div>
             </van-cell>
@@ -179,8 +179,20 @@
             return{
                 page:0,
                 list:[],
-                order:{},
-                totalPages:'',
+                order:{
+                    user:{
+                        unick:"",
+                        uheadImg:"",
+                    },
+                    orderType:{
+                        otName:"",
+                    },
+                    orderTypeSon:{
+                        tsName:"",
+                        tsPrice:0,
+                    }
+                },
+                totalPages:2,
                 otIdNAndTsIdN:"",
                 show:false,
                 showType:false,
@@ -229,6 +241,7 @@
             listAdd(){
                 this.page+=1;
                 if (this.page>=this.totalPages){
+                    console.log("到")
                     this.finished=true;
                     return;
                 }
@@ -259,7 +272,14 @@
                     }
                 }).then(function (res) {
                     _this.$myRequest(res);//判断请求是否合法
+                    // console.log(_this.page)
+                    // console.log(res.data.data.body.totalPages)
                     _this.totalPages=res.data.data.body.totalPages;
+
+
+                    // console.log(_this.page)
+                    // console.log(_this.totalPages)
+
                     _this.order=res.data.data.body.content[0];
                     _this.list=res.data.data.body.content;
                 });
@@ -325,23 +345,21 @@
             },
             addOrderFonc(){
                 console.log(this.fileList[0].file)
-
                 this.addOrder.oCreateTime=this.$dateFormat('yyyy-MM-dd HH:mm',new Date());
                 let xs=this.myTime.split(":")[0];
                 let fz=this.myTime.split(":")[1];
                 let test=100*60*60*Number(xs)+100*60*Number(fz)
                 this.addOrder.oEndTime=this.$dateFormat('yyyy-MM-dd HH:mm',new Date(this.addOrder.oEndTime.getTime()+test));
                 console.log(this.addOrder)
-
                 let param = new FormData(); // 创建form对象
                 param.append("file",this.fileList[0].file); // 通过append向form对象添加数据
-
                 let config = {
                     headers: { "Content-Type": "multipart/form-data" }
                 };
-
                 let _this=this;
+                // alert(1);
                 this.$http.post("/order?"+this.$qs.stringify(this.addOrder), param, config).then(function (res) {
+                    // alert(2);
                     console.log(res)
                     if (res.data.code===200){
                         _this.$notify({

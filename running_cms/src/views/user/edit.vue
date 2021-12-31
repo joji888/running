@@ -1,10 +1,10 @@
 <template>
     <div v-loading="loading">
         <el-form :model="user" :rules="rules" ref="user" label-width="100px" class="demo-user">
-            <el-form-item label="订单图片" prop="oid">
+            <el-form-item label="用户图片" prop="oid">
                 <el-upload
                         class="avatar-uploader"
-                        :action="'/user/editImg?uHeadImg='+user.uheadImg+'&uId='+user.uid"
+                        :action="'/running/user/editImg?uHeadImg='+user.uheadImg+'&uId='+user.uid"
                         name="uploadFIle"
                         :show-file-list="false"
                         :on-success="handleAvatarSuccess"

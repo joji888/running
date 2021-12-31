@@ -44,6 +44,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         let _this=this;
+                        delete this.ruleForm.orderType;
                         this.$http.put("/orderTypeSon?"+this.$qs.stringify(this.ruleForm)).then(function (res) {
                             _this.$myRequest(res);//判断请求是否合法
                             if (res.data.code===200){

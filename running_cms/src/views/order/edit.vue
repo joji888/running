@@ -5,7 +5,7 @@
             <el-form-item label="订单图片" prop="oid">
                 <el-upload
                         class="avatar-uploader"
-                        :action="'/order/editImg?image='+order.oimage+'&oId='+order.oid"
+                        :action="'/running/order/editImg?image='+order.oimage+'&oId='+order.oid"
                         name="uploadFIle"
                         :show-file-list="false"
                         :on-success="handleAvatarSuccess"
@@ -88,6 +88,10 @@
                 </el-form-item>
             </el-row>
 
+            <el-form-item label="订单价格" prop="otile">
+                <el-input v-model="order.oPrice"></el-input>
+            </el-form-item>
+
             <el-form-item label="订单描述" prop="odescribe">
                 <el-input  type="textarea" v-model="order.odescribe"></el-input>
             </el-form-item>
@@ -169,6 +173,7 @@
                             tsId:this.order.tsId,
                             otId:this.order.otId,
                             oTile:this.order.otile,
+                            oPrice:this.order.oPrice,
                             oState:this.order.ostate,
                             oDescribe:this.order.odescribe,
                             oCreateTime:this.order.oCreateTime,

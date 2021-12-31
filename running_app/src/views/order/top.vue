@@ -14,7 +14,7 @@
                             width="40"
                             height="40"
                             radius="40"
-                            :src="user.uheadImg"
+                            :src="'../'+user.uheadImg"
                     />
                 </template>
             </van-popover>
@@ -41,7 +41,9 @@
         name: "top",
         data(){
             return{
-                user:{},
+                user:{
+                    uheadImg:""
+                },
                 zxStyle:'color: black;font-size:14px',
                 tjStyle:'color: #1989fa;font-weight: bold',
                 jjStyle:'color: black;font-size:14px',
@@ -82,8 +84,11 @@
         mounted() {
             console.log("top")
             // localStorage.removeItem("user")
-            this.user=JSON.parse(localStorage.getItem("user"));
-            console.log(this.user)
+            let user=JSON.parse(localStorage.getItem("user"));
+            if (user==null){
+                this.headImg=false;
+                return;
+            }
             if (this.user!=null&&this.user.uheadImg!=null&&this.user.uheadImg!==""){
                 this.headImg=true;
             }

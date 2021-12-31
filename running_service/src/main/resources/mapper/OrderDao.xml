@@ -75,6 +75,7 @@
                 and o_create_time = #{order.oCreateTime}
             </if>
         </where>
+        ORDER BY o_id DESC
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 

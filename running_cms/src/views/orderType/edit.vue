@@ -35,10 +35,15 @@
         },
         methods: {
             submitForm(formName) {
+                // console.log(1)
                 this.loading=true;
+                // console.log(2)
                 this.$refs[formName].validate((valid) => {
+                    // console.log(3)
                     if (valid) {
+                        // console.log(4)
                         let _this=this;
+                        delete this.ruleForm.orderTypeSons;
                         this.$http.put("/orderType?"+this.$qs.stringify(this.ruleForm)).then(function (res) {
                             _this.$myRequest(res);//判断请求是否合法
                             if (res.data.code===200){

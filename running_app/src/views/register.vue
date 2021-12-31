@@ -49,6 +49,7 @@
                     uPassword:"",
                     uPassword2:"",
                     Token:"",
+                    uRole:"user",
                     verifyCodeData:"",
                 },
                 verifyColor:false,

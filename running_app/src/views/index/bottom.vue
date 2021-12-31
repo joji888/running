@@ -30,16 +30,16 @@
                 active: 0,
                 user:{},
                 add: {
-                    active: '/file/add02.png',
-                    inactive: '/file/add01.png',
+                    active: '/running/file/add02.png',
+                    inactive: '/running/file/add01.png',
                 },
                 home: {
-                    active: '/file/user03.png',
-                    inactive: '/file/user01.png',
+                    active: '/running/file/user03.png',
+                    inactive: '/running/file/user01.png',
                 },
                 index: {
-                    active: '/file/index03.png',
-                    inactive: '/file/index01.png',
+                    active: '/running/file/index03.png',
+                    inactive: '/running/file/index01.png',
                 },
             };
         },

@@ -199,6 +199,7 @@ public class UserServiceImpl implements UserService {
 
         user.setUNick("用户"+RandomUtil.random());
         user.setUAccount(user.getUPhone());//设置用户手机号为登录账号
+        user.setUHeadImg("https://www.oyyf.top/running/app/img/loginImg.2486c839.png");
         user.setUPassword(Encryption.getSah256(Encryption.getSah256(user.getUPassword())));
 
         Integer insert = this.userDao.insert(user);

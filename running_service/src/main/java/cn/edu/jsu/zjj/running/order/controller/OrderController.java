@@ -22,7 +22,7 @@ import java.io.IOException;
  * @since 2021-12-26 10:52:50
  */
 @RestController
-@RequestMapping("order")
+@RequestMapping("running/order")
 public class OrderController {
     /**
      * 服务对象

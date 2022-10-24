@@ -23,7 +23,7 @@ import java.io.IOException;
  * @since 2021-12-26 11:01:13
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("running/user")
 public class UserController {
     /**
      * 服务对象

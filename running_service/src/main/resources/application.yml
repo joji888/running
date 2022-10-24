@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: root
-    password: 1234
+    password: 123456
     #serverTimezone=UTC 配置时区
     url: jdbc:mysql:///running_db?serverTimezone=UTC&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -31,8 +31,8 @@ spring:
 
   #邮箱配置
   mail:
-    username: 1148551723@qq.com
-    password: tynceospcvqajahg
+    username: 963805941@qq.com
+    password: wcdgbfvebebwbchf
     host: smtp.qq.com
     properties:
       mail:
@@ -41,3 +41,6 @@ spring:
             port: 465
           ssl:
             enable: true
+  servlet:
+    multipart:
+      max-file-size: 10485760

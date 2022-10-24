@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @since 2021-12-26 10:52:11
  */
 @RestController
-@RequestMapping("comment")
+@RequestMapping("running/comment")
 public class CommentController {
     /**
      * 服务对象

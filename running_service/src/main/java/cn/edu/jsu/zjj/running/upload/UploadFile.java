@@ -13,7 +13,7 @@ import java.util.UUID;
 @Service
 public class UploadFile {
 
-    private static String lPath="/home/running/upload/";
+    private static String lPath="/Users/joji/Documents/丁雨轩毕业设计/practical/running/upload/";
     private static String wPath="E:\\File\\practical\\running\\upload";
 
     private static final String OS_NAME = System.getProperty("os.name").toLowerCase();//获取当前运行系统环境

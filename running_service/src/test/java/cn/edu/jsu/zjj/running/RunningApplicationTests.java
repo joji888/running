@@ -14,7 +14,7 @@ class RunningApplicationTests {
 
     @Test
     void contextLoads() {
-        mailSend.send("2799489580@qq.com","测试");
+        mailSend.send("963805941@qq.com","测试");
     }
 
 }

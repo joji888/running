@@ -65,6 +65,8 @@
         },
         mounted() {
             console.log("top");
+            return;
+
             let admin=this.$mySetToken();
             if (admin){
                 console.log(admin)

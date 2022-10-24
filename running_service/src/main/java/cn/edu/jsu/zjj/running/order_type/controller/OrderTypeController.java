@@ -19,7 +19,7 @@ import java.util.List;
  * @since 2021-12-26 10:58:01
  */
 @RestController
-@RequestMapping("orderType")
+@RequestMapping("running/orderType")
 public class OrderTypeController {
     /**
      * 服务对象

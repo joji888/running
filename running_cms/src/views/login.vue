@@ -1,6 +1,6 @@
 <template>
     <div class="loginMain">
-        <img class="loginImg" src="../assets/loginImg.png">
+        <img class="loginImg" src="https://www.oyyf.top/images/appointment/logo.png">
         <el-form :model="users" :rules="rules" ref="users" class="loginForm">
             <el-form-item prop="acc">
                 <el-input v-model="users.acc" type="text" autocomplete="off" placeholder="账号" style="background-color: transparent"><i slot="prefix" class="el-input__icon el-icon-user"></i></el-input>
@@ -13,8 +13,8 @@
                 <el-button type="primary" class="loginBut" @click="login('users')" >登录</el-button>
 
             </el-form-item>
-            <span style="color: white;font-size: 14px">跑腿平台--吉首大学张家界学院</span>
-            <br><span style="color: white;font-size: 14px">2021-现在 版权所有</span>
+            <span style="color: white;font-size: 14px">预约平台管理系统</span>
+            <br><span style="color: white;font-size: 14px">2022-现在 版权所有</span>
         </el-form>
     </div>
 </template>

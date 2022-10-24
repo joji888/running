@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @since 2021-12-26 10:59:55
  */
 @RestController
-@RequestMapping("orderTypeSon")
+@RequestMapping("running/orderTypeSon")
 public class OrderTypeSonController {
     /**
      * 服务对象

@@ -18,7 +18,8 @@ import java.util.HashMap;
  * @since 2021-12-26 10:49:28
  */
 @RestController
-@RequestMapping("admin")
+@RequestMapping("/running/admin")
+@CrossOrigin
 public class AdminController {
     /**
      * 服务对象

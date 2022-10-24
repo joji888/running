@@ -96,8 +96,13 @@
         },
         mounted() {
             console.log("index");
-            let admin = this.$mySetToken();
+
+            let _this1=this;
+            setTimeout(function () {_this1.loading=false;},500)
+            return;
+
             let _this=this;
+            let admin = this.$mySetToken();
             setTimeout(function () {_this.loading=false;},500)
         }
     }

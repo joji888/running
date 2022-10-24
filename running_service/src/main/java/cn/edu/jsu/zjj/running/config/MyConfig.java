@@ -24,7 +24,7 @@ public class MyConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        File file=new File("/home/running/upload/");
+        File file=new File("/Users/joji/Documents/丁雨轩毕业设计/practical/running/upload/");
 //        File file=new File("E:\\File\\practical\\running\\upload");
         if (!file.exists()){
             file.mkdirs();//创建该文件夹
@@ -34,8 +34,8 @@ public class MyConfig implements WebMvcConfigurer {
                 ex.printStackTrace();
             }
         }
-        registry.addResourceHandler("/file/**").addResourceLocations("file:/home/running/upload/");
-        registry.addResourceHandler("/app/**").addResourceLocations("file:/home/running/dist/");
+        registry.addResourceHandler("/file/**").addResourceLocations("file:/Users/joji/Documents/丁雨轩毕业设计/practical/running/upload/");
+        registry.addResourceHandler("/app/**").addResourceLocations("file:/Users/joji/Documents/丁雨轩毕业设计/practical/running/running_app/dist/");
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
     }
 }

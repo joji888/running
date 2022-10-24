@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="running:war">
+    <output-path>$PROJECT_DIR$/running_service/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>false</exploded>
+        <module>running</module>
+        <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
+      </options>
+    </properties>
+    <root id="archive" name="running-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="running:war exploded" />
+    </root>
+  </artifact>
+</component>

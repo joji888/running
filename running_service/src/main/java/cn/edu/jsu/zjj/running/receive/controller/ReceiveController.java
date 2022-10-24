@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @since 2021-12-26 11:00:23
  */
 @RestController
-@RequestMapping("receive")
+@RequestMapping("running/receive")
 public class ReceiveController {
     /**
      * 服务对象

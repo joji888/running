@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @since 2021-12-26 10:50:46
  */
 @RestController
-@RequestMapping("apply")
+@RequestMapping("running/apply")
 public class ApplyController {
     /**
      * 服务对象

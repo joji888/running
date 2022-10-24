@@ -61,7 +61,7 @@ public class MailSend {
                             "            <span style=\"line-height: 15px;color: white;font-size: 14px\">RunningApp</span>\n" +
                             "            <div style=\"font-size: 10px;color: white;margin-top: 12px\">\n" +
                             "                <div>官方网站：127.0.0.1</div>\n" +
-                            "                <div>客服电话：1517369362</div>\n" +
+                            "                <div>客服电话：17300787380</div>\n" +
                             "            </div>\n" +
                             "        </div>\n" +
                             "    </div>"
